@@ -1,4 +1,3 @@
-<%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@page import="org.apache.shiro.session.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
