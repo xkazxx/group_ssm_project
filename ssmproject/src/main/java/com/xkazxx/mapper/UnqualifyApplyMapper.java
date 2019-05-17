@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.UnqualifyApply;
 
+import java.util.List;
+
 public interface UnqualifyApplyMapper {
     int deleteByPrimaryKey(String unqualifyApplyId);
 
@@ -14,4 +16,6 @@ public interface UnqualifyApplyMapper {
     int updateByPrimaryKeySelective(UnqualifyApply record);
 
     int updateByPrimaryKey(UnqualifyApply record);
+
+    List<UnqualifyApply> findAllUnqualifyProducts();
 }

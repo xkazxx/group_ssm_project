@@ -82,4 +82,18 @@ public class UnqualifyApply {
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
     }
+
+    public UnqualifyApply(String unqualifyApplyId, String productId, String unqualifyItem, Integer unqualifyCount, Date assemblyDate, String empId, Date applyDate, String note) {
+        this.unqualifyApplyId = unqualifyApplyId;
+        this.productId = productId;
+        this.unqualifyItem = unqualifyItem;
+        this.unqualifyCount = unqualifyCount;
+        this.assemblyDate = assemblyDate;
+        this.empId = empId;
+        this.applyDate = applyDate;
+        this.note = note;
+    }
+
+    public UnqualifyApply() {
+    }
 }

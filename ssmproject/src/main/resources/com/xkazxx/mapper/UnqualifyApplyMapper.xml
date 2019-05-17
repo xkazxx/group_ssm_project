@@ -21,6 +21,11 @@
     from unqualify_apply
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </select>
+  <select id="findAllUnqualifyProducts" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from unqualify_apply
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from unqualify_apply
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
