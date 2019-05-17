@@ -1,5 +1,9 @@
 package com.xkazxx.bean;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Work {
     private String workId;
 

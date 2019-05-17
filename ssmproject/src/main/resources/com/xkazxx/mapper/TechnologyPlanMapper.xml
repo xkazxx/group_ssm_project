@@ -11,82 +11,10 @@
     <result column="technology_plan_start" jdbcType="TIMESTAMP" property="technologyPlanStart" />
     <result column="technology_plan_end" jdbcType="TIMESTAMP" property="technologyPlanEnd" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan, 
     technology_plan_start, technology_plan_end
   </sql>
-  <select id="selectByExample" parameterType="com.xkazxx.bean.TechnologyPlanExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from technology_plan
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -96,12 +24,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from technology_plan
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.xkazxx.bean.TechnologyPlanExample">
-    delete from technology_plan
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.xkazxx.bean.TechnologyPlan">
     insert into technology_plan (technology_plan_id, technology_id, batch_amount, 
@@ -168,58 +90,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xkazxx.bean.TechnologyPlanExample" resultType="java.lang.Long">
-    select count(*) from technology_plan
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update technology_plan
-    <set>
-      <if test="record.technologyPlanId != null">
-        technology_plan_id = #{record.technologyPlanId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.technologyId != null">
-        technology_id = #{record.technologyId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.batchAmount != null">
-        batch_amount = #{record.batchAmount,jdbcType=INTEGER},
-      </if>
-      <if test="record.startPlan != null">
-        start_plan = #{record.startPlan,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.endPlan != null">
-        end_plan = #{record.endPlan,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.commitPlan != null">
-        commit_plan = #{record.commitPlan,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.technologyPlanStart != null">
-        technology_plan_start = #{record.technologyPlanStart,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.technologyPlanEnd != null">
-        technology_plan_end = #{record.technologyPlanEnd,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update technology_plan
-    set technology_plan_id = #{record.technologyPlanId,jdbcType=VARCHAR},
-      technology_id = #{record.technologyId,jdbcType=VARCHAR},
-      batch_amount = #{record.batchAmount,jdbcType=INTEGER},
-      start_plan = #{record.startPlan,jdbcType=TIMESTAMP},
-      end_plan = #{record.endPlan,jdbcType=TIMESTAMP},
-      commit_plan = #{record.commitPlan,jdbcType=TIMESTAMP},
-      technology_plan_start = #{record.technologyPlanStart,jdbcType=TIMESTAMP},
-      technology_plan_end = #{record.technologyPlanEnd,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.xkazxx.bean.TechnologyPlan">
     update technology_plan
     <set>

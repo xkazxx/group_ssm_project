@@ -26,7 +26,7 @@
     <!--sqlsession工厂-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.xkazxx.bean"/>
+        <!--<property name="typeAliasesPackage" value="com.xkazxx.bean"/>-->
     </bean>
     <!--mapper扫描包-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

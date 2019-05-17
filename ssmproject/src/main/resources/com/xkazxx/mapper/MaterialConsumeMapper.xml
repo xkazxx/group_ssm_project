@@ -11,82 +11,10 @@
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     consume_id, work_id, material_id, consume_amount, consume_date, sender, receiver, 
     note
   </sql>
-  <select id="selectByExample" parameterType="com.xkazxx.bean.MaterialConsumeExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from material_consume
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -96,12 +24,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from material_consume
     where consume_id = #{consumeId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.xkazxx.bean.MaterialConsumeExample">
-    delete from material_consume
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.xkazxx.bean.MaterialConsume">
     insert into material_consume (consume_id, work_id, material_id, 
@@ -166,58 +88,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xkazxx.bean.MaterialConsumeExample" resultType="java.lang.Long">
-    select count(*) from material_consume
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update material_consume
-    <set>
-      <if test="record.consumeId != null">
-        consume_id = #{record.consumeId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.workId != null">
-        work_id = #{record.workId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.materialId != null">
-        material_id = #{record.materialId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.consumeAmount != null">
-        consume_amount = #{record.consumeAmount,jdbcType=INTEGER},
-      </if>
-      <if test="record.consumeDate != null">
-        consume_date = #{record.consumeDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.sender != null">
-        sender = #{record.sender,jdbcType=VARCHAR},
-      </if>
-      <if test="record.receiver != null">
-        receiver = #{record.receiver,jdbcType=VARCHAR},
-      </if>
-      <if test="record.note != null">
-        note = #{record.note,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update material_consume
-    set consume_id = #{record.consumeId,jdbcType=VARCHAR},
-      work_id = #{record.workId,jdbcType=VARCHAR},
-      material_id = #{record.materialId,jdbcType=VARCHAR},
-      consume_amount = #{record.consumeAmount,jdbcType=INTEGER},
-      consume_date = #{record.consumeDate,jdbcType=TIMESTAMP},
-      sender = #{record.sender,jdbcType=VARCHAR},
-      receiver = #{record.receiver,jdbcType=VARCHAR},
-      note = #{record.note,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.xkazxx.bean.MaterialConsume">
     update material_consume
     <set>

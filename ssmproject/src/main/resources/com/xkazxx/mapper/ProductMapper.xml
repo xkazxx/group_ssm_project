@@ -9,81 +9,9 @@
     <result column="note" jdbcType="VARCHAR" property="note" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     product_id, product_name, product_type, image, note, status
   </sql>
-  <select id="selectByExample" parameterType="com.xkazxx.bean.ProductExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from product
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -93,12 +21,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from product
     where product_id = #{productId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.xkazxx.bean.ProductExample">
-    delete from product
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.xkazxx.bean.Product">
     insert into product (product_id, product_name, product_type, 
@@ -151,50 +73,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xkazxx.bean.ProductExample" resultType="java.lang.Long">
-    select count(*) from product
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update product
-    <set>
-      <if test="record.productId != null">
-        product_id = #{record.productId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productName != null">
-        product_name = #{record.productName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productType != null">
-        product_type = #{record.productType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.image != null">
-        image = #{record.image,jdbcType=VARCHAR},
-      </if>
-      <if test="record.note != null">
-        note = #{record.note,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update product
-    set product_id = #{record.productId,jdbcType=VARCHAR},
-      product_name = #{record.productName,jdbcType=VARCHAR},
-      product_type = #{record.productType,jdbcType=VARCHAR},
-      image = #{record.image,jdbcType=VARCHAR},
-      note = #{record.note,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.xkazxx.bean.Product">
     update product
     <set>
