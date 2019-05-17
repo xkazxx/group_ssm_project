@@ -1,9 +1,11 @@
 package com.xkazxx.service;
 
+import com.github.pagehelper.PageInfo;
 import com.xkazxx.bean.COrder;
 
-import java.util.List;
 
 public interface SchedulingService {
-    List<COrder> findOrder();
+
+    PageInfo<COrder> findOrder(int pageNum, int pageSize);
+
 }

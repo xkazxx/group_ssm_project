@@ -1,5 +1,7 @@
 package com.xkazxx.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xkazxx.bean.COrder;
 import com.xkazxx.mapper.COrderMapper;
 import com.xkazxx.service.SchedulingService;
@@ -16,7 +18,12 @@ public class SchedulingServiceImpl implements SchedulingService {
     COrderMapper cOrderMapper;
 
     @Override
-    public List<COrder> findOrder() {
-        return cOrderMapper.findOrder();
+    public PageInfo<COrder> findOrder(int pageNum,int pageSize) {
+
+        PageHelper.startPage(pageNum,pageSize);
+        List<COrder> orderList = cOrderMapper.findOrder(pageNum,pageSize);
+        PageInfo<COrder> pageInfo = new PageInfo<>(orderList);
+        return pageInfo;
     }
+
 }

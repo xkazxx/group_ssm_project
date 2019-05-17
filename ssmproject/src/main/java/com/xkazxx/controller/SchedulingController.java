@@ -1,13 +1,14 @@
 package com.xkazxx.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.xkazxx.bean.COrder;
 import com.xkazxx.service.SchedulingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 
 @Controller
 public class SchedulingController {
@@ -17,7 +18,19 @@ public class SchedulingController {
 
     @RequestMapping("/order/find")
     public String findOrder(Model model) {
-        List<COrder> orderList = schedulingService.findOrder();
+        /*model.addAttribute("page",1);
+        model.addAttribute("rows",10);*/
+        //return "forward:/order/list";
+        return "order_list";
+    }
+
+
+    @RequestMapping("/order/list")
+    public String findOrder(@RequestParam int page,
+                            @RequestParam int rows,
+                            Model model) {
+        PageInfo<COrder> orderList = schedulingService.findOrder(page,rows);
+        //orderList.getList()
         model.addAttribute("orderList",orderList);
         //订单查询
         return "order_list";
