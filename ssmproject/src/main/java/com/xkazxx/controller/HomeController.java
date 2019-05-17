@@ -3,11 +3,15 @@ package com.xkazxx.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * @author Zachary Zhao
+ * @create 2019-05-17 17:09
+ */
 @Controller
-@RequestMapping("/admin")
-public class AdminLogin {
-    @RequestMapping("/login")
-    public String adminLogin(){
-        return "login";
+public class HomeController {
+
+    @RequestMapping("/")
+    public String home(){
+        return "home";
     }
 }

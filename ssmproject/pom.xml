@@ -124,6 +124,11 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
 
 </project>

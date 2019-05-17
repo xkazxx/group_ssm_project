@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.COrder;
 
+import java.util.List;
+
 public interface COrderMapper {
     int deleteByPrimaryKey(String orderId);
 
@@ -14,4 +16,6 @@ public interface COrderMapper {
     int updateByPrimaryKeySelective(COrder record);
 
     int updateByPrimaryKey(COrder record);
+
+    List<COrder> findOrder();
 }
