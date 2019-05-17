@@ -12,11 +12,11 @@
     <!--spring mvc注解驱动-->
     <mvc:annotation-driven/>
     <!--静态资源处理-->
-    <mvc:resources mapping="/static/**" location="/WEB-INF/view/"/>
+    <mvc:resources mapping="/static/**" location="/WEB-INF/"/>
 
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="2"/>
     </bean>
