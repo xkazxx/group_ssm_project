@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xkazxx.mapper.COrderMapper">
+
   <resultMap id="BaseResultMap" type="com.xkazxx.bean.COrder">
     <id column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="custom_id" jdbcType="VARCHAR" property="customId" />
@@ -15,10 +16,18 @@
     <result column="file" jdbcType="VARCHAR" property="file" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+
   <sql id="Base_Column_List">
-    order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price, 
+    order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price,
     unit, image, file, status
   </sql>
+
+  <select id="findOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from c_order
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -8,6 +8,8 @@ public class COrder {
 
     private String customId;
 
+    private String custom;
+
     private String productId;
 
     private Date orderDate;
@@ -122,5 +124,13 @@ public class COrder {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getCustom() {
+        return custom;
+    }
+
+    public void setCustom(String custom) {
+        this.custom = custom;
     }
 }
