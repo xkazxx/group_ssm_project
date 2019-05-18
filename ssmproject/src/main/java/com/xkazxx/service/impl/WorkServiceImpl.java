@@ -6,6 +6,9 @@ import com.xkazxx.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author alan.zhang
+ */
 @Service
 public class WorkServiceImpl implements WorkService {
 
