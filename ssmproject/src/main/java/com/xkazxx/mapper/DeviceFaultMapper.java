@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.DeviceFault;
 
+import java.util.List;
+
 public interface DeviceFaultMapper {
     int deleteByPrimaryKey(String deviceFaultId);
 
@@ -14,4 +16,6 @@ public interface DeviceFaultMapper {
     int updateByPrimaryKeySelective(DeviceFault record);
 
     int updateByPrimaryKey(DeviceFault record);
+
+    List<DeviceFault> selectAllDeviceFault();
 }

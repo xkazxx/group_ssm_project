@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Work;
 
+import java.util.List;
+
 public interface WorkMapper {
     int deleteByPrimaryKey(String workId);
 
@@ -14,4 +16,9 @@ public interface WorkMapper {
     int updateByPrimaryKeySelective(Work record);
 
     int updateByPrimaryKey(Work record);
+
+    List<Work> findWorks(int pageNum, int pageSize);
+
+    int getTotalNum();
+
 }

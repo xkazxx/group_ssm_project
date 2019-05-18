@@ -9,9 +9,33 @@
     <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
     <result column="rating" jdbcType="INTEGER" property="rating" />
   </resultMap>
+
   <sql id="Base_Column_List">
     work_id, process_number, product_id, process_id, device_id, rating
   </sql>
+
+
+
+  <select id="findWorks" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List"/>
+    from work
+  </select>
+
+  <select id="getTotalNum" resultType="_int">
+    select count(1) from WORK
+  </select>
+
+
+
+
+
+
+
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Custom;
 
+import java.util.List;
+
 public interface CustomMapper {
     int deleteByPrimaryKey(String customId);
 
@@ -14,4 +16,6 @@ public interface CustomMapper {
     int updateByPrimaryKeySelective(Custom record);
 
     int updateByPrimaryKey(Custom record);
+
+    List<Custom> getAllCustom();
 }

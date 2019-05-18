@@ -19,6 +19,12 @@
     from device_fault
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectAllDeviceFault" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from device_fault
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_fault
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}

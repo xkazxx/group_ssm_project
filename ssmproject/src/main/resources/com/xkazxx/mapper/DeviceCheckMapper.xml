@@ -19,7 +19,14 @@
     from device_check
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+    <select id="selectAllDeviceCheck" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from device_check
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_check
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </delete>

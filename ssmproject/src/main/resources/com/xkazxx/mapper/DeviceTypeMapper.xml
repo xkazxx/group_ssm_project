@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xkazxx.mapper.DeviceTypeMapper">
+
   <resultMap id="BaseResultMap" type="com.xkazxx.bean.DeviceType">
     <id column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId" />
     <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName" />
@@ -11,20 +12,30 @@
     <result column="device_type_quantity" jdbcType="INTEGER" property="deviceTypeQuantity" />
     <result column="device_type_warranty" jdbcType="TIMESTAMP" property="deviceTypeWarranty" />
   </resultMap>
+
   <sql id="Base_Column_List">
     device_type_id, device_type_name, device_type_model, device_type_spec, device_type_supplier, 
     device_type_producer, device_type_quantity, device_type_warranty
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from device_type
     where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectAllDeviceType" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from device_type
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_type
     where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
   </delete>
+
   <insert id="insert" parameterType="com.xkazxx.bean.DeviceType">
     insert into device_type (device_type_id, device_type_name, device_type_model, 
       device_type_spec, device_type_supplier, device_type_producer, 
@@ -35,6 +46,7 @@
       #{deviceTypeQuantity,jdbcType=INTEGER}, #{deviceTypeWarranty,jdbcType=TIMESTAMP}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.xkazxx.bean.DeviceType">
     insert into device_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -90,6 +102,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.xkazxx.bean.DeviceType">
     update device_type
     <set>
@@ -117,6 +130,7 @@
     </set>
     where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.xkazxx.bean.DeviceType">
     update device_type
     set device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
@@ -128,4 +142,5 @@
       device_type_warranty = #{deviceTypeWarranty,jdbcType=TIMESTAMP}
     where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
   </update>
+
 </mapper>

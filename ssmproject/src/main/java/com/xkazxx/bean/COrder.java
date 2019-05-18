@@ -9,8 +9,6 @@ public class COrder {
     private Custom custom;
     //新增字段
     private Product product;
-     //新增字段
-    private Integer total;
 
     private String orderId;
 
@@ -36,13 +34,6 @@ public class COrder {
 
     private Integer status;
 
-    public Integer getTotal() {
-        return total;
-    }
-
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
 
     public Custom getCustom() {
         return custom;

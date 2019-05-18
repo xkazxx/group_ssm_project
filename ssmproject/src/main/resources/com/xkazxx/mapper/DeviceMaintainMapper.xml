@@ -20,7 +20,12 @@
     from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <select id="selectAllDeviceMaintain" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from device_maintain
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </delete>

@@ -15,9 +15,4 @@ public class HomeController {
     public String home(){
         return "home";
     }
-
-    @RequestMapping("/{page}")
-    public String showPage(@PathVariable String page){
-        return page;
-    }
 }
