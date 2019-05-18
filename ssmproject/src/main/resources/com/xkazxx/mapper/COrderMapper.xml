@@ -16,16 +16,45 @@
     <result column="file" jdbcType="VARCHAR" property="file" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+  <resultMap id="COrderMap" type="com.xkazxx.bean.COrder">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="custom_id" jdbcType="VARCHAR" property="customId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <association property="custom" column="custom_id" select="com.xkazxx.mapper.CustomMapper.selectByPrimaryKey"/>
+    <association property="product" column="product_id" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
+  </resultMap>
 
   <sql id="Base_Column_List">
     order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price,
     unit, image, file, status
   </sql>
 
-  <select id="findOrder" resultMap="BaseResultMap">
+  <select id="findOrders" resultMap="COrderMap">
     select
-    <include refid="Base_Column_List" />
-    from c_order
+      <include refid="Base_Column_List"/>
+    from
+      c_order
+  </select>
+
+  <select id="getAllCOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    c_order
+  </select>
+
+  <!--查询总数量-->
+  <select id="getTotalNum" resultType="_int">
+    select count(1) from c_order
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

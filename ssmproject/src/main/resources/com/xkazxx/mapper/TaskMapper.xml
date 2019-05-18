@@ -11,6 +11,19 @@
   <sql id="Base_Column_List">
     task_id, manufacture_sn, work_id, task_quantity, working_hours
   </sql>
+
+
+  <select id="findTasks" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    task
+  </select>
+
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

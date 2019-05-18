@@ -18,6 +18,10 @@ public interface COrderMapper {
 
     int updateByPrimaryKey(COrder record);
 
-    List<COrder> findOrder(@Param("pageNum") int pageNum,
+    int getTotalNum();
+
+    List<COrder> findOrders(@Param("pageNum") int pageNum,
                            @Param("pageSize") int pageSize);
+
+    List<COrder> getAllCOrder();
 }

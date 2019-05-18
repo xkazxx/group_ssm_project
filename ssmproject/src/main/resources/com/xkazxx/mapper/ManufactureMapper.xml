@@ -9,9 +9,32 @@
     <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
     <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
   </resultMap>
+
+  <resultMap id="ManufactureMap" type="com.xkazxx.bean.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <association property="cOrder" column="order_id" select="com.xkazxx.mapper.COrderMapper.selectByPrimaryKey"/>
+    <association property="technology" column="technology_id" select="com.xkazxx.mapper.TechnologyMapper.selectByPrimaryKey"/>
+  </resultMap>
+
   <sql id="Base_Column_List">
     manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
   </sql>
+
+  <select id="findManufacture" resultMap="ManufactureMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    manufacture
+  </select>
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

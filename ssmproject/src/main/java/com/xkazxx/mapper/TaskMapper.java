@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Task;
 
+import java.util.List;
+
 public interface TaskMapper {
     int deleteByPrimaryKey(String taskId);
 
@@ -14,4 +16,6 @@ public interface TaskMapper {
     int updateByPrimaryKeySelective(Task record);
 
     int updateByPrimaryKey(Task record);
+
+    List<Task> findTasks(int pageNum, int pageSize);
 }

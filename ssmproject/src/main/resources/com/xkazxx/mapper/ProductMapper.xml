@@ -12,6 +12,31 @@
   <sql id="Base_Column_List">
     product_id, product_name, product_type, image, note, status
   </sql>
+
+
+  <select id="findProducts" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    product
+  </select>
+
+  <!--查询总数量-->
+  <select id="getTotalNum" resultType="_int">
+    select count(1) from product
+  </select>
+
+  <select id="getAllProduct" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    product
+  </select>
+
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
