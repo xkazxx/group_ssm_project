@@ -8,7 +8,9 @@ import com.xkazxx.service.SchedulingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SchedulingServiceImpl implements SchedulingService {
@@ -21,8 +23,13 @@ public class SchedulingServiceImpl implements SchedulingService {
     public PageInfo<COrder> findOrder(int pageNum,int pageSize) {
 
         PageHelper.startPage(pageNum,pageSize);
-        List<COrder> orderList = cOrderMapper.findOrder(pageNum,pageSize);
-        PageInfo<COrder> pageInfo = new PageInfo<>(orderList);
+        Map map = new HashMap();
+
+//        int total = cOrderMapper.getTotalNum();
+        List<COrder> cOrders = cOrderMapper.findOrder(pageNum,pageSize);
+
+
+        PageInfo<COrder> pageInfo = new PageInfo<>();
         return pageInfo;
     }
 

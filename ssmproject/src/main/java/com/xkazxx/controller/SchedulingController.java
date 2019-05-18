@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SchedulingController {
@@ -22,14 +22,12 @@ public class SchedulingController {
         return "order_list";
     }
 
-
     @RequestMapping("/order/list")
+    @ResponseBody
     public String findOrder(@RequestParam int page,
-                            @RequestParam int rows,
-                            Model model) {
+                            @RequestParam int rows) {
         PageInfo<COrder> orderList = schedulingService.findOrder(page,rows);
-        //orderList.getList()
-        model.addAttribute("orderList",orderList);
+
         //订单查询
         return "order_list";
     }

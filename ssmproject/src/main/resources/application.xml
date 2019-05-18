@@ -22,6 +22,7 @@
         <property name="password" value="147963"/>
         <property name="username" value="root"/>
         <property name="url" value="jdbc:mysql://localhost:3306/mybatis_java_13?serverTimezone=GMT&amp;useSSL=false"/>
+        <property name="filters" value="start"/>
     </bean>
     <!--sqlsession工厂-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
