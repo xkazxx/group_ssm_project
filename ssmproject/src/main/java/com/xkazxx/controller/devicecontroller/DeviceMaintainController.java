@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/deviceMaintain")
-public class DeviceMaintain {
+public class DeviceMaintainController {
 
     @Autowired
     DeviceService deviceService;
@@ -17,6 +17,6 @@ public class DeviceMaintain {
     @RequestMapping("/list")
     public ResponseVo list(@RequestParam("page") int page, @RequestParam("rows") int rows){
 
-        return deviceService.setMap(page, rows, DeviceMaintain.class);
+        return deviceService.setMap(page, rows, DeviceMaintainController.class);
     }
 }

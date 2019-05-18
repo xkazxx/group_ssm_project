@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/deviceFault")
-public class DeviceFault {
+@RequestMapping("/deviceCheck")
+public class DeviceCheckController {
 
     @Autowired
     DeviceService deviceService;
@@ -17,6 +17,6 @@ public class DeviceFault {
     @RequestMapping("/list")
     public ResponseVo list(@RequestParam("page") int page, @RequestParam("rows") int rows){
 
-        return deviceService.setMap(page, rows, DeviceFault.class);
+        return deviceService.setMap(page, rows, DeviceCheckController.class);
     }
 }
