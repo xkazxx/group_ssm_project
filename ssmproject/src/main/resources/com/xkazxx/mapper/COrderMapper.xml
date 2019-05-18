@@ -33,10 +33,29 @@
     <association property="product" column="product_id" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
   </resultMap>
 
+  <resultMap id="COrderMapByCustom" type="com.xkazxx.bean.COrder">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="cid" jdbcType="VARCHAR" property="customId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+    <result column="onote" jdbcType="VARCHAR" property="note" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="ostatus" jdbcType="INTEGER" property="status" />
+    <association property="custom" column="cid" select="com.xkazxx.mapper.CustomMapper.selectByPrimaryKey"/>
+    <association property="product" column="product_id" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+
   <sql id="Base_Column_List">
     order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price,
     unit, image, file, status
   </sql>
+
 
   <select id="findOrders" resultMap="COrderMap">
     select
@@ -51,6 +70,60 @@
     from
     c_order
   </select>
+
+  <select id="findCOrderByCOrderCustom" resultMap="COrderMapByCustom">
+    select     order_id, o.custom_id, product_id, order_date, request_date, o.note, quantity, unit_price,unit, image, file, o.status
+    from       c_order o
+    left join  custom c
+    on         o.custom_id = c.custom_id
+    <where>
+      <if test="custom_name != null and custom_name != '' " >
+        custom_name like concat("%",#{custom_name},"%")
+      </if>
+    </where>
+  </select>
+
+  <select id="findCOrderByCOrderId" resultMap="COrderMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    c_order
+    <where>
+      <if test="order_id != null and order_id != '' " >
+        order_id like concat("%",#{order_id},"%")
+      </if>
+    </where>
+
+  </select>
+
+  <select id="findCOrderByCOrderProduct" resultMap="COrderMapByProduct">
+    select     order_id, custom_id cid, o.product_id pid, order_date, request_date, o.note onate, quantity, unit_price,unit, o.image oimage, file, o.status ostatus
+    from       c_order o
+    left join  product p
+    on         o.product_id = p.product_id
+    <where>
+      <if test="product_name != null and product_name != '' " >
+        product_name like concat ("%",#{product_name},"%")
+      </if>
+    </where>
+  </select>
+  <resultMap id="COrderMapByProduct" type="com.xkazxx.bean.COrder">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="cid" jdbcType="VARCHAR" property="customId" />
+    <result column="pid" jdbcType="VARCHAR" property="productId" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+    <result column="onote" jdbcType="VARCHAR" property="note" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="oimage" jdbcType="VARCHAR" property="image" />
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="ostatus" jdbcType="INTEGER" property="status" />
+    <association property="custom" column="cid" select="com.xkazxx.mapper.CustomMapper.selectByPrimaryKey"/>
+    <association property="product" column="pid" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
+  </resultMap>
+
 
   <!--查询总数量-->
   <select id="getTotalNum" resultType="_int">

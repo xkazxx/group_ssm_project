@@ -134,4 +134,40 @@ public class SchedulingServiceImpl implements SchedulingService {
         return cOrderMapper.getAllCOrder();
     }
 
+    @Override
+    public Map findCOrderByCOrderProduct(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<COrder> pageInfo = new PageInfo<>(cOrderMapper.findCOrderByCOrderProduct(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
+    @Override
+    public Map findCOrderByCOrderCustom(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<COrder> pageInfo = new PageInfo<>(cOrderMapper.findCOrderByCOrderCustom(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
+    @Override
+    public Map findCOrderByCOrderId(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<COrder> pageInfo = new PageInfo<>(cOrderMapper.findCOrderByCOrderId(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
 }

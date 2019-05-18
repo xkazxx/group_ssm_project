@@ -33,5 +33,11 @@ public interface SchedulingService {
     List getAllProduct();
 
     List getAllCOrder();
+
+    Map findCOrderByCOrderProduct(String searchValue, int pageNum, int pageSize);
+
+    Map findCOrderByCOrderCustom(String searchValue, int pageNum, int pageSize);
+
+    Map findCOrderByCOrderId(String searchValue, int pageNum, int pageSize);
 }
 
