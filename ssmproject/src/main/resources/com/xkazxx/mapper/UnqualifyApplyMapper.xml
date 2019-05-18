@@ -21,7 +21,25 @@
     from unqualify_apply
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </select>
-  <select id="findAllUnqualifyProducts" resultMap="BaseResultMap">
+  <resultMap id="BasePageResultMap" type="com.xkazxx.bean.UnqualifyApply">
+    <id column="unqualify_apply_id" jdbcType="VARCHAR" property="unqualifyApplyId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="unqualify_item" jdbcType="VARCHAR" property="unqualifyItem" />
+    <result column="unqualify_count" jdbcType="INTEGER" property="unqualifyCount" />
+    <result column="assembly_date" jdbcType="TIMESTAMP" property="assemblyDate" />
+    <result column="emp_id" jdbcType="VARCHAR" property="empId" />
+    <result column="apply_date" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <association property="empName" column="emp_id" select="com.xkazxx.mapper.UnqualifyApplyMapper.selectEmpNameById"/>
+    <association property="productName" column="product_id" select="com.xkazxx.mapper.UnqualifyApplyMapper.selectProductNameById"/>
+  </resultMap>
+  <select id="selectEmpNameById" resultType="java.lang.String">
+    select emp_name from employee where emp_id = #{idz}
+  </select>
+  <select id="selectProductNameById" resultType="java.lang.String">
+    select product_name from product where product_id = #{idz}
+  </select>
+  <select id="findAllUnqualifyProducts" resultMap="BasePageResultMap">
     select
     <include refid="Base_Column_List" />
     from unqualify_apply

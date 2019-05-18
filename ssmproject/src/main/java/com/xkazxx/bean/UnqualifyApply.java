@@ -15,9 +15,13 @@ public class UnqualifyApply {
 
     private String empId;
 
+    private String empName;
+
     private Date applyDate;
 
     private String note;
+
+    private String productName;
 
     public String getUnqualifyApplyId() {
         return unqualifyApplyId;
@@ -67,6 +71,10 @@ public class UnqualifyApply {
         this.empId = empId == null ? null : empId.trim();
     }
 
+    public String getEmpName() { return empName; }
+
+    public void setEmpName(String empName) { this.empName = empName; }
+
     public Date getApplyDate() {
         return applyDate;
     }
@@ -83,17 +91,7 @@ public class UnqualifyApply {
         this.note = note == null ? null : note.trim();
     }
 
-    public UnqualifyApply(String unqualifyApplyId, String productId, String unqualifyItem, Integer unqualifyCount, Date assemblyDate, String empId, Date applyDate, String note) {
-        this.unqualifyApplyId = unqualifyApplyId;
-        this.productId = productId;
-        this.unqualifyItem = unqualifyItem;
-        this.unqualifyCount = unqualifyCount;
-        this.assemblyDate = assemblyDate;
-        this.empId = empId;
-        this.applyDate = applyDate;
-        this.note = note;
-    }
+    public String getProductName() { return productName; }
 
-    public UnqualifyApply() {
-    }
+    public void setProductName(String productName) { this.productName = productName; }
 }
