@@ -2,6 +2,11 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Technology;
 
+import java.util.List;
+
+/**
+ * @author alan.zhang
+ */
 public interface TechnologyMapper {
     int deleteByPrimaryKey(String technologyId);
 
@@ -14,4 +19,6 @@ public interface TechnologyMapper {
     int updateByPrimaryKeySelective(Technology record);
 
     int updateByPrimaryKey(Technology record);
+
+    List<Technology> findTechnologyAll();
 }
