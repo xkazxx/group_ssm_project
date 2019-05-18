@@ -18,9 +18,7 @@ public class SchedulingController {
 
     @RequestMapping("/order/find")
     public String findOrder(Model model) {
-        /*model.addAttribute("page",1);
-        model.addAttribute("rows",10);*/
-        //return "forward:/order/list";
+
         return "order_list";
     }
 
