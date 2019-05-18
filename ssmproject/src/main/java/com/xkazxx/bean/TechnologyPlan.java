@@ -2,6 +2,9 @@ package com.xkazxx.bean;
 
 import java.util.Date;
 
+/**
+ * @author alan.zhang
+ */
 public class TechnologyPlan {
     private String technologyPlanId;
 
@@ -18,6 +21,16 @@ public class TechnologyPlan {
     private Date technologyPlanStart;
 
     private Date technologyPlanEnd;
+
+    private Technology technology;
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
+    }
 
     public String getTechnologyPlanId() {
         return technologyPlanId;

@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Technology;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,5 +21,8 @@ public interface TechnologyMapper {
 
     int updateByPrimaryKey(Technology record);
 
+    /**
+     * @return List<>
+     */
     List<Technology> findTechnologyAll();
 }

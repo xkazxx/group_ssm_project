@@ -5,11 +5,16 @@ import java.util.Date;
 
 
 public class COrder {
+    //新增字段
+    private Custom custom;
+    //新增字段
+    private Product product;
+     //新增字段
+    private Integer total;
+
     private String orderId;
 
     private String customId;
-
-    private String custom;
 
     private String productId;
 
@@ -30,6 +35,30 @@ public class COrder {
     private String file;
 
     private Integer status;
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    public Custom getCustom() {
+        return custom;
+    }
+
+    public void setCustom(Custom custom) {
+        this.custom = custom;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -125,13 +154,5 @@ public class COrder {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getCustom() {
-        return custom;
-    }
-
-    public void setCustom(String custom) {
-        this.custom = custom;
     }
 }

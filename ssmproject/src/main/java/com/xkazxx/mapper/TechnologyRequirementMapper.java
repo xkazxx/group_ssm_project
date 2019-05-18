@@ -1,6 +1,9 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.TechnologyRequirement;
+import com.xkazxx.bean.TechnologyRequirementCustom;
+
+import java.util.List;
 
 public interface TechnologyRequirementMapper {
     int deleteByPrimaryKey(String technologyRequirementId);
@@ -14,4 +17,11 @@ public interface TechnologyRequirementMapper {
     int updateByPrimaryKeySelective(TechnologyRequirement record);
 
     int updateByPrimaryKey(TechnologyRequirement record);
+
+    /**
+     *查找工艺要求和工艺的表
+     * 一对一查询
+     */
+    List<TechnologyRequirementCustom> selectTechnologyRequirementAndTechnologyName();
+
 }

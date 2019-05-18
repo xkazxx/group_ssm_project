@@ -371,7 +371,7 @@
 				}
 			});
 			
-			/* Technology Manager Tree onClick Event */
+			/* technology Manager Tree onClick Event */
 			$('#technologyMonitor').tree({
 				onClick : function(node) {
 					if ($('#technologyMonitor').tree("isLeaf", node.target)) {
