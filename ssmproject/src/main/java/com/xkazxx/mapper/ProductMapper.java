@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Product;
 
+import java.util.List;
+
 public interface ProductMapper {
     int deleteByPrimaryKey(String productId);
 
@@ -14,4 +16,6 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
+    List<Product> getAllProduct();
 }

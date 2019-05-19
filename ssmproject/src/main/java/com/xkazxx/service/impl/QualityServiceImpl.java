@@ -2,7 +2,10 @@ package com.xkazxx.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xkazxx.bean.UnqualifyApply;
+import com.xkazxx.bean.*;
+import com.xkazxx.mapper.DepartmentMapper;
+import com.xkazxx.mapper.EmployeeMapper;
+import com.xkazxx.mapper.ProductMapper;
 import com.xkazxx.mapper.UnqualifyApplyMapper;
 import com.xkazxx.service.QualityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +23,34 @@ public class QualityServiceImpl implements QualityService {
     @Autowired
     UnqualifyApplyMapper unqualifyApplyMapper;
 
+    @Autowired
+    ProductMapper productMapper;
+
+    @Autowired
+    EmployeeMapper employeeMapper;
+
+    @Autowired
+    DepartmentMapper departmentMapper;
+
     @Override
-    public PageInfo<UnqualifyApply> findAllUnqualifyProductsByPage(Integer pageNum, Integer pageSize) {
+    public PageInfo<UnqualifyProduct> findAllUnqualifyProductsByPage(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<UnqualifyApply> products = unqualifyApplyMapper.findAllUnqualifyProducts();
-        PageInfo<UnqualifyApply> pageInfo = new PageInfo<>(products);
+        List<UnqualifyProduct> products = unqualifyApplyMapper.findAllUnqualifyProducts();
+        PageInfo<UnqualifyProduct> pageInfo = new PageInfo<>(products);
         return pageInfo;
+    }
+
+    @Override
+    public List<Product> getAllProduct() { return productMapper.getAllProduct(); }
+
+    @Override
+    public List<Employee> getAllEmployee() { return employeeMapper.getAllEmployee(); }
+
+    @Override
+    public List<Department> getAllDepartment() { return departmentMapper.getAllDepartment(); }
+
+    @Override
+    public int insert(UnqualifyApply unqualifyApply) {
+        return unqualifyApplyMapper.insert(unqualifyApply);
     }
 }

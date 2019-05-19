@@ -21,7 +21,7 @@
     from unqualify_apply
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </select>
-  <resultMap id="BasePageResultMap" type="com.xkazxx.bean.UnqualifyApply">
+  <resultMap id="BasePageResultMap" type="com.xkazxx.bean.UnqualifyProduct">
     <id column="unqualify_apply_id" jdbcType="VARCHAR" property="unqualifyApplyId" />
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="unqualify_item" jdbcType="VARCHAR" property="unqualifyItem" />
