@@ -6,14 +6,9 @@ import com.xkazxx.bean.TechnologyResult;
 import com.xkazxx.service.technologyservice.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * @author alan.zhang
@@ -72,6 +67,9 @@ public class TechnologyController {
         if(insert == 1){
             technologyResult.setMsg("OK");
             technologyResult.setStatus("200");
+        }else {
+            technologyResult.setMsg("ERROR");
+            technologyResult.setStatus("500");
         }
         return technologyResult;
     }
@@ -104,6 +102,9 @@ public class TechnologyController {
         if(update == 1){
             technologyResult.setMsg("OK");
             technologyResult.setStatus("200");
+        }else {
+            technologyResult.setMsg("ERROR");
+            technologyResult.setStatus("500");
         }
         return technologyResult;
     }

@@ -115,6 +115,7 @@ public class QualityController {
         map.put("data",null);
         return map;
     }
+
     /**
      * 自定义方法，分页查询时使用
      * 方法体内设置前端需要的total个rows参数
