@@ -10,14 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
+@RequestMapping("/custom")
 public class CustomController {
 
     @Autowired
     SchedulingService schedulingService;
 
-    @RequestMapping("/custom/get/{id}")
+    @RequestMapping("/get/{id}")
     @ResponseBody
     public Custom findCustom(@PathVariable("id") String id) {
         Custom custom = schedulingService.findCostom(id);
@@ -25,18 +27,37 @@ public class CustomController {
     }
 
 
-    @RequestMapping("/custom/find")
+    @RequestMapping("/find")
     public String findcustom() {
 
         //作业查询
-        return "work_list";
+        return "custom_list";
     }
 
-    @RequestMapping("/custom/get_data")
+    @RequestMapping("/list")
     @ResponseBody
-    public List customGetData(@RequestParam int page,
-                              @RequestParam int rows) {
+    public Map findcustoms(@RequestParam int page,
+                           @RequestParam int rows) {
+
+        return schedulingService.findCustoms(page,rows);
+    }
+
+    @RequestMapping("/get_data")
+    @ResponseBody
+    public List customGetData() {
         return schedulingService.getAllCustom();
+    }
+
+    @RequestMapping("/search_custom_by_customId")
+    @ResponseBody
+    public Map findCustomByCustomId(String searchValue,int page,int rows){
+        return schedulingService.findCustomByCustomId(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_custom_by_customName")
+    @ResponseBody
+    public Map findCustomByCustomName(String searchValue,int page,int rows){
+        return schedulingService.findCustomByCustomName(searchValue,page,rows);
     }
 
 }

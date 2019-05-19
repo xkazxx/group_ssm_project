@@ -13,20 +13,21 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/product")
 public class ProductController {
 
 
     @Autowired
     SchedulingService schedulingService;
 
-    @RequestMapping("product/find")
+    @RequestMapping("/find")
     public String findProduct() {
 
         //产品查询
         return "product_list";
     }
 
-    @RequestMapping("product/list")
+    @RequestMapping("/list")
     @ResponseBody
     public Map findProducts(@RequestParam int page,
                             @RequestParam int rows) {
@@ -34,7 +35,7 @@ public class ProductController {
         return schedulingService.findProducts(page,rows);
     }
 
-    @RequestMapping("/product/get/{id}")
+    @RequestMapping("/get/{id}")
     @ResponseBody
     public Product findProduct(@PathVariable("id") String id) {
         Product product = schedulingService.findProduct(id);
@@ -42,12 +43,31 @@ public class ProductController {
         return product;
     }
 
-    @RequestMapping("/product/get_data")
+    @RequestMapping("/get_data")
     @ResponseBody
-    public List productGetData(@RequestParam int page,
-                               @RequestParam int rows) {
+    public List productGetData() {
         return schedulingService.getAllProduct();
     }
 
+    @RequestMapping("/search_product_by_productId")
+    @ResponseBody
+    public Map findProductByProductId(String searchValue,int page,int rows){
+
+        return schedulingService.findProductByProductId(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_product_by_productName")
+    @ResponseBody
+    public Map findProductByProductName(String searchValue,int page,int rows){
+
+        return schedulingService.findProductByProductName(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_product_by_productType")
+    @ResponseBody
+    public Map findProductByProductType(String searchValue,int page,int rows){
+
+        return schedulingService.findProductByProductType(searchValue,page,rows);
+    }
 
 }

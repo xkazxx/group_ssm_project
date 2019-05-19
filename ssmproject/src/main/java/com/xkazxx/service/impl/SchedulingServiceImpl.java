@@ -52,13 +52,16 @@ public class SchedulingServiceImpl implements SchedulingService {
     }
 
     @Override
-    public Custom findCostom(String id) {
-        return customMapper.selectByPrimaryKey(id);
-    }
+    public Map findCustoms(int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
 
-    @Override
-    public Product findProduct(String id) {
-        return productMapper.selectByPrimaryKey(id);
+        PageInfo<Custom> pageInfo =
+                new PageInfo<>(customMapper.findCustoms(pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
     }
 
     @Override
@@ -96,6 +99,17 @@ public class SchedulingServiceImpl implements SchedulingService {
         map.put("total",pageInfo.getTotal());
         return map;
     }
+
+    @Override
+    public Custom findCostom(String id) {
+        return customMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Product findProduct(String id) {
+        return productMapper.selectByPrimaryKey(id);
+    }
+
 
     @Override
     public Map findManufacture(int pageNum, int pageSize) {
@@ -170,4 +184,183 @@ public class SchedulingServiceImpl implements SchedulingService {
         return map;
     }
 
+    @Override
+    public Map findCustomByCustomId(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Custom> pageInfo = new PageInfo<>(customMapper.findCustomByCustomId(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
+    @Override
+    public Map findCustomByCustomName(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Custom> pageInfo = new PageInfo<>(customMapper.findCustomByCustomName(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
+    @Override
+    public Map findProductByProductId(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Product> pageInfo = new PageInfo<>(productMapper.findProductByProductId(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
+    @Override
+    public Map findProductByProductName(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Product> pageInfo = new PageInfo<>(productMapper.findProductByProductName(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
+    @Override
+    public Map findProductByProductType(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Product> pageInfo = new PageInfo<>(productMapper.findProductByProductType(searchValue,pageNum,pageSize));
+
+        map.put("rows", pageInfo.getList());
+        map.put("total",pageInfo.getTotal());
+        return map;
+    }
+
+    @Override
+    public Map findWorkByDevice(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Work> pageInfo = new PageInfo<>(workMapper.findWorkByDevice(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findWorkByWorkId(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Work> pageInfo = new PageInfo<>(workMapper.findWorkByWorkId(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findWorkByProcess(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Work> pageInfo = new PageInfo<>(workMapper.findWorkByProcess(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findWorkByProduct(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Work> pageInfo = new PageInfo<>(workMapper.findWorkByProduct(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findManufactureByManufactureSn(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Manufacture> pageInfo = new PageInfo<>(manufactureMapper.findManufactureByManufactureSn(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findManufactureByManufactureOrderId(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Manufacture> pageInfo = new PageInfo<>(manufactureMapper.findManufactureByManufactureOrderId(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findManufactureByManufactureTechnologyName(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Manufacture> pageInfo = new PageInfo<>(manufactureMapper.findManufactureByManufactureTechnologyName(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findTaskByTaskId(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Task> pageInfo = new PageInfo<>(taskMapper.findTaskByTaskId(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findTaskByWorkId(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Task> pageInfo = new PageInfo<>(taskMapper.findTaskByWorkId(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
+
+    @Override
+    public Map findTaskByManufactureSn(String searchValue, int pageNum, int pageSize) {
+        Map map = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+
+        PageInfo<Task> pageInfo = new PageInfo<>(taskMapper.findTaskByManufactureSn(searchValue,pageNum,pageSize));
+
+        map.put("total",pageInfo.getTotal());
+        map.put("rows", pageInfo.getList());
+        return map;
+    }
 }

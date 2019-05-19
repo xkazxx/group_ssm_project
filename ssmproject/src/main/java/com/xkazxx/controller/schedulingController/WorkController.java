@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/work")
 public class WorkController {
 
     @Autowired
@@ -25,21 +26,46 @@ public class WorkController {
         return technology;
     }
 
-
-    @RequestMapping("/work/find")
+    @RequestMapping("/find")
     public String findWork() {
 
         //作业查询
         return "work_list";
     }
 
-
-    @RequestMapping("/work/list")
+    @RequestMapping("/list")
     @ResponseBody
     public Map findWorks(@RequestParam int page,
                             @RequestParam int rows) {
 
         return schedulingService.findWorks(page,rows);
+    }
+
+    @ResponseBody
+    @RequestMapping("/search_work_by_workDevice")
+    public Map findWorkByDevice(String searchValue, int page, int rows){
+
+        return schedulingService.findWorkByDevice(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_work_by_workId")
+    @ResponseBody
+    public Map findWorkByWorkId(String searchValue, int page, int rows){
+
+        return schedulingService.findWorkByWorkId(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_work_by_workProcess")
+    @ResponseBody
+    public Map findWorkByProcess(String searchValue, int page, int rows){
+
+        return schedulingService.findWorkByProcess(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_work_by_workProduct")
+    @ResponseBody
+    public Map findWorkByProduct(String searchValue, int page, int rows){
+        return schedulingService.findWorkByProduct(searchValue,page,rows);
     }
 
 }

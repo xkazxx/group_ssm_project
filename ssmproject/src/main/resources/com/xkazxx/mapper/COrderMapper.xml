@@ -16,6 +16,7 @@
     <result column="file" jdbcType="VARCHAR" property="file" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+
   <resultMap id="COrderMap" type="com.xkazxx.bean.COrder">
     <id column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="custom_id" jdbcType="VARCHAR" property="customId" />
@@ -31,6 +32,23 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <association property="custom" column="custom_id" select="com.xkazxx.mapper.CustomMapper.selectByPrimaryKey"/>
     <association property="product" column="product_id" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+  <resultMap id="COrderMapByProduct" type="com.xkazxx.bean.COrder">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="cid" jdbcType="VARCHAR" property="customId" />
+    <result column="pid" jdbcType="VARCHAR" property="productId" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+    <result column="onote" jdbcType="VARCHAR" property="note" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="oimage" jdbcType="VARCHAR" property="image" />
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="ostatus" jdbcType="INTEGER" property="status" />
+    <association property="custom" column="cid" select="com.xkazxx.mapper.CustomMapper.selectByPrimaryKey"/>
+    <association property="product" column="pid" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
   </resultMap>
 
   <resultMap id="COrderMapByCustom" type="com.xkazxx.bean.COrder">
@@ -72,7 +90,7 @@
   </select>
 
   <select id="findCOrderByCOrderCustom" resultMap="COrderMapByCustom">
-    select     order_id, o.custom_id, product_id, order_date, request_date, o.note, quantity, unit_price,unit, image, file, o.status
+    select     order_id, o.custom_id cid, product_id, order_date, request_date, o.note, quantity, unit_price,unit, image, file, o.status
     from       c_order o
     left join  custom c
     on         o.custom_id = c.custom_id
@@ -107,22 +125,7 @@
       </if>
     </where>
   </select>
-  <resultMap id="COrderMapByProduct" type="com.xkazxx.bean.COrder">
-    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
-    <result column="cid" jdbcType="VARCHAR" property="customId" />
-    <result column="pid" jdbcType="VARCHAR" property="productId" />
-    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
-    <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
-    <result column="onote" jdbcType="VARCHAR" property="note" />
-    <result column="quantity" jdbcType="INTEGER" property="quantity" />
-    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
-    <result column="unit" jdbcType="VARCHAR" property="unit" />
-    <result column="oimage" jdbcType="VARCHAR" property="image" />
-    <result column="file" jdbcType="VARCHAR" property="file" />
-    <result column="ostatus" jdbcType="INTEGER" property="status" />
-    <association property="custom" column="cid" select="com.xkazxx.mapper.CustomMapper.selectByPrimaryKey"/>
-    <association property="product" column="pid" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
-  </resultMap>
+
 
 
   <!--查询总数量-->

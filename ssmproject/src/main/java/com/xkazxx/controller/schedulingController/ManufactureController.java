@@ -10,23 +10,42 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/manufacture")
 public class ManufactureController {
 
     @Autowired
     SchedulingService schedulingService;
 
 
-    @RequestMapping("/manufacture/find")
+    @RequestMapping("/find")
     public String findManufacture() {
         //生产计划查询
         return "manufacture_list";
     }
 
-    @RequestMapping("/manufacture/list")
+    @RequestMapping("/list")
     @ResponseBody
     public Map findManufacture(@RequestParam int page,
                                @RequestParam int rows) {
 
         return schedulingService.findManufacture(page,rows);
+    }
+
+    @RequestMapping("/search_manufacture_by_manufactureSn")
+    @ResponseBody
+    public Map findManufactureByManufactureSn(String searchValue, int page, int rows){
+        return schedulingService.findManufactureByManufactureSn(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_manufacture_by_manufactureOrderId")
+    @ResponseBody
+    public Map findManufactureByManufactureOrderId(String searchValue, int page, int rows){
+        return schedulingService.findManufactureByManufactureOrderId(searchValue,page,rows);
+    }
+
+    @RequestMapping("/search_manufacture_by_manufactureTechnologyName")
+    @ResponseBody
+    public Map findManufactureByManufactureTechnologyName(String searchValue, int page, int rows){
+        return schedulingService.findManufactureByManufactureTechnologyName(searchValue,page,rows);
     }
 }

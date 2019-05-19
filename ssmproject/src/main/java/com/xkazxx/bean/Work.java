@@ -1,10 +1,16 @@
 package com.xkazxx.bean;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Work {
+    //新增字段
+    private Device device;
+    //新增字段
+    private Process process;
+    //新增字段
+    private Product product;
+
     private String workId;
 
     private String processNumber;
@@ -16,6 +22,30 @@ public class Work {
     private String deviceId;
 
     private Integer rating;
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
+
+    public Process getProcess() {
+        return process;
+    }
+
+    public void setProcess(Process process) {
+        this.process = process;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public String getWorkId() {
         return workId;

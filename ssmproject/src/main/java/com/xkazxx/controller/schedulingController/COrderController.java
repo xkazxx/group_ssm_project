@@ -44,8 +44,7 @@ public class COrderController {
 
     @RequestMapping("/get_data")
     @ResponseBody
-    public List cOrderGetData(@RequestParam int page,
-                              @RequestParam int rows) {
+    public List cOrderGetData() {
         return schedulingService.getAllCOrder();
     }
 
@@ -69,14 +68,6 @@ public class COrderController {
 
         return schedulingService.findCOrderByCOrderId(searchValue,page,rows);
     }
-    /*@RequestMapping({"/search_order_by_orderId","/search_order_by_orderCustom","/search_order_by_orderProduct"})
-    @ResponseBody
-    public Map findCOrderByCOrderId(String searchValue,int page,int rows){
-        Map<String,String> paramMap = new HashMap<>();
-        paramMap
 
-
-        return schedulingService.findCOrderByCOrderId(searchValue,page,rows);
-    }*/
 
 }
