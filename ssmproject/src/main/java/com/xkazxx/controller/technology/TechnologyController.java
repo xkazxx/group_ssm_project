@@ -109,6 +109,6 @@ public class TechnologyController {
         return technologyResult;
     }
 
-
+//测试方式的叫法是
 
 }
