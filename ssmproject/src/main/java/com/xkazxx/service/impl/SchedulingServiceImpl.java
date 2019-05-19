@@ -110,13 +110,17 @@ public class SchedulingServiceImpl implements SchedulingService {
         return productMapper.selectByPrimaryKey(id);
     }
 
+    @Override
+    public Manufacture findManufacture(String id) {
+        return manufactureMapper.selectByPrimaryKey(id);
+    }
 
     @Override
-    public Map findManufacture(int pageNum, int pageSize) {
+    public Map findManufactures(int pageNum, int pageSize) {
         Map map = new HashMap();
         PageHelper.startPage(pageNum,pageSize);
 
-        PageInfo<Manufacture> pageInfo = new PageInfo<>(manufactureMapper.findManufacture(pageNum,pageSize));
+        PageInfo<Manufacture> pageInfo = new PageInfo<>(manufactureMapper.findManufactures(pageNum,pageSize));
 
         map.put("total",pageInfo.getTotal());
         map.put("rows", pageInfo.getList());
@@ -124,8 +128,8 @@ public class SchedulingServiceImpl implements SchedulingService {
     }
 
     @Override
-    public Technology findTechnology(String id) {
-        return technologyMapper.selectByPrimaryKey(id);
+    public Work findWork(String id) {
+        return workMapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -146,6 +150,16 @@ public class SchedulingServiceImpl implements SchedulingService {
     @Override
     public List getAllCOrder() {
         return cOrderMapper.getAllCOrder();
+    }
+
+    @Override
+    public List<Work> getAllWork() {
+        return workMapper.getAllWork();
+    }
+
+    @Override
+    public List<Manufacture> getAllManufacture() {
+        return manufactureMapper.getAllManufacture();
     }
 
     @Override
@@ -362,5 +376,58 @@ public class SchedulingServiceImpl implements SchedulingService {
         map.put("total",pageInfo.getTotal());
         map.put("rows", pageInfo.getList());
         return map;
+    }
+
+
+    @Override
+    public boolean delete_batch_COrder(String[] ids) {
+        int i = cOrderMapper.delete_batch_COrder(ids);
+        return i == ids.length;
+    }
+
+    @Override
+    public boolean insertCustom(Custom custom) {
+        int insert = customMapper.insertSelective(custom);
+        return insert == 1;
+    }
+
+    @Override
+    public boolean delete_batch_Custom(String[] ids) {
+        return ids.length == customMapper.delete_batch_Custom(ids);
+    }
+
+    @Override
+    public boolean update_all_Custom(Custom custom) {
+        return 1 == customMapper.updateByPrimaryKey(custom);
+    }
+
+    @Override
+    public boolean insertTask(Task task) {
+        return 1 == taskMapper.insertSelective(task);
+    }
+
+    @Override
+    public boolean update_all_Task(Task task) {
+        return 1 == taskMapper.updateByPrimaryKey(task);
+    }
+
+    @Override
+    public boolean delete_batch_Task(String[] ids) {
+        return ids.length == taskMapper.delete_batch_Task(ids);
+    }
+
+    @Override
+    public boolean insertProduct(Product product) {
+        return 1 == productMapper.insertSelective(product);
+    }
+
+    @Override
+    public boolean update_all_Product(Product product) {
+        return 1 == productMapper.updateByPrimaryKey(product);
+    }
+
+    @Override
+    public boolean delete_batch_Product(String[] ids) {
+        return ids.length == productMapper.delete_batch_Product(ids);
     }
 }

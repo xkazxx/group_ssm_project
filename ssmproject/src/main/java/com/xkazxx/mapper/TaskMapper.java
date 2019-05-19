@@ -31,4 +31,6 @@ public interface TaskMapper {
     List<Task> findTaskByManufactureSn(@Param("manufacture_sn") String searchValue,
                                        @Param("pageNum") int pageNum,
                                        @Param("pageSize") int pageSize);
+
+    int delete_batch_Task(@Param("ids") String[] ids);
 }

@@ -1,9 +1,6 @@
 package com.xkazxx.service;
 
-import com.xkazxx.bean.COrder;
-import com.xkazxx.bean.Custom;
-import com.xkazxx.bean.Product;
-import com.xkazxx.bean.Technology;
+import com.xkazxx.bean.*;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +15,7 @@ public interface SchedulingService {
 
     Map findTasks(int pageNum, int pageSize);
 
-    Map findManufacture(int pageNum, int pageSize);
+    Map findManufactures(int pageNum, int pageSize);
 
     Map findCustoms(int pageNum, int pageSize);
 
@@ -26,7 +23,7 @@ public interface SchedulingService {
 
     Product findProduct(String id);
 
-    Technology findTechnology(String id);
+    Work findWork(String id);
 
     COrder findCOrder(String id);
 
@@ -35,6 +32,10 @@ public interface SchedulingService {
     List getAllProduct();
 
     List getAllCOrder();
+
+    List<Work> getAllWork();
+
+    List<Manufacture> getAllManufacture();
 
     Map findCOrderByCOrderProduct(String searchValue, int pageNum, int pageSize);
 
@@ -71,6 +72,28 @@ public interface SchedulingService {
     Map findTaskByWorkId(String searchValue, int pageNum, int pageSize);
 
     Map findTaskByManufactureSn(String searchValue, int pageNum, int pageSize);
+
+    boolean delete_batch_COrder(String[] ids);
+
+    boolean insertCustom(Custom custom);
+
+    boolean delete_batch_Custom(String[] ids);
+
+    boolean update_all_Custom(Custom custom);
+
+    boolean insertTask(Task task);
+
+    boolean update_all_Task(Task task);
+
+    boolean delete_batch_Task(String[] ids);
+
+    boolean insertProduct(Product product);
+
+    boolean update_all_Product(Product product);
+
+    boolean delete_batch_Product(String[] ids);
+
+    Manufacture findManufacture(String id);
 }
 
 

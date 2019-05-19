@@ -1,8 +1,11 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Product;
+import com.xkazxx.bean.UnqualifyProduct;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -36,4 +39,6 @@ public interface ProductMapper {
     List<Product> findProductByProductType(@Param("product_type") String searchValue,
                                            @Param("pageNum") int pageNum,
                                            @Param("pageSize") int pageSize);
+
+    int delete_batch_Product(@Param("ids") String[] ids);
 }

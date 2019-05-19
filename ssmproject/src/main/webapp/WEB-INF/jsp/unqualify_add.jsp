@@ -65,7 +65,7 @@
 	            </td>
 	        </tr>
 	    </table>
-	    <input type="hidden" name="unqualifyParams"/>
+	    <%--<input type="hidden" name="unqualifyParams"/>--%>
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="unqualifySubmitForm()">提交</a>

@@ -18,7 +18,7 @@ public interface ManufactureMapper {
 
     int updateByPrimaryKey(Manufacture record);
 
-    List<Manufacture> findManufacture(int pageNum, int pageSize);
+    List<Manufacture> findManufactures(int pageNum, int pageSize);
 
     List<Manufacture> findManufactureByManufactureSn(@Param("manufacture_sn") String searchValue,
                                                      @Param("pageNum") int pageNum,
@@ -31,4 +31,7 @@ public interface ManufactureMapper {
     List<Manufacture> findManufactureByManufactureTechnologyName(@Param("technology_name") String searchValue,
                                                                  @Param("pageNum") int pageNum,
                                                                  @Param("pageSize") int pageSize);
+
+    List<Manufacture> getAllManufacture();
+
 }

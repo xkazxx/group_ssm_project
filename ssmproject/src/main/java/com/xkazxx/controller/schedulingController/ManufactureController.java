@@ -1,17 +1,24 @@
 package com.xkazxx.controller.schedulingController;
 
+import com.xkazxx.bean.Manufacture;
 import com.xkazxx.service.SchedulingService;
+import com.xkazxx.util.PublicMethodPart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/manufacture")
 public class ManufactureController {
+
+    @Autowired
+    PublicMethodPart publicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -28,7 +35,20 @@ public class ManufactureController {
     public Map findManufacture(@RequestParam int page,
                                @RequestParam int rows) {
 
-        return schedulingService.findManufacture(page,rows);
+        return schedulingService.findManufactures(page,rows);
+    }
+
+    @RequestMapping("/get/{id}")
+    @ResponseBody
+    public Manufacture findManufacture(@PathVariable("id") String id) {
+        Manufacture manufacture = schedulingService.findManufacture(id);
+        return manufacture;
+    }
+
+    @RequestMapping("/get_data")
+    @ResponseBody
+    public List manufactureGetData() {
+        return schedulingService.getAllManufacture();
     }
 
     @RequestMapping("/search_manufacture_by_manufactureSn")
@@ -47,5 +67,19 @@ public class ManufactureController {
     @ResponseBody
     public Map findManufactureByManufactureTechnologyName(String searchValue, int page, int rows){
         return schedulingService.findManufactureByManufactureTechnologyName(searchValue,page,rows);
+    }
+
+    @RequestMapping("/add_judge")
+    @ResponseBody
+    public Map add_judge(){
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
+    }
+
+    @RequestMapping("/edit_judge")
+    @ResponseBody
+    public Map edit_judge(){
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
     }
 }

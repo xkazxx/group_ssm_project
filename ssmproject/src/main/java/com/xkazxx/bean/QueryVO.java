@@ -1,9 +1,11 @@
 package com.xkazxx.bean;
 
-import java.io.Serializable;
+
+import org.springframework.stereotype.Component;
 import java.util.List;
 
-public class QueryVO{
+@Component
+public class QueryVO {
 
     List rows;
     Integer total;
