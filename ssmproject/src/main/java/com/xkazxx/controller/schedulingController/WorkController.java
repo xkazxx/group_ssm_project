@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -68,4 +69,19 @@ public class WorkController {
         return schedulingService.findWorkByProduct(searchValue,page,rows);
     }
 
+    @RequestMapping("/add_judge")
+    @ResponseBody
+    public Map add_judge(){
+        Map map = new HashMap();
+        map.put("msg", null);
+        return map;
+    }
+
+    @RequestMapping("/edit_judge")
+    @ResponseBody
+    public Map edit_judge(){
+        Map map = new HashMap();
+        map.put("msg", null);
+        return map;
+    }
 }

@@ -17,5 +17,5 @@ public interface DepartmentMapper {
 
     int updateByPrimaryKey(Department record);
 
-    List<Department> getAllDepartment();
+    List<Department> selectAllDepartment();
 }

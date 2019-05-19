@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,6 +69,22 @@ public class ProductController {
     public Map findProductByProductType(String searchValue,int page,int rows){
 
         return schedulingService.findProductByProductType(searchValue,page,rows);
+    }
+
+    @RequestMapping("/add_judge")
+    @ResponseBody
+    public Map add_judge(){
+        Map map = new HashMap();
+        map.put("msg", null);
+        return map;
+    }
+
+    @RequestMapping("/edit_judge")
+    @ResponseBody
+    public Map edit_judge(){
+        Map map = new HashMap();
+        map.put("msg", null);
+        return map;
     }
 
 }

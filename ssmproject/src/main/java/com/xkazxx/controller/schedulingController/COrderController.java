@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/order")
@@ -69,5 +68,53 @@ public class COrderController {
         return schedulingService.findCOrderByCOrderId(searchValue,page,rows);
     }
 
+    @RequestMapping("/add_judge")
+    @ResponseBody
+    public Map add_judge(){
+        Map map = new HashMap();
+        map.put("msg", null);
+        return map;
+    }
+
+    @RequestMapping("/add")
+    public String addCOrder(){
+
+        return "order_add";
+    }
+    @RequestMapping("/insert")
+    public String insertCOrder(COrder cOrder, MultipartFile[] files){
+        System.out.println(cOrder);
+        System.out.println(files);
+        return null;
+    }
+
+    @RequestMapping("/edit_judge")
+    @ResponseBody
+    public Map edit_judge(){
+        Map map = new HashMap();
+        map.put("msg", null);
+        return map;
+    }
+
+     @RequestMapping("/delete_judge")
+     @ResponseBody
+     public Map delete_judge(){
+         Map map = new HashMap();
+         map.put("msg", null);
+         return map;
+     }
+
+     @RequestMapping("/delete_batch")
+     @ResponseBody
+     public Map delete_batch(String[] ids){
+        boolean success = schedulingService.delete_batch(ids);
+         Map map = new HashMap();
+         if(success) {
+            map.put("msg", "ok");
+            map.put("status", 200);
+            map.put("data", null);
+        }
+         return map;
+     }
 
 }

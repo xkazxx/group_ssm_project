@@ -15,26 +15,29 @@
         <result column="note" jdbcType="VARCHAR" property="note"/>
     </resultMap>
     <sql id="Base_Column_List">
-        device_id, device_name, device_type_id, device_status_id, device_status,
-    device_purchase_date, device_purchase_price, device_manufacture_date,
-    device_service_life, device_keeper_id, note
+        device_id as deviceId, device_name as deviceName,
+        device.device_type_id as deviceTypeId, device_status_id as deviceStatusId,
+        device_status as deviceStatus, device_purchase_date as devicePurchaseDate,
+        device_purchase_price as devicePurchasePrice, device_manufacture_date as deviceManufactureDate,
+        device_service_life as deviceServiceLife, device.device_keeper_id as deviceKeeperId,
+        note as note
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.xkazxx.bean.Device">
         select
         <include refid="Base_Column_List"/>
         from device
         where device_id = #{deviceId,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectAllDevice" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from device
-    </select>
-
-    <select id="getDeviceTotal" resultType="java.lang.Integer">
-        select count(1)
-        from device
+    <select id="selectAllDevice" resultType="com.xkazxx.vo.DeviceVo">
+        SELECT
+            <include refid="Base_Column_List" />,
+            device_type.device_type_name as deviceTypeName,
+            employee.emp_name as deviceKeeper
+        FROM
+            device
+                LEFT JOIN device_type ON device.device_type_id = device_type.device_type_id
+                LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

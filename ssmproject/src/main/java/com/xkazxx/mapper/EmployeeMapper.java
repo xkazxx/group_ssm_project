@@ -18,4 +18,7 @@ public interface EmployeeMapper {
     int updateByPrimaryKey(Employee record);
 
     List<Employee> getAllEmployee();
+
+    Employee selectEmployeeAndDepartmentByPrimarkId(String empid);
+
 }

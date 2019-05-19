@@ -37,4 +37,5 @@ public interface COrderMapper {
                                            @Param("pageNum") int pageNum,
                                            @Param("pageSize") int pageSize);
 
+    int delete_batch(@Param("ids") String[] ids);
 }

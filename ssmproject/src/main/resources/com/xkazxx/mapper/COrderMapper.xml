@@ -126,6 +126,12 @@
     </where>
   </select>
 
+<delete id="delete_batch">
+  delete from c_order where order_id in
+  <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id}
+  </foreach>
+</delete>
 
 
   <!--查询总数量-->

@@ -44,7 +44,7 @@ public class QualityServiceImpl implements QualityService {
     public List<Employee> getAllEmployee() { return employeeMapper.getAllEmployee(); }
 
     @Override
-    public List<Department> getAllDepartment() { return departmentMapper.getAllDepartment(); }
+    public List<Department> getAllDepartment() { return departmentMapper.selectAllDepartment(); }
 
     @Override
     public int insert(UnqualifyApply unqualifyApply) {

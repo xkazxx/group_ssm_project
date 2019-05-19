@@ -363,4 +363,11 @@ public class SchedulingServiceImpl implements SchedulingService {
         map.put("rows", pageInfo.getList());
         return map;
     }
+
+
+    @Override
+    public boolean delete_batch(String[] ids) {
+        int i = cOrderMapper.delete_batch(ids);
+        return i == ids.length;
+    }
 }
