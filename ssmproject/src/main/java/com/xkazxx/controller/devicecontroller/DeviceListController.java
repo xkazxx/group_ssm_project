@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/deviceList")
-public class DeviceList {
+public class DeviceListController {
 
     @Autowired
     DeviceService deviceService;
