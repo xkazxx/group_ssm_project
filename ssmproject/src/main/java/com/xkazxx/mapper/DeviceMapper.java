@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Device;
+import com.xkazxx.vo.DeviceVo;
 
 import java.util.List;
 
@@ -17,7 +18,5 @@ public interface DeviceMapper {
 
     int updateByPrimaryKey(Device record);
 
-    int getDeviceTotal();
-
-    List<Device> selectAllDevice();
+    List<DeviceVo> selectAllDevice();
 }

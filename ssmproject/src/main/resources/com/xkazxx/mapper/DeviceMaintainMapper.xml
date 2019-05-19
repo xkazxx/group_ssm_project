@@ -20,11 +20,28 @@
     from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </select>
-    <select id="selectAllDeviceMaintain" resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from device_maintain
-    </select>
+
+  <resultMap id="DeviceMaintainResultMap" type="com.xkazxx.vo.DeviceMaintainVo">
+    <id column="device_maintain_id" property="deviceMaintainId" />
+    <result column="device_fault_id" property="deviceFaultId" />
+    <result column="device_maintain_emp_id" property="deviceMaintainEmpId" />
+    <result column="device_maintain_date" property="deviceMaintainDate" />
+    <result column="device_maintain_result" property="deviceMaintainResult" />
+    <result column="device_maintain_cost" property="deviceMaintainCost" />
+    <result column="note" property="note" />
+    <result column="emp_name" property="deviceMaintainEmp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    device_maintain_id, device_fault_id, device_maintain_emp_id, device_maintain_date,
+    device_maintain_result, device_maintain_cost, note, emp_name
+  </sql>
+  <select id="selectAllDeviceMaintain" resultMap="DeviceMaintainResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from device_maintain
+    LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
+  </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}

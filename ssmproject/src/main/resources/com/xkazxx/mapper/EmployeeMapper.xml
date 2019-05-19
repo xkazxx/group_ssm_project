@@ -17,7 +17,7 @@
     <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
   </resultMap>
   <sql id="Base_Column_List">
-    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major, 
+    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
     graduate_school, education_form, department_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -26,7 +26,43 @@
     from employee
     where emp_id = #{empId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+  <sql id="With_Department_List">
+    emp_id , emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, department.department_id, department.department_name,
+    department.note
+  </sql>
+  <resultMap id="EmployeeAndDepartmentResultMap" type="com.xkazxx.vo.EmployeeAndDepartmentVo">
+    <id column="emp_id" property="empId" />
+    <result column="emp_name" property="empName" />
+    <result column="sex" property="sex" />
+    <result column="id_code" property="idCode" />
+    <result column="birthday" property="birthday" />
+    <result column="join_date" property="joinDate" />
+    <result column="status" property="status" />
+    <result column="education" property="education" />
+    <result column="degree" property="degree" />
+    <result column="major" property="major" />
+    <result column="graduate_school" property="graduateSchool" />
+    <result column="education_form" property="educationForm" />
+    <result column="department_id" property="departmentId" />
+    <association property="department" javaType="com.xkazxx.bean.Department">
+      <id column="department_id" property="departmentId" />
+      <result column="department_name" property="departmentName" />
+      <result column="note" property="note" />
+    </association>
+  </resultMap>
+  <select id="selectEmployeeAndDepartmentByPrimarkId" resultMap="EmployeeAndDepartmentResultMap">
+    SELECT
+      <include refid="With_Department_List" />
+    FROM
+      employee
+        LEFT JOIN department ON employee.department_id = department.department_id
+    WHERE
+      employee.emp_id = #{empId,jdbcType=VARCHAR};
+  </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from employee
     where emp_id = #{empId,jdbcType=VARCHAR}
   </delete>

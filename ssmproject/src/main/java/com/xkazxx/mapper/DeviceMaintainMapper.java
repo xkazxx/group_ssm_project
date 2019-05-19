@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.DeviceMaintain;
+import com.xkazxx.vo.DeviceMaintainVo;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface DeviceMaintainMapper {
 
     int updateByPrimaryKey(DeviceMaintain record);
 
-    List<DeviceMaintain> selectAllDeviceMaintain();
+    List<DeviceMaintainVo> selectAllDeviceMaintain();
 }

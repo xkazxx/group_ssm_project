@@ -1,5 +1,6 @@
 package com.xkazxx.controller.devicecontroller;
 
+import com.xkazxx.bean.DeviceFault;
 import com.xkazxx.service.DeviceService;
 import com.xkazxx.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,6 @@ public class DeviceFaultController {
     @RequestMapping("/list")
     public ResponseVo list(@RequestParam("page") int page, @RequestParam("rows") int rows){
 
-        return deviceService.setMap(page, rows, DeviceFaultController.class);
+        return deviceService.setResponseVo(page, rows, DeviceFault.class);
     }
 }
