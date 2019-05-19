@@ -165,6 +165,20 @@ public class QualityController {
         int res = qualityService.addFinalMeasureCheck(finalMeasureCheck);
         return setMap(res);
     }
+
+    @RequestMapping("/fMeasureCheck/edit_judge")
+    @ResponseBody
+    public void fMeasureCheckEdit_judge() { }
+
+    @RequestMapping("/measure/edit")
+    public String measureEdit(){ return  "measurement_edit"; }
+
+    @RequestMapping("/measure/update_all")
+    @ResponseBody
+    public Map updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck){
+        int res = qualityService.updateFinalMeasureCheck(finalMeasureCheck);
+        return setMap(res);
+    }
     /*
     自定义方法，根据持久层返回的res设置返回给前端的map
      */
