@@ -22,16 +22,6 @@ public class TechnologyPlan {
 
     private Date technologyPlanEnd;
 
-    private Technology technology;
-
-    public Technology getTechnology() {
-        return technology;
-    }
-
-    public void setTechnology(Technology technology) {
-        this.technology = technology;
-    }
-
     public String getTechnologyPlanId() {
         return technologyPlanId;
     }

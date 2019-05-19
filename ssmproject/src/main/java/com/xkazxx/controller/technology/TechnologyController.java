@@ -34,4 +34,15 @@ public class TechnologyController {
         QueryVO technologyAll = technologyService.findTechnologyAll(page, rows);
         return technologyAll;
     }
+
+    @RequestMapping("technology/add_judge")
+    @ResponseBody
+    public String insertTechnology(){
+        return "technology_add";
+    }
+    @RequestMapping("technology/add")
+    public String insertTechnology1(){
+        return "technology_add";
+    }
+
 }
