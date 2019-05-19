@@ -221,4 +221,9 @@
       department_id = #{departmentId,jdbcType=VARCHAR}
     where emp_id = #{empId,jdbcType=VARCHAR}
   </update>
+  <select id="getAllEmployee" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from employee
+  </select>
 </mapper>
