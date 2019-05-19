@@ -20,4 +20,14 @@ public interface QualityService {
     PageInfo<UnqualifyProduct> search_unqualify_by_productName(String searchValue, int page, int rows);
 
     int updateUnqualifyApply(UnqualifyApply unqualifyApply);
+
+    int deleteUnqualifyApplyBatch(String[] ids);
+
+    PageInfo<FinalMeasureCheck> findMeasurementByPage(int page, int rows);
+
+    PageInfo<FinalMeasureCheck> search_fMeasureCheck_by_fMeasureCheckId(String searchValue, int page, int rows);
+
+    PageInfo<FinalMeasureCheck> search_fMeasureCheck_by_orderId(String orderId, int page, int rows);
+
+    int addFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck);
 }

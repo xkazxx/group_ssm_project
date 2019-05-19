@@ -63,7 +63,7 @@
 	            </td>
 	        </tr>
 	    </table>
-	    <input type="hidden" name="measureParams"/>
+	    <%--<input type="hidden" name="measureParams"/>--%>
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="measureSubmitForm()">提交</a>

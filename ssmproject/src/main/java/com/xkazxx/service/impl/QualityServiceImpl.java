@@ -3,10 +3,7 @@ package com.xkazxx.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xkazxx.bean.*;
-import com.xkazxx.mapper.DepartmentMapper;
-import com.xkazxx.mapper.EmployeeMapper;
-import com.xkazxx.mapper.ProductMapper;
-import com.xkazxx.mapper.UnqualifyApplyMapper;
+import com.xkazxx.mapper.*;
 import com.xkazxx.service.QualityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +28,9 @@ public class QualityServiceImpl implements QualityService {
 
     @Autowired
     DepartmentMapper departmentMapper;
+
+    @Autowired
+    FinalMeasureCheckMapper finalMeasureCheckMapper;
 
     @Override
     public PageInfo<UnqualifyProduct> findAllUnqualifyProductsByPage(Integer pageNum, Integer pageSize) {
@@ -70,5 +70,43 @@ public class QualityServiceImpl implements QualityService {
     @Override
     public int updateUnqualifyApply(UnqualifyApply unqualifyApply) {
         return unqualifyApplyMapper.updateByPrimaryKey(unqualifyApply);
+    }
+
+    @Override
+    public int deleteUnqualifyApplyBatch(String[] ids) {
+        int res = unqualifyApplyMapper.deleteUnqualifyApplyBatch(ids);
+        if(res == ids.length){
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public PageInfo<FinalMeasureCheck> findMeasurementByPage(int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalMeasureCheck> products = finalMeasureCheckMapper.findMeasurementByPage();
+        PageInfo<FinalMeasureCheck> pageInfo = new PageInfo<>(products);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<FinalMeasureCheck> search_fMeasureCheck_by_fMeasureCheckId(String searchValue, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalMeasureCheck> list = finalMeasureCheckMapper.search_fMeasureCheck_by_fMeasureCheckId(searchValue);
+        PageInfo<FinalMeasureCheck> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<FinalMeasureCheck> search_fMeasureCheck_by_orderId(String orderId, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalMeasureCheck> list = finalMeasureCheckMapper.search_fMeasureCheck_by_orderId(orderId);
+        PageInfo<FinalMeasureCheck> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public int addFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck) {
+        return finalMeasureCheckMapper.addFinalMeasureCheck(finalMeasureCheck);
     }
 }

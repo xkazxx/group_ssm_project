@@ -174,4 +174,10 @@
       note = #{note,jdbcType=VARCHAR}
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </update>
+    <delete id="deleteUnqualifyApplyBatch" parameterType="java.util.Arrays">
+        delete from unqualify_apply where unqualify_apply_id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
