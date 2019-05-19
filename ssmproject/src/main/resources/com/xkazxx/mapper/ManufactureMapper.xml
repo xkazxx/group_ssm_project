@@ -36,7 +36,7 @@
     manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
   </sql>
 
-  <select id="findManufacture" resultMap="ManufactureMap">
+  <select id="findManufactures" resultMap="ManufactureMap">
     select
     <include refid="Base_Column_List"/>
     from
@@ -73,7 +73,10 @@
     </where>
   </select>
 
-
+  <select id="getAllManufacture" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from manufacture
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

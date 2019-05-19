@@ -126,7 +126,7 @@
     </where>
   </select>
 
-<delete id="delete_batch">
+<delete id="delete_batch_COrder">
   delete from c_order where order_id in
   <foreach collection="ids" item="id" open="(" close=")" separator=",">
       #{id}

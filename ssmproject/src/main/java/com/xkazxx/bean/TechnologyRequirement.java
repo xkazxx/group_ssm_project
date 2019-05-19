@@ -1,8 +1,12 @@
 package com.xkazxx.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TechnologyRequirement {
+/**
+ * @author alan.zhang
+ */
+public class TechnologyRequirement implements Serializable {
     private String technologyRequirementId;
 
     private String technologyId;

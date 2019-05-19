@@ -1,6 +1,7 @@
 package com.xkazxx.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -37,10 +38,23 @@ public class HomeController {
         list.add("work:edit");
         list.add("work:delete");
 
+        //工业监控模块
+        list.add("technology:add");
+        list.add("technology:edit");
+        list.add("technology:delete");
+        list.add("technologyRequirement:add");
+        list.add("technologyRequirement:edit");
+        list.add("technologyRequirement:delete");
+        list.add("technologyPlan:add");
+        list.add("technologyPlan:edit");
+        list.add("technologyPlan:delete");
+        list.add("process:add");
+        list.add("process:edit");
+        list.add("process:delete");
+
+
         //请写上自己模块名字,在jsp中找到对应的xxx_list.jsp页面
         httpSession.setAttribute("sysPermissionList",list);
         return "home";
     }
-
-
 }

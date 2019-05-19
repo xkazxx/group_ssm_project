@@ -2,6 +2,7 @@ package com.xkazxx.controller.schedulingController;
 
 import com.xkazxx.bean.Custom;
 import com.xkazxx.service.SchedulingService;
+import com.xkazxx.util.PublicMethodPart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,13 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/custom")
 public class CustomController {
+
+    @Autowired
+    PublicMethodPart publicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -64,16 +67,55 @@ public class CustomController {
     @RequestMapping("/add_judge")
     @ResponseBody
     public Map add_judge(){
-        Map map = new HashMap();
-        map.put("msg", null);
-        return map;
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
+    }
+
+    @RequestMapping("/delete_judge")
+    @ResponseBody
+    public Map delete_judge(){
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
-        Map map = new HashMap();
-        map.put("msg", null);
-        return map;
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
     }
+
+
+    @RequestMapping("/add")
+    public String addCustom(){
+        return "custom_add";
+    }
+
+    @RequestMapping("/edit")
+    public String editCustom(){
+        return "custom_edit";
+    }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public Map insertCustom(Custom custom){
+        boolean success = schedulingService.insertCustom(custom);
+        return publicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map update_all_Custom(Custom custom){
+        boolean success = schedulingService.update_all_Custom(custom);
+        return publicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/delete_batch")
+    @ResponseBody
+    public Map delete_batch_Custom(String[] ids){
+        boolean success = schedulingService.delete_batch_Custom(ids);
+        return publicMethodPart.optionSuccess(success);
+    }
+
+
 }

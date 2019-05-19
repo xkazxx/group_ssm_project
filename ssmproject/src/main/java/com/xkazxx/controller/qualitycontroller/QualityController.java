@@ -179,6 +179,7 @@ public class QualityController {
         map.put("data",null);
         return map;
     }
+
     /**
      * 自定义方法，分页查询时使用
      * 传入参数PageInfo

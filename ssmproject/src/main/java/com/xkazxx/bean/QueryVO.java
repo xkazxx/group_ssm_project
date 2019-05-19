@@ -1,7 +1,7 @@
 package com.xkazxx.bean;
 
-import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
