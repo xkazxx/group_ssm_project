@@ -18,6 +18,23 @@ public interface COrderMapper {
 
     int updateByPrimaryKey(COrder record);
 
-    List<COrder> findOrder(@Param("pageNum") int pageNum,
-                           @Param("pageSize") int pageSize);
+    int getTotalNum();
+
+    List<COrder> findOrders(@Param("pageNum") int pageNum,
+                            @Param("pageSize") int pageSize);
+
+    List<COrder> getAllCOrder();
+
+    List<COrder> findCOrderByCOrderId(@Param("order_id") String searchValue,
+                                      @Param("pageNum") int pageNum,
+                                      @Param("pageSize") int pageSize);
+
+    List<COrder> findCOrderByCOrderCustom(@Param("custom_name") String searchValue,
+                                          @Param("pageNum") int pageNum,
+                                          @Param("pageSize") int pageSize);
+
+    List<COrder> findCOrderByCOrderProduct(@Param("product_name") String searchValue,
+                                           @Param("pageNum") int pageNum,
+                                           @Param("pageSize") int pageSize);
+
 }

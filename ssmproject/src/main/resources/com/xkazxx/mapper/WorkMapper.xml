@@ -9,11 +9,100 @@
     <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
     <result column="rating" jdbcType="INTEGER" property="rating" />
   </resultMap>
+
+  <resultMap id="WorkMap" type="com.xkazxx.bean.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="process_id" jdbcType="VARCHAR" property="processId" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+    <association property="device" column="device_id" select="com.xkazxx.mapper.DeviceMapper.selectByPrimaryKey"/>
+    <association property="product" column="product_id" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
+    <association property="process" column="process_id" select="com.xkazxx.mapper.ProcessMapper.selectByPrimaryKey"/>
+  </resultMap>
   <sql id="Base_Column_List">
     work_id, process_number, product_id, process_id, device_id, rating
   </sql>
+
+
+  <select id="findWorks" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List"/>
+    from work
+  </select>
+
+  <select id="getTotalNum" resultType="_int">
+    select count(1) from WORK
+  </select>
+
+  <select id="findWorkByWorkId" resultMap="WorkMap">
+    select <include refid="Base_Column_List"/>
+    from work
+    <where>
+      <if test="work_id != null and work_id != '' " >
+        work_id like concat("%",#{work_id},"%")
+      </if>
+    </where>
+  </select>
+
+  <select id="findWorkByProcess" resultMap="WorkMap">
+    select <include refid="Base_Column_List"/>
+    from work
+    <where>
+      <if test="process_number != null and process_number != '' " >
+        process_number like concat("%",#{process_number},"%")
+      </if>
+    </where>
+  </select>
+
+  <select id="findWorkByDevice" resultMap="WorkMapByDevice">
+    select  work_id, process_number, product_id, process_id, w.device_id wdid, rating
+    from work w
+    left join device d on  d.device_id = w.device_id
+    <where>
+      <if test="device_name != null and device_name != '' " >
+        device_name like concat("%",#{device_name},"%")
+      </if>
+    </where>
+  </select>
+  <resultMap id="WorkMapByDevice" type="com.xkazxx.bean.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="process_id" jdbcType="VARCHAR" property="processId" />
+    <result column="wdid" jdbcType="VARCHAR" property="deviceId" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+    <association property="device" column="wdid" select="com.xkazxx.mapper.DeviceMapper.selectByPrimaryKey"/>
+    <association property="product" column="product_id" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
+    <association property="process" column="process_id" select="com.xkazxx.mapper.ProcessMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+  <select id="findWorkByProduct" resultMap="WorkMapByProduct">
+    select  work_id, process_number, w.product_id wpid, process_id, device_id, rating
+    from work w
+    left join product p on  p.product_id = w.product_id
+    <where>
+      <if test="product_name != null and product_name != '' " >
+        product_name like concat("%",#{product_name},"%")
+      </if>
+    </where>
+  </select>
+  <resultMap id="WorkMapByProduct" type="com.xkazxx.bean.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+    <result column="wpid" jdbcType="VARCHAR" property="productId" />
+    <result column="process_id" jdbcType="VARCHAR" property="processId" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+    <association property="device" column="device_id" select="com.xkazxx.mapper.DeviceMapper.selectByPrimaryKey"/>
+    <association property="product" column="wpid" select="com.xkazxx.mapper.ProductMapper.selectByPrimaryKey"/>
+    <association property="process" column="process_id" select="com.xkazxx.mapper.ProcessMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from work
     where work_id = #{workId,jdbcType=VARCHAR}

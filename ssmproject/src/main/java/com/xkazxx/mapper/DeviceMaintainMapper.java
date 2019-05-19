@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.DeviceMaintain;
 
+import java.util.List;
+
 public interface DeviceMaintainMapper {
     int deleteByPrimaryKey(String deviceMaintainId);
 
@@ -14,4 +16,6 @@ public interface DeviceMaintainMapper {
     int updateByPrimaryKeySelective(DeviceMaintain record);
 
     int updateByPrimaryKey(DeviceMaintain record);
+
+    List<DeviceMaintain> selectAllDeviceMaintain();
 }

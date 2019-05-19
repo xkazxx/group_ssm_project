@@ -17,12 +17,54 @@
     custom_id, custom_name, full_name, address, fax, email, owner_name, owner_tel, status, 
     note
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from custom
     where custom_id = #{customId,jdbcType=VARCHAR}
   </select>
+
+  <select id="findCustomByCustomName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from custom
+    <where>
+      <if test="custom_name != null and custom_name != '' " >
+        custom_name like concat("%",#{custom_name},"%")
+      </if>
+    </where>
+  </select>
+
+  <select id="findCustomByCustomId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from custom
+    <where>
+      <if test="custom_id != null and custom_id != '' " >
+        custom_id like concat("%",#{custom_id},"%")
+      </if>
+    </where>
+  </select>
+
+
+  <select id="findCustoms" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    custom
+  </select>
+
+  <select id="getAllCustom" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    custom
+  </select>
+
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from custom
     where custom_id = #{customId,jdbcType=VARCHAR}

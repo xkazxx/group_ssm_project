@@ -3,6 +3,13 @@ package com.xkazxx.bean;
 import java.util.Date;
 
 public class Manufacture {
+
+    //新增字段
+    private COrder cOrder;
+
+    //新增字段
+    private Technology technology;
+
     private String manufactureSn;
 
     private String orderId;
@@ -14,6 +21,22 @@ public class Manufacture {
     private Date beginDate;
 
     private Date endDate;
+
+    public COrder getcOrder() {
+        return cOrder;
+    }
+
+    public void setcOrder(COrder cOrder) {
+        this.cOrder = cOrder;
+    }
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
+    }
 
     public String getManufactureSn() {
         return manufactureSn;

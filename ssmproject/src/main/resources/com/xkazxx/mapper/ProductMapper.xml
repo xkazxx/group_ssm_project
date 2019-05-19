@@ -12,6 +12,61 @@
   <sql id="Base_Column_List">
     product_id, product_name, product_type, image, note, status
   </sql>
+
+
+  <select id="findProducts" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    product
+  </select>
+
+  <!--查询总数量-->
+  <select id="getTotalNum" resultType="_int">
+    select count(1) from product
+  </select>
+
+  <select id="getAllProduct" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    product
+  </select>
+
+<select id="findProductByProductId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from product
+  <where>
+    <if test="product_id != null and product_id != '' " >
+      product_id like concat("%",#{product_id},"%")
+    </if>
+  </where>
+  </select>
+
+<select id="findProductByProductType" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from product
+  <where>
+    <if test="product_type != null and product_type != '' " >
+      product_type like concat("%",#{product_type},"%")
+    </if>
+  </where>
+  </select>
+
+  <select id="findProductByProductName" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from product
+  <where>
+    <if test="product_name != null and product_name != '' " >
+      product_name like concat("%",#{product_name},"%")
+    </if>
+  </where>
+  </select>
+
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -103,9 +158,4 @@
       status = #{status,jdbcType=INTEGER}
     where product_id = #{productId,jdbcType=VARCHAR}
   </update>
-  <select id="getAllProduct" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from product
-  </select>
 </mapper>

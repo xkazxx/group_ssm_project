@@ -11,6 +11,49 @@
   <sql id="Base_Column_List">
     task_id, manufacture_sn, work_id, task_quantity, working_hours
   </sql>
+
+
+  <select id="findTasks" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    task
+  </select>
+
+<select id="findTaskByManufactureSn" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from task
+  <where>
+    <if test="manufacture_sn != null and manufacture_sn != '' " >
+      manufacture_sn like concat("%",#{manufacture_sn},"%")
+    </if>
+  </where>
+  </select>
+
+<select id="findTaskByWorkId" resultMap="BaseResultMap">
+  select <include refid="Base_Column_List"/>
+  from task
+  <where>
+    <if test="work_id != null and work_id != '' " >
+      work_id like concat("%",#{work_id},"%")
+    </if>
+  </where>
+  </select>
+
+  <select id="findTaskByTaskId" resultMap="BaseResultMap">
+  select <include refid="Base_Column_List"/>
+  from task
+  <where>
+    <if test="task_id != null and task_id != '' " >
+      task_id like concat("%",#{task_id},"%")
+    </if>
+  </where>
+  </select>
+
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
