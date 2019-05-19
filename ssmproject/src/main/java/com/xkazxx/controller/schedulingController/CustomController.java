@@ -117,5 +117,13 @@ public class CustomController {
         return publicMethodPart.optionSuccess(success);
     }
 
+    @RequestMapping("/update_note")
+    @ResponseBody
+    public Map updateCustomNote(String note,String customId){
+        boolean success = schedulingService.updateCustomNote(note,customId);
+        return publicMethodPart.optionSuccess(success);
+    }
+
+
 
 }

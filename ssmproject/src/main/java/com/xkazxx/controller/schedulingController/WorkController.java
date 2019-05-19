@@ -91,4 +91,11 @@ public class WorkController {
         String msg = null;
         return publicMethodPart.judgeResult(msg);
     }
+
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map updateWorkById(Work work){
+        boolean success = schedulingService.updateWorkById(work);
+        return publicMethodPart.optionSuccess(success);
+    }
 }

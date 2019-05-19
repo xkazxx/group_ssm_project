@@ -67,7 +67,9 @@
     #{id}
   </foreach>
 </delete>
-
+<update id="updateCustomNote">
+  update custom set note = #{note} where custom_id = #{customId}
+</update>
 
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

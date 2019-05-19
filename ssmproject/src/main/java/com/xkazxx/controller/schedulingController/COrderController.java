@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
@@ -84,9 +85,8 @@ public class COrderController {
         return "order_add";
     }
     @RequestMapping("/insert")
-    public String insertCOrder(COrder cOrder, MultipartFile[] files){
-        System.out.println(cOrder);
-        System.out.println(files);
+    public String insertCOrder(){
+
         return null;
     }
 

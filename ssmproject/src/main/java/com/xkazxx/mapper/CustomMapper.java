@@ -32,4 +32,6 @@ public interface CustomMapper {
 
     int delete_batch_Custom(@Param("ids") String[] ids);
 
+    int updateCustomNote(@Param("note") String note,
+                         @Param("customId") String customId);
 }

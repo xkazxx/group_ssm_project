@@ -82,4 +82,10 @@ public class ManufactureController {
         String msg = null;
         return publicMethodPart.judgeResult(msg);
     }
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map updateManufactureById(Manufacture manufacture){
+        boolean success = schedulingService.updateManufactureById(manufacture);
+        return publicMethodPart.optionSuccess(success);
+    }
 }

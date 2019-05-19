@@ -126,4 +126,11 @@ public class ProductController {
         return publicMethodPart.optionSuccess(success);
     }
 
+    @RequestMapping("/update_note")
+    @ResponseBody
+    public Map updateProductNote(String note,String productId){
+        boolean success = schedulingService.updateProductNote(note,productId);
+        return publicMethodPart.optionSuccess(success);
+    }
+
 }

@@ -428,6 +428,27 @@ public class SchedulingServiceImpl implements SchedulingService {
 
     @Override
     public boolean delete_batch_Product(String[] ids) {
+
         return ids.length == productMapper.delete_batch_Product(ids);
+    }
+
+    @Override
+    public boolean updateCustomNote(String note,String customId) {
+        return 1 == customMapper.updateCustomNote(note,customId);
+    }
+
+    @Override
+    public boolean updateProductNote(String note, String productId) {
+        return 1 == productMapper.updateProductNote(note,productId);
+    }
+
+    @Override
+    public boolean updateWorkById(Work work) {
+        return 1 == workMapper.updateByPrimaryKeySelective(work);
+    }
+
+    @Override
+    public boolean updateManufactureById(Manufacture manufacture) {
+        return 1 == manufactureMapper.updateByPrimaryKeySelective(manufacture);
     }
 }
