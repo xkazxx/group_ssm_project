@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.DeviceFault;
+import com.xkazxx.vo.DeviceFaultVo;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface DeviceFaultMapper {
 
     int updateByPrimaryKey(DeviceFault record);
 
-    List<DeviceFault> selectAllDeviceFault();
+    List<DeviceFaultVo> selectAllDeviceFault();
 }

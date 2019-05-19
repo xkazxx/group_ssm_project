@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.DeviceCheck;
+import com.xkazxx.vo.DeviceCheckVo;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface DeviceCheckMapper {
 
     int updateByPrimaryKey(DeviceCheck record);
 
-    List<DeviceCheck> selectAllDeviceCheck();
+    List<DeviceCheckVo> selectAllDeviceCheck();
 }

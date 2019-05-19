@@ -20,10 +20,24 @@
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectAllDeviceFault" resultMap="BaseResultMap">
+  <resultMap id="DeviceFaultResultMap" type="com.xkazxx.vo.DeviceFaultVo">
+    <id column="device_fault_id" property="deviceFaultId" />
+    <result column="device_id" property="deviceId" />
+    <result column="device_fault_cause" property="deviceFaultCause" />
+    <result column="device_fault_detail" property="deviceFaultDetail" />
+    <result column="device_fault_date" property="deviceFaultDate" />
+    <result column="device_fault_maintenance" property="deviceFaultMaintenance" />
+    <result column="device_name" property="deviceName" />
+  </resultMap>
+  <sql id="DeviceFault_Column_List">
+    device_fault_id, device_fault.device_id, device_fault_cause, device_fault_detail, device_fault_date,
+    device_fault_maintenance, device_name
+  </sql>
+  <select id="selectAllDeviceFault" resultMap="DeviceFaultResultMap">
       select
-      <include refid="Base_Column_List" />
+      <include refid="DeviceFault_Column_List" />
       from device_fault
+      LEFT JOIN device ON device_fault.device_id = device.device_id
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_fault
