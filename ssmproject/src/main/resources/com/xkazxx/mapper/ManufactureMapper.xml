@@ -21,6 +21,17 @@
     <association property="technology" column="technology_id" select="com.xkazxx.mapper.TechnologyMapper.selectByPrimaryKey"/>
   </resultMap>
 
+  <resultMap id="ManufactureMapByTechnologyName" type="com.xkazxx.bean.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="ttid" jdbcType="VARCHAR" property="technologyId" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <association property="cOrder" column="order_id" select="com.xkazxx.mapper.COrderMapper.selectByPrimaryKey"/>
+    <association property="technology" column="ttid" select="com.xkazxx.mapper.TechnologyMapper.selectByPrimaryKey"/>
+  </resultMap>
+
   <sql id="Base_Column_List">
     manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
   </sql>
@@ -32,6 +43,35 @@
     manufacture
   </select>
 
+  <select id="findManufactureByManufactureOrderId" resultMap="ManufactureMap">
+    select <include refid="Base_Column_List"/>
+    from manufacture
+    <where>
+      <if test="order_id != null and order_id != '' ">
+        order_id like concat("%", #{order_id} , "%")
+      </if>
+    </where>
+  </select>
+
+ <select id="findManufactureByManufactureSn" resultMap="ManufactureMap">
+    select <include refid="Base_Column_List"/>
+    from manufacture
+    <where>
+      <if test="manufacture_sn != null and manufacture_sn != '' ">
+        manufacture_sn like concat("%", #{manufacture_sn} , "%")
+      </if>
+    </where>
+  </select>
+<select id="findManufactureByManufactureTechnologyName" resultMap="ManufactureMapByTechnologyName">
+  select manufacture_sn, order_id, t.technology_id ttid, launch_quantity, begin_date, end_date
+  from manufacture m
+  left join technology t on t.technology_id = m.technology_id
+    <where>
+      <if test="technology_name != null and technology_name != '' ">
+        technology_name like concat("%", #{technology_name} , "%")
+      </if>
+    </where>
+  </select>
 
 
 

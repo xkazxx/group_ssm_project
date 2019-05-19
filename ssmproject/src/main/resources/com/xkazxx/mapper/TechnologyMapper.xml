@@ -127,7 +127,7 @@
     </set>
     where technology_id = #{technologyId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xkazxx.bean.Technology">
+  <update id="updateTechnologyByPrimaryKey" parameterType="com.xkazxx.bean.Technology">
     update technology
     set technology_name = #{technologyName,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},

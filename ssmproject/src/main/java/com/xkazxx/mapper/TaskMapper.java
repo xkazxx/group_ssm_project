@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Task;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,16 @@ public interface TaskMapper {
     int updateByPrimaryKey(Task record);
 
     List<Task> findTasks(int pageNum, int pageSize);
+
+    List<Task> findTaskByTaskId(@Param("task_id") String searchValue,
+                                @Param("pageNum") int pageNum,
+                                @Param("pageSize") int pageSize);
+
+    List<Task> findTaskByWorkId(@Param("work_id") String searchValue,
+                                @Param("pageNum") int pageNum,
+                                @Param("pageSize") int pageSize);
+
+    List<Task> findTaskByManufactureSn(@Param("manufacture_sn") String searchValue,
+                                       @Param("pageNum") int pageNum,
+                                       @Param("pageSize") int pageSize);
 }

@@ -39,4 +39,17 @@ public class TechnologyServiceImpl implements TechnologyService {
         return queryVO;
     }
 
+    @Override
+    public int insertTechnology(Technology technology) {
+
+        int insert = technologyMapper.insert(technology);
+        return insert;
+    }
+
+    @Override
+    public int updateTechnologyId(Technology technology) {
+        int update = technologyMapper.updateTechnologyByPrimaryKey(technology);
+        return update;
+    }
+
 }

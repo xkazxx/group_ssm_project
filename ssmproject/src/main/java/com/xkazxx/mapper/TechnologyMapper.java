@@ -11,6 +11,10 @@ import java.util.List;
 public interface TechnologyMapper {
     int deleteByPrimaryKey(String technologyId);
 
+    /**加入Technology数据
+     * @param record
+     * @return
+     */
     int insert(Technology record);
 
     int insertSelective(Technology record);
@@ -19,10 +23,15 @@ public interface TechnologyMapper {
 
     int updateByPrimaryKeySelective(Technology record);
 
-    int updateByPrimaryKey(Technology record);
+    /**修改technology
+     * @param record
+     * @return
+     */
+    int updateTechnologyByPrimaryKey(Technology record);
 
     /**
      * @return List<>
      */
     List<Technology> findTechnologyAll();
+
 }

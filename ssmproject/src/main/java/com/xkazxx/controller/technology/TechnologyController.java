@@ -1,23 +1,32 @@
 package com.xkazxx.controller.technology;
 
 import com.xkazxx.bean.QueryVO;
+import com.xkazxx.bean.Technology;
+import com.xkazxx.bean.TechnologyResult;
 import com.xkazxx.service.technologyservice.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author alan.zhang
  */
 @Controller
+@RequestMapping("/technology")
 public class TechnologyController {
 
     @Autowired
     private TechnologyService technologyService;
 
 
-    @RequestMapping(path = {"/technology/find"})
+    @RequestMapping(path = {"/find"})
     public String findTechnology(){
 
         return "technology_list";
@@ -27,7 +36,7 @@ public class TechnologyController {
      * 把technology展示出来
      * @return
      */
-    @RequestMapping("/technology/list")
+    @RequestMapping("/list")
     @ResponseBody
     public QueryVO showTechnologyList(Integer page,Integer rows){
       //调用服务
@@ -35,14 +44,70 @@ public class TechnologyController {
         return technologyAll;
     }
 
-    @RequestMapping("technology/add_judge")
+    /**
+     * 请求technology_add页面
+     * @return
+     */
+    @RequestMapping("/add_judge")
     @ResponseBody
-    public String insertTechnology(){
+    public String findTechnologyAdd1(){
         return "technology_add";
     }
-    @RequestMapping("technology/add")
-    public String insertTechnology1(){
+    @RequestMapping("/add")
+    public String findTechnologyAdd2(){
         return "technology_add";
     }
+
+    /**
+     * 新增功能
+     * @param technology
+     * @return
+     */
+    @RequestMapping("/insert")
+    @ResponseBody
+    public TechnologyResult insertTechnology(Technology technology){
+        //调用业务层，插入数据库
+        int insert = technologyService.insertTechnology(technology);
+        TechnologyResult technologyResult = new TechnologyResult();
+        if(insert == 1){
+            technologyResult.setMsg("OK");
+            technologyResult.setStatus("200");
+        }
+        return technologyResult;
+    }
+
+
+    /**
+     * 请求technology_edit页面
+     * @return
+     */
+    @RequestMapping("/edit_judge")
+    @ResponseBody
+    public String findTechnologyEdit1(){
+        return "technology_edit";
+    }
+    @RequestMapping("/edit")
+    public String findTechnologyEdit2(){
+        return "technology_edit";
+    }
+    /**
+     * 编辑功能
+     * @param technology
+     * @return
+     */
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public TechnologyResult updateTechnologyById(Technology technology){
+        //调用业务层，修改数据
+        int update = technologyService.updateTechnologyId(technology);
+        TechnologyResult technologyResult = new TechnologyResult();
+        if(update == 1){
+            technologyResult.setMsg("OK");
+            technologyResult.setStatus("200");
+        }
+        return technologyResult;
+    }
+
+
 
 }
