@@ -3,6 +3,7 @@ package com.xkazxx.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
+
 public class COrder {
     //新增字段
     private Custom custom;

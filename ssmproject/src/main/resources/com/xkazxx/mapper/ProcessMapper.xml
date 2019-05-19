@@ -79,4 +79,21 @@
       quota = #{quota,jdbcType=INTEGER}
     where process_id = #{processId,jdbcType=VARCHAR}
   </update>
+  <resultMap id="resultMap1" type="com.xkazxx.bean.ProcessCustom">
+    <id column="process_id" property="processId"/>
+    <result column="sequence" property="sequence"/>
+    <result column="quota" property="quota"/>
+    <result column="technology_plan_id" property="technologyPlanId"/>
+  </resultMap>
+        <select id="selectProcessAndTechnologyPlan" resultMap="resultMap1">
+    SELECT
+      technology_plan.`technology_plan_id`,
+      process.`process_id`,
+      process.`sequence`,
+      process.`quota`
+    FROM
+      technology_plan,
+      PROCESS
+    WHERE technology_plan.`technology_plan_id` = process.`technology_plan_id`
+    </select>
 </mapper>

@@ -1,8 +1,12 @@
 package com.xkazxx.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Technology {
+/**
+ * @author alan.zhang
+ */
+public class Technology implements Serializable {
     private String technologyId;
 
     private String technologyName;

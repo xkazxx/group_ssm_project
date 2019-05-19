@@ -1,8 +1,11 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Product;
+import com.xkazxx.bean.UnqualifyProduct;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 import java.util.List;
 

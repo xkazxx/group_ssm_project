@@ -2,6 +2,9 @@ package com.xkazxx.bean;
 
 import java.util.Date;
 
+/**
+ * @author alan.zhang
+ */
 public class TechnologyPlan {
     private String technologyPlanId;
 
