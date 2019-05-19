@@ -55,4 +55,11 @@
     #{finalMeasureCheck.measureData}, #{finalMeasureCheck.empId},
     #{finalMeasureCheck.result}, #{finalMeasureCheck.note})
   </update>
+  <update id="updateFinalMeasureCheck" parameterType="com.xkazxx.bean.FinalMeasureCheck">
+    update final_measuret_check
+    set order_id = #{record.orderId},check_item = #{record.checkItem},cdate = #{record.cDate},
+    measure_data = #{record.measureData}, emp_id = #{record.empId},
+    result = #{record.result},note = #{record.note}
+    where f_measure_check_id = #{record.fMeasureCheckId}
+  </update>
 </mapper>

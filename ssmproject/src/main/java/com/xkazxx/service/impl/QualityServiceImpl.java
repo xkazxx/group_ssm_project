@@ -109,4 +109,9 @@ public class QualityServiceImpl implements QualityService {
     public int addFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck) {
         return finalMeasureCheckMapper.addFinalMeasureCheck(finalMeasureCheck);
     }
+
+    @Override
+    public int updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck) {
+        return finalMeasureCheckMapper.updateFinalMeasureCheck(finalMeasureCheck);
+    }
 }

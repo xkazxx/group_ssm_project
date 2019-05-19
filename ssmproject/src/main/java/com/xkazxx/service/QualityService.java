@@ -30,4 +30,6 @@ public interface QualityService {
     PageInfo<FinalMeasureCheck> search_fMeasureCheck_by_orderId(String orderId, int page, int rows);
 
     int addFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck);
+
+    int updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck);
 }
