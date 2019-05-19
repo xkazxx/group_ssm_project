@@ -38,4 +38,6 @@ public interface WorkMapper {
                                    @Param("pageNum") int pageNum,
                                    @Param("pageSize") int pageSize);
 
+    List<Work> getAllWork();
+
 }

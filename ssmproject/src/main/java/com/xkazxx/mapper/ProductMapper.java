@@ -36,4 +36,6 @@ public interface ProductMapper {
     List<Product> findProductByProductType(@Param("product_type") String searchValue,
                                            @Param("pageNum") int pageNum,
                                            @Param("pageSize") int pageSize);
+
+    int delete_batch_Product(@Param("ids") String[] ids);
 }

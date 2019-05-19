@@ -12,7 +12,6 @@
     task_id, manufacture_sn, work_id, task_quantity, working_hours
   </sql>
 
-
   <select id="findTasks" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
@@ -49,8 +48,12 @@
     </if>
   </where>
   </select>
-
-
+<delete id="delete_batch_Task">
+  delete from task where task_id in
+  <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id}
+  </foreach>
+</delete>
 
 
 

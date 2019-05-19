@@ -13,13 +13,19 @@
     product_id, product_name, product_type, image, note, status
   </sql>
 
-
   <select id="findProducts" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from
     product
   </select>
+
+  <delete id="delete_batch_Product">
+    delete from product where product_id in
+    <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
 
   <!--查询总数量-->
   <select id="getTotalNum" resultType="_int">
