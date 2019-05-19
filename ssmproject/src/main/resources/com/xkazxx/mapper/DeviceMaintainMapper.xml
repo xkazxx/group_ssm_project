@@ -31,13 +31,13 @@
     <result column="note" property="note" />
     <result column="emp_name" property="deviceMaintainEmp" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="DeviceMaintain_Column_List">
     device_maintain_id, device_fault_id, device_maintain_emp_id, device_maintain_date,
     device_maintain_result, device_maintain_cost, note, emp_name
   </sql>
   <select id="selectAllDeviceMaintain" resultMap="DeviceMaintainResultMap">
     select
-    <include refid="Base_Column_List" />
+    <include refid="DeviceMaintain_Column_List" />
     from device_maintain
     LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
   </select>
