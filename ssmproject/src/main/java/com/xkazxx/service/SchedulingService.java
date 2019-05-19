@@ -71,6 +71,8 @@ public interface SchedulingService {
     Map findTaskByWorkId(String searchValue, int pageNum, int pageSize);
 
     Map findTaskByManufactureSn(String searchValue, int pageNum, int pageSize);
+
+    boolean delete_batch(String[] ids);
 }
 
 
