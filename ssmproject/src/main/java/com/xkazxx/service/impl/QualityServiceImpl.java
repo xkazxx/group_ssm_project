@@ -41,9 +41,6 @@ public class QualityServiceImpl implements QualityService {
     }
 
     @Override
-    public List<Product> getAllProduct() { return productMapper.getAllProduct(); }
-
-    @Override
     public List<Employee> getAllEmployee() { return employeeMapper.getAllEmployee(); }
 
     @Override
@@ -52,5 +49,26 @@ public class QualityServiceImpl implements QualityService {
     @Override
     public int insert(UnqualifyApply unqualifyApply) {
         return unqualifyApplyMapper.insert(unqualifyApply);
+    }
+
+    @Override
+    public PageInfo<UnqualifyProduct> search_unqualify_by_unqualifyId(String searchValue, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<UnqualifyProduct> products = unqualifyApplyMapper.search_unqualify_by_unqualifyId(searchValue);
+        PageInfo<UnqualifyProduct> pageInfo = new PageInfo<>(products);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<UnqualifyProduct> search_unqualify_by_productName(String searchValue, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<UnqualifyProduct> products = unqualifyApplyMapper.search_unqualify_by_productName(searchValue);
+        PageInfo<UnqualifyProduct> pageInfo = new PageInfo<>(products);
+        return pageInfo;
+    }
+
+    @Override
+    public int updateUnqualifyApply(UnqualifyApply unqualifyApply) {
+        return unqualifyApplyMapper.updateByPrimaryKey(unqualifyApply);
     }
 }
