@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.SysUser;
+import org.apache.ibatis.annotations.Param;
 
 public interface SysUserMapper {
     int deleteByPrimaryKey(String id);
@@ -14,4 +15,7 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+
+    SysUser getUerByNameAndword(@Param("username") String username,
+                                @Param("password") String password);
 }

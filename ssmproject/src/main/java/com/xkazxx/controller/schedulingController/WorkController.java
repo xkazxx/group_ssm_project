@@ -104,6 +104,7 @@ public class WorkController {
     }
 
     @RequestMapping("/insert")
+    @ResponseBody
     public Map insertWork(Work work) {
 
         boolean success = schedulingService.insertWork(work);

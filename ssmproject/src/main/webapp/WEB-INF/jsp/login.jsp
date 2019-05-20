@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/WEB-INF/jsp/commons/common_js.jsp"%>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="copyright" content="Copyright 2016" />
@@ -136,16 +137,11 @@
 												console.log("account_erroe.");
 														$("#errorspan")
 																.html(
-																		"<font color='red'> 用户不存在！</font>");
+																		"<font color='red'> 用户名或密码错误！</font>");
 														rcode_flag = 1;
 														$("#randiv").show();
-													} else if (data.msg == 'password_error') {
-														$("#errorspan")
-																.html(
-																		"<font color='red'> 密码错误！</font>");
-														rcode_flag = 1;
-														$("#randiv").show();
-													} else if (data.msg == 'authentication_error') {
+													}
+													 else if (data.msg == 'authentication_error') {
 														$("#errorspan")
 																.html(
 																		"<font color='red'> 您没有授权！</font>");

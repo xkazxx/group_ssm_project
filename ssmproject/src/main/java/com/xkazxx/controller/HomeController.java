@@ -1,12 +1,19 @@
 package com.xkazxx.controller;
 
+import com.xkazxx.bean.SysUser;
+import com.xkazxx.service.HomeService;
+import com.xkazxx.service.SchedulingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Zachary Zhao
@@ -15,8 +22,40 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    @Autowired
+    HomeService homeService;
+
+    @RequestMapping("/ajaxLogin")
+    @ResponseBody
+    public Map login(HttpSession session, String username,String password){
+        SysUser sysUser = homeService.login(username,password);
+        Map map = new HashMap();
+        String msg = null;
+        if(sysUser != null){
+            if("1".equals(sysUser.getLocked())){
+                session.setAttribute("sysUser",sysUser);
+                msg = "欢迎";
+            }
+            else {
+                msg = "authentication_error";
+            }
+        }
+        else {
+            msg = "account_error";
+        }
+
+        map.put("msg",msg);
+        return map;
+    }
+
     @RequestMapping("/")
-    public String home(HttpSession httpSession){
+    public String getLoginJsp(){
+
+        return "login";
+    }
+
+    @RequestMapping("/home")
+    public String home(HttpSession session){
         List list = new ArrayList();
         //计划模块
         list.add("order:add");
@@ -56,7 +95,7 @@ public class HomeController {
         list.add("deviceMaintain:delete");
 
         //请写上自己模块名字,在jsp中找到对应的xxx_list.jsp页面
-        httpSession.setAttribute("sysPermissionList",list);
+        session.setAttribute("sysPermissionList",list);
         return "home";
     }
 }

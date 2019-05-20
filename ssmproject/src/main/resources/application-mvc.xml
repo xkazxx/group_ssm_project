@@ -38,7 +38,12 @@
 
     <!--文件上传-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--<property name="maxUploadSizePerFile" value="55000"/>单个文件上传大小限制-->
-        <!--<property name="maxUploadSize" value="5500000"/>单次文件上传大小限制-->
+       <property name="maxUploadSizePerFile" value="1024"/>
+        <property name="maxUploadSize" value="20500"/>
     </bean>
+    <!--拦截器注册-->
+    <mvc:interceptors>
+        <bean class="com.xkazxx.myHandlerInterceptor.IsLoginHandler"/>
+    </mvc:interceptors>
+
 </beans>
