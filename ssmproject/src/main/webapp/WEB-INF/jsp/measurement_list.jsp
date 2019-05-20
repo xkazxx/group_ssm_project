@@ -13,7 +13,7 @@
         	<th data-options="field:'fMeasureCheckId',align:'center',width:100">成品计量质检编号</th>
             <th data-options="field:'orderId',align:'center',width:100,formatter:formatOrder">订单编号</th>
             <th data-options="field:'checkItem',align:'center',width:100">检验项目</th>
-            <th data-options="field:'cdate',align:'center',width:100,formatter:TAOTAO.formatDateTime">检验时间</th>
+            <th data-options="field:'cDate',align:'center',width:100,formatter:TAOTAO.formatDateTime">检验时间</th>
             <th data-options="field:'measureData',align:'center',width:100">实际测量数据</th>
             <th data-options="field:'empName',align:'center',width:100,formatter:formatEmp_fMeasure">检验人</th>
             <th data-options="field:'result',align:'center',width:100">检验结果</th>

@@ -48,4 +48,20 @@ public interface QualityService {
     PageInfo<ProcessMeasureCheck> findAllPMeasureCheck(int page, int rows);
 
     PageInfo<ProcessMeasureCheck> searchPMeasureCheckByPMeasureCheckId(String pMeasureCheckId, int page, int rows);
+
+    int insertPMeasureCheck(ProcessMeasureCheck processMeasureCheck);
+
+    int updatePMeasureCheck(ProcessMeasureCheck processMeasureCheck);
+
+    int deletePMeasureCheckBatch(String[] ids);
+
+    PageInfo<ProcessCountCheck> findAllPCountCheck(int page, int rows);
+
+    PageInfo<ProcessCountCheck> searchPCountCheckByPCountCheckId(String pCountCheckId, int page, int rows);
+
+    int insertPCountCheck(ProcessCountCheck processCountCheck);
+
+    int undatePCountCheck(ProcessCountCheck processCountCheck);
+
+    int deletePCountCheckBatch(String[] ids);
 }

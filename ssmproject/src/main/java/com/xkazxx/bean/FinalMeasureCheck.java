@@ -1,5 +1,6 @@
 package com.xkazxx.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
