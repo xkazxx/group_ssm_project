@@ -18,7 +18,7 @@ import java.util.Map;
 public class WorkController {
 
     @Autowired
-    PublicMethodPart publicMethodPart;
+    PublicMethodPart PublicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -82,13 +82,54 @@ public class WorkController {
     @ResponseBody
     public Map add_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
+    }
+
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map updateWorkById(Work work){
+        boolean success = schedulingService.updateWorkById(work);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/delete_judge")
+    @ResponseBody
+    public Map delete_judge() {
+        String msg = null;
+        return PublicMethodPart.judgeResult(msg);
+    }
+
+    @RequestMapping("/add")
+    public String addWork() {
+
+        return "work_add";
+    }
+
+    @RequestMapping("/insert")
+    public Map insertWork(Work work) {
+
+        boolean success = schedulingService.insertWork(work);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/edit")
+    public Map editWork(Work work) {
+
+        boolean success = schedulingService.editWork(work);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/delete_batch")
+    @ResponseBody
+    public Map delete_batch_Work(String[] ids){
+        boolean success = schedulingService.delete_batch_Work(ids);
+        return PublicMethodPart.optionSuccess(success);
     }
 }

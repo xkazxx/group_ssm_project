@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.*;
 
 @Controller
@@ -19,7 +17,7 @@ import java.util.*;
 public class COrderController {
 
     @Autowired
-    PublicMethodPart publicMethodPart;
+    PublicMethodPart PublicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -34,7 +32,7 @@ public class COrderController {
     @ResponseBody
     public Map findOrders(@RequestParam int page,
                           @RequestParam int rows) {
-        return schedulingService.findOrders(page,rows);
+        return schedulingService.findOrders(page, rows);
     }
 
     @RequestMapping("/get/{id}")
@@ -52,64 +50,85 @@ public class COrderController {
 
     @RequestMapping("/search_order_by_orderProduct")
     @ResponseBody
-    public Map findCOrderByCOrderProduct(String searchValue,int page,int rows){
+    public Map findCOrderByCOrderProduct(String searchValue, int page, int rows) {
 
-        return schedulingService.findCOrderByCOrderProduct(searchValue,page,rows);
+        return schedulingService.findCOrderByCOrderProduct(searchValue, page, rows);
     }
 
     @RequestMapping("/search_order_by_orderCustom")
     @ResponseBody
-    public Map findCOrderByCOrderCustom(String searchValue,int page,int rows){
+    public Map findCOrderByCOrderCustom(String searchValue, int page, int rows) {
 
-        return schedulingService.findCOrderByCOrderCustom(searchValue,page,rows);
+        return schedulingService.findCOrderByCOrderCustom(searchValue, page, rows);
     }
 
     @RequestMapping("/search_order_by_orderId")
     @ResponseBody
-    public Map findCOrderByCOrderId(String searchValue,int page,int rows){
+    public Map findCOrderByCOrderId(String searchValue, int page, int rows) {
 
-        return schedulingService.findCOrderByCOrderId(searchValue,page,rows);
+        return schedulingService.findCOrderByCOrderId(searchValue, page, rows);
     }
 
     @RequestMapping("/add_judge")
     @ResponseBody
-    public Map add_judge(){
+    public Map add_judge() {
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/add")
-    public String addCOrder(){
+    public String addCOrder() {
 
         return "order_add";
     }
+
     @RequestMapping("/insert")
-    public String insertCOrder(COrder cOrder, MultipartFile[] files){
-        System.out.println(cOrder);
-        System.out.println(files);
-        return null;
+    public Map insertCOrder(COrder cOrder) {
+
+        boolean success = schedulingService.insertCOrder(cOrder);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/edit")
+    public Map editCOrder(COrder cOrder) {
+
+        boolean success = schedulingService.editCOrder(cOrder);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
-    public Map edit_judge(){
+    public Map edit_judge() {
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
-     @RequestMapping("/delete_judge")
-     @ResponseBody
-     public Map delete_judge(){
+    @RequestMapping("/delete_judge")
+    @ResponseBody
+    public Map delete_judge() {
         String msg = null;
-         return publicMethodPart.judgeResult(msg);
-     }
+        return PublicMethodPart.judgeResult(msg);
+    }
 
-     @RequestMapping("/delete_batch")
-     @ResponseBody
-     public Map delete_batch_COrder(String[] ids){
+    @RequestMapping("/delete_batch")
+    @ResponseBody
+    public Map delete_batch_COrder(String[] ids) {
         boolean success = schedulingService.delete_batch_COrder(ids);
-         return publicMethodPart.optionSuccess(success);
-     }
+        return PublicMethodPart.optionSuccess(success);
+    }
 
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map update_all_COrder(COrder cOrder) {
+        boolean success = schedulingService.update_all_COrder(cOrder);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/update_note")
+    @ResponseBody
+    public Map updateCOrderNote(String note, String orderId) {
+        boolean success = schedulingService.updateCOrderNote(note, orderId);
+        return PublicMethodPart.optionSuccess(success);
+    }
 
 }

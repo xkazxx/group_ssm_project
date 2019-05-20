@@ -27,6 +27,10 @@
     </foreach>
   </delete>
 
+<update id="updateProductNote">
+  update product set note = #{note} where product_id = #{productId}
+</update>
+
   <!--查询总数量-->
   <select id="getTotalNum" resultType="_int">
     select count(1) from product

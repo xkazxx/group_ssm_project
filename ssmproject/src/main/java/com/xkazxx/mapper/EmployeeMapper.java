@@ -1,6 +1,9 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Employee;
+import com.xkazxx.vo.EmployeeAndDepartmentVo;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -17,8 +20,8 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
 
-    List<Employee> getAllEmployee();
+    /*根据人员id返回EmployeeAndDepartmentVo*/
+    EmployeeAndDepartmentVo selectEmployeeAndDepartmentById(String empId);
 
-    Employee selectEmployeeAndDepartmentByPrimarkId(String empid);
-
+    List<EmployeeAndDepartmentVo> selectEmployeeAndDepartment();
 }

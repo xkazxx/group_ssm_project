@@ -78,6 +78,15 @@
     from manufacture
   </select>
 
+  <delete id="delete_batch_Manufacture">
+      delete from manufacture where manufacture_sn in
+      <foreach collection="ids" separator="," close=")" open="(" item="manufacture_sn">
+          #{manufacture_sn}
+      </foreach>
+  </delete>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

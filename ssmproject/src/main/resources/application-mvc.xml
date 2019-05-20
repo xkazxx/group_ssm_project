@@ -25,6 +25,8 @@
     <mvc:resources mapping="/image/**" location="/WEB-INF/image/"/>
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
     <mvc:resources mapping="/jsp/**" location="/WEB-INF/jsp/"/>
+    <mvc:resources mapping="/pic/**" location="/WEB-INF/pic/"/>
+    <mvc:resources mapping="/file/**" location="/WEB-INF/file/"/>
     <mvc:resources mapping="/static/**" location="/WEB-INF/"/>
 
     <!--视图解析器-->
