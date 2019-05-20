@@ -17,10 +17,8 @@ import java.util.Map;
 @RequestMapping("/manufacture")
 public class ManufactureController {
 
-
     @Autowired
     SchedulingService schedulingService;
-
 
     @RequestMapping("/find")
     public String findManufacture() {

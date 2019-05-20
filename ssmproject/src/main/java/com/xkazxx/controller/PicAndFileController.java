@@ -11,10 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -27,7 +24,7 @@ public class PicAndFileController {
 
     @RequestMapping("/pic/upload")
     @ResponseBody
-    public Map fileUpload(MultipartFile[] uploadFile) {
+    public Map picUpload(MultipartFile[] uploadFile) {
         Map map = new HashMap();
         int countError = 0;
         for (MultipartFile uploadFile1 : uploadFile) {
@@ -47,9 +44,27 @@ public class PicAndFileController {
         return map;
     }
 
+    @RequestMapping("/pic/delete")
+    @ResponseBody
+    public Map picDelete(String picName){
+        Map map = new HashMap();
+        String data;
+        picName = picName.contains("?") ? picName.substring(picName.indexOf("=") + 1) : picName;
+        String path = context.getRealPath("/WEB-INF/" + picName);
+        File file = new File(path);
+        if(file.exists() && file.isFile()){
+            data = "success";
+            file.delete();
+        }else {
+            data = "failed";
+        }
+        map.put("data",data);
+        return map;
+    }
+
     @RequestMapping("/file/upload")
     @ResponseBody
-    public Map picUpload(MultipartFile file) throws IOException {
+    public Map fileUpload(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String fileName = "/file/" + UUID.randomUUID().toString() +
                 originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -63,14 +78,16 @@ public class PicAndFileController {
 
     @RequestMapping("/file/delete")
     @ResponseBody
-    public Map picUpload(String fileName){
+    public Map fileDelete(String fileName){
         Map map = new HashMap();
         String data;
+        fileName = fileName.contains("?") ? fileName.substring(fileName.indexOf("=") + 1) : fileName;
+
         String path = context.getRealPath("/WEB-INF/" + fileName);
         File file = new File(path);
         if(file.exists() && file.isFile()){
             file.delete();
-           data = "success";
+            data = "success";
         }else {
             data = "failed";
         }
@@ -78,9 +95,10 @@ public class PicAndFileController {
         return map;
     }
 
+
     @RequestMapping("/file/download")
     @ResponseBody
-    public byte[] picUpload(String fileName, HttpServletResponse response){
+    public byte[] fileDownload(String fileName, HttpServletResponse response){
 
         String path = context.getRealPath("/WEB-INF/" + fileName);
         File file = new File(path);

@@ -18,9 +18,6 @@ import java.util.Map;
 public class WorkController {
 
     @Autowired
-    PublicMethodPart PublicMethodPart;
-
-    @Autowired
     SchedulingService schedulingService;
 
     @RequestMapping("/get/{id}")
@@ -92,12 +89,6 @@ public class WorkController {
         return PublicMethodPart.judgeResult(msg);
     }
 
-    @RequestMapping("/update_all")
-    @ResponseBody
-    public Map updateWorkById(Work work){
-        boolean success = schedulingService.updateWorkById(work);
-        return PublicMethodPart.optionSuccess(success);
-    }
 
     @RequestMapping("/delete_judge")
     @ResponseBody
@@ -119,13 +110,19 @@ public class WorkController {
         return PublicMethodPart.optionSuccess(success);
     }
 
-    @RequestMapping("/edit")
-    public Map editWork(Work work) {
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map update_all_Work(Work work) {
 
-        boolean success = schedulingService.editWork(work);
+        boolean success = schedulingService.update_all_Work(work);
         return PublicMethodPart.optionSuccess(success);
     }
 
+    @RequestMapping("/edit")
+    public String editWork(){
+        return "work_edit";
+
+    }
     @RequestMapping("/delete_batch")
     @ResponseBody
     public Map delete_batch_Work(String[] ids){

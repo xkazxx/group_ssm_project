@@ -89,11 +89,11 @@ public class COrderController {
         return PublicMethodPart.optionSuccess(success);
     }
 
-    @RequestMapping("/edit")
-    public Map editCOrder(COrder cOrder) {
 
-        boolean success = schedulingService.editCOrder(cOrder);
-        return PublicMethodPart.optionSuccess(success);
+    @RequestMapping("/edit")
+    public String editCOrder() {
+
+        return "order_edit";
     }
 
     @RequestMapping("/edit_judge")

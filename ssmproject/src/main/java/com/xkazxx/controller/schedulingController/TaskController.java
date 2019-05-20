@@ -14,8 +14,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/task")
 public class TaskController {
-    @Autowired
-    PublicMethodPart PublicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;

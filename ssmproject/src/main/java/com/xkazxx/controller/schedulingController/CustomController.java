@@ -17,8 +17,7 @@ import java.util.Map;
 @RequestMapping("/custom")
 public class CustomController {
 
-    @Autowired
-    PublicMethodPart PublicMethodPart;
+
 
     @Autowired
     SchedulingService schedulingService;

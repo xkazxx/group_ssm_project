@@ -41,4 +41,5 @@ public interface WorkMapper {
     List<Work> getAllWork();
 
     int delete_batch_Work(@Param("ids") String[] ids);
+
 }

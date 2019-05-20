@@ -26,7 +26,7 @@
   </sql>
 
 
-  <select id="findWorks" resultMap="BaseResultMap">
+  <select id="findWorks" resultMap="WorkMap">
     select
       <include refid="Base_Column_List"/>
     from work
@@ -102,7 +102,7 @@
   </resultMap>
 
 <delete id="delete_batch_Work">
-  delete form work where work_id in
+  delete from work where work_id in
   <foreach collection="ids" item="id" open="(" close=")" separator=",">
     #{id}
   </foreach>
