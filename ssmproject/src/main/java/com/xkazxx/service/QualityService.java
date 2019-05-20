@@ -46,4 +46,6 @@ public interface QualityService {
     PageInfo<FinalCountCheck> searchFCountCheckByOrerId(String orderId, int page, int rows);
 
     PageInfo<ProcessMeasureCheck> findAllPMeasureCheck(int page, int rows);
+
+    PageInfo<ProcessMeasureCheck> searchPMeasureCheckByPMeasureCheckId(String pMeasureCheckId, int page, int rows);
 }

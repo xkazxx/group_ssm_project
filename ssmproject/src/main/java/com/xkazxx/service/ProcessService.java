@@ -1,6 +1,9 @@
 package com.xkazxx.service;
 
+import com.xkazxx.bean.Process;
 import com.xkazxx.bean.QueryVO;
+
+import java.util.List;
 
 /**
  * @author alan.zhang
@@ -14,4 +17,6 @@ public interface ProcessService {
      * @return
      */
     QueryVO findProcessAndTechnologyPlan(Integer page,Integer rows);
+
+    List<Process> getAllProcess();
 }

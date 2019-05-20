@@ -2,6 +2,7 @@ package com.xkazxx.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xkazxx.bean.Process;
 import com.xkazxx.bean.ProcessCustom;
 import com.xkazxx.bean.QueryVO;
 import com.xkazxx.mapper.ProcessMapper;
@@ -31,5 +32,10 @@ public class ProcessServiceImpl implements ProcessService {
         int total = (int) pageInfo.getTotal();
         queryVO.setTotal(total);
         return queryVO;
+    }
+
+    @Override
+    public List<Process> getAllProcess() {
+        return processMapper.getAllProcess();
     }
 }

@@ -1,6 +1,7 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.ProcessMeasureCheck;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface ProcessMeasureCheckMapper {
 
     List<ProcessMeasureCheck> findAllPMeasureCheck();
 
+    List<ProcessMeasureCheck> searchPMeasureCheckByPMeasureCheckId(@Param("pMeasureCheckId") String pMeasureCheckId);
 }

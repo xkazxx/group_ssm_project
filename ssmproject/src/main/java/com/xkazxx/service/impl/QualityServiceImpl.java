@@ -175,4 +175,11 @@ public class QualityServiceImpl implements QualityService {
         List<ProcessMeasureCheck> list = processMeasureCheckMapper.findAllPMeasureCheck();
         return new PageInfo<ProcessMeasureCheck>(list);
     }
+
+    @Override
+    public PageInfo<ProcessMeasureCheck> searchPMeasureCheckByPMeasureCheckId(String pMeasureCheckId, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<ProcessMeasureCheck> list = processMeasureCheckMapper.searchPMeasureCheckByPMeasureCheckId(pMeasureCheckId);
+        return new PageInfo<>(list);
+    }
 }

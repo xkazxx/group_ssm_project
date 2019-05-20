@@ -16,6 +16,11 @@
     from process
     where process_id = #{processId,jdbcType=VARCHAR}
   </select>
+  <select id="getAllProcess" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from process
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from process
     where process_id = #{processId,jdbcType=VARCHAR}

@@ -296,6 +296,29 @@ public class QualityController {
         PageInfo<ProcessMeasureCheck> pageInfo = qualityService.findAllPMeasureCheck(page,rows);
         return setQueryVO(pageInfo);
     }
+
+    /**
+     *工序计量质检-根据质检编号模糊查询
+     * */
+    @RequestMapping("/p_measure_check/search_pMeasureCheck_by_pMeasureCheckId")
+    @ResponseBody
+    public QueryVO searchPMeasureCheckByPMeasureCheckId(@RequestParam("searchValue") String pMeasureCheckId ,
+                                                        @RequestParam("page") int page ,
+                                                        @RequestParam("rows") int rows){
+        PageInfo<ProcessMeasureCheck> pageInfo = qualityService.searchPMeasureCheckByPMeasureCheckId(pMeasureCheckId,page,rows);
+        return setQueryVO(pageInfo);
+    }
+
+    /**
+     * 工序计量质检-新增功能
+     * */
+    @RequestMapping("/pMeasureCheck/add_judge")
+    @ResponseBody
+    public void pMeasureCheckAddJudge() { }
+
+    @RequestMapping("/p_measure_check/add")
+    public String pMeasureCheckAdd(){ return "p_measure_check_add"; }
+
     /*
     自定义方法，根据持久层返回的res设置返回给前端的map
      */
