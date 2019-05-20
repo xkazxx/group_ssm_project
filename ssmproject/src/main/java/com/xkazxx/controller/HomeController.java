@@ -54,6 +54,9 @@ public class HomeController {
         return "login";
     }
 
+    @RequestMapping("logout")
+    public String logout(){ return "login"; }
+
     @RequestMapping("/home")
     public String home(HttpSession session){
         List list = new ArrayList();
