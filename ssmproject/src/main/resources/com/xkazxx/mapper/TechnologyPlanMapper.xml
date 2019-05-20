@@ -128,4 +128,31 @@
       technology_plan_end = #{technologyPlanEnd,jdbcType=TIMESTAMP}
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </update>
+
+  <resultMap id="resultMap1" type="com.xkazxx.bean.TechnologyPlanCustom">
+    <!--plan属性映射-->
+    <id column="technology_plan_id" property="technologyPlanId"/>
+    <result column="batch_amount" property="batchAmount"/>
+    <result column="commit_plan" property="commitPlan"/>
+    <result column="end_plan" property="endPlan"/>
+    <result column="start_plan" property="startPlan"/>
+    <result column="technology_plan_end" property="technologyPlanEnd"/>
+    <result column="technology_plan_start" property="technologyPlanStart"/>
+    <result column="technology_name" property="technologyName"/>
+  </resultMap>
+    <select id="selectTechnologyPlanAndTechnologyName" resultMap="resultMap1">
+    SELECT
+      technology.`technology_name`,
+      technology_plan.`technology_plan_id`,
+      technology_plan.`batch_amount`,
+      technology_plan.`commit_plan`,
+      technology_plan.`end_plan`,
+      technology_plan.`start_plan`,
+      technology_plan.`technology_plan_end`,
+      technology_plan.`technology_plan_start`
+    FROM
+       technology_plan,
+      technology
+    WHERE  technology_plan.`technology_id` = technology.`technology_id`
+    </select>
 </mapper>

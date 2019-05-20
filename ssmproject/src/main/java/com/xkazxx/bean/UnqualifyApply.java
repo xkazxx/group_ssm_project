@@ -15,13 +15,9 @@ public class UnqualifyApply {
 
     private String empId;
 
-    private String empName;
-
     private Date applyDate;
 
     private String note;
-
-    private String productName;
 
     public String getUnqualifyApplyId() {
         return unqualifyApplyId;
@@ -71,10 +67,6 @@ public class UnqualifyApply {
         this.empId = empId == null ? null : empId.trim();
     }
 
-    public String getEmpName() { return empName; }
-
-    public void setEmpName(String empName) { this.empName = empName; }
-
     public Date getApplyDate() {
         return applyDate;
     }
@@ -91,7 +83,4 @@ public class UnqualifyApply {
         this.note = note == null ? null : note.trim();
     }
 
-    public String getProductName() { return productName; }
-
-    public void setProductName(String productName) { this.productName = productName; }
 }

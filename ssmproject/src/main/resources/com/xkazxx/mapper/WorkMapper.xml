@@ -32,8 +32,9 @@
     from work
   </select>
 
-  <select id="getTotalNum" resultType="_int">
-    select count(1) from WORK
+  <select id="getAllWork" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from work
   </select>
 
   <select id="findWorkByWorkId" resultMap="WorkMap">

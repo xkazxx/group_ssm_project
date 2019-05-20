@@ -5,6 +5,8 @@ import com.xkazxx.vo.EmployeeAndDepartmentVo;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface EmployeeMapper {
     int deleteByPrimaryKey(String empId);
 
@@ -21,4 +23,8 @@ public interface EmployeeMapper {
     EmployeeAndDepartmentVo selectEmployeeAndDepartmentById(String empId);
 
     List<EmployeeAndDepartmentVo> selectEmployeeAndDepartment();
+    List<Employee> getAllEmployee();
+
+    Employee selectEmployeeAndDepartmentByPrimarkId(String empid);
+
 }

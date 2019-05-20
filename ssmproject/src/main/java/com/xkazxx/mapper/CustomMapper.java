@@ -29,4 +29,7 @@ public interface CustomMapper {
     List<Custom> findCustomByCustomName(@Param("custom_name") String searchValue,
                                         @Param("pageNum") int pageNum,
                                         @Param("pageSize") int pageSize);
+
+    int delete_batch_Custom(@Param("ids") String[] ids);
+
 }

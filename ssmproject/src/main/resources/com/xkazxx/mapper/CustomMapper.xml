@@ -61,7 +61,12 @@
     from
     custom
   </select>
-
+<delete id="delete_batch_Custom">
+  delete from custom where custom_id in
+  <foreach collection="ids" separator="," close=")" open="(" item="id">
+    #{id}
+  </foreach>
+</delete>
 
 
 

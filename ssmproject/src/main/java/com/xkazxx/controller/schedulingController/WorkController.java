@@ -1,7 +1,8 @@
 package com.xkazxx.controller.schedulingController;
 
-import com.xkazxx.bean.Technology;
+import com.xkazxx.bean.Work;
 import com.xkazxx.service.SchedulingService;
+import com.xkazxx.util.PublicMethodPart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -17,14 +18,22 @@ import java.util.Map;
 public class WorkController {
 
     @Autowired
+    PublicMethodPart publicMethodPart;
+
+    @Autowired
     SchedulingService schedulingService;
 
-    //其他模块的请求，等他人写完删除
-    @RequestMapping("/technology/get/{id}")
+    @RequestMapping("/get/{id}")
     @ResponseBody
-    public Technology findTechnology(@PathVariable("id") String id) {
-     Technology technology = schedulingService.findTechnology(id);
-        return technology;
+    public Work findWork(@PathVariable("id") String id) {
+     Work work = schedulingService.findWork(id);
+        return work;
+    }
+
+    @RequestMapping("/get_data")
+    @ResponseBody
+    public List workGetData() {
+        return schedulingService.getAllWork();
     }
 
     @RequestMapping("/find")
@@ -72,16 +81,14 @@ public class WorkController {
     @RequestMapping("/add_judge")
     @ResponseBody
     public Map add_judge(){
-        Map map = new HashMap();
-        map.put("msg", null);
-        return map;
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
-        Map map = new HashMap();
-        map.put("msg", null);
-        return map;
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
     }
 }

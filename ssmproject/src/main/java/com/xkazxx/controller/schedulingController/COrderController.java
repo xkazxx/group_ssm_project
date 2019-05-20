@@ -2,6 +2,7 @@ package com.xkazxx.controller.schedulingController;
 
 import com.xkazxx.bean.COrder;
 import com.xkazxx.service.SchedulingService;
+import com.xkazxx.util.PublicMethodPart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,9 @@ import java.util.*;
 @Controller
 @RequestMapping("/order")
 public class COrderController {
+
+    @Autowired
+    PublicMethodPart publicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -33,12 +37,11 @@ public class COrderController {
         return schedulingService.findOrders(page,rows);
     }
 
-
     @RequestMapping("/get/{id}")
     @ResponseBody
     public COrder findCOrder(@PathVariable("id") String id) {
-        COrder cOrder = schedulingService.findCOrder(id);
-        return cOrder;
+        return schedulingService.findCOrder(id);
+
     }
 
     @RequestMapping("/get_data")
@@ -71,9 +74,8 @@ public class COrderController {
     @RequestMapping("/add_judge")
     @ResponseBody
     public Map add_judge(){
-        Map map = new HashMap();
-        map.put("msg", null);
-        return map;
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/add")
@@ -91,30 +93,23 @@ public class COrderController {
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
-        Map map = new HashMap();
-        map.put("msg", null);
-        return map;
+        String msg = null;
+        return publicMethodPart.judgeResult(msg);
     }
 
      @RequestMapping("/delete_judge")
      @ResponseBody
      public Map delete_judge(){
-         Map map = new HashMap();
-         map.put("msg", null);
-         return map;
+        String msg = null;
+         return publicMethodPart.judgeResult(msg);
      }
 
      @RequestMapping("/delete_batch")
      @ResponseBody
-     public Map delete_batch(String[] ids){
-        boolean success = schedulingService.delete_batch(ids);
-         Map map = new HashMap();
-         if(success) {
-            map.put("msg", "ok");
-            map.put("status", 200);
-            map.put("data", null);
-        }
-         return map;
+     public Map delete_batch_COrder(String[] ids){
+        boolean success = schedulingService.delete_batch_COrder(ids);
+         return publicMethodPart.optionSuccess(success);
      }
+
 
 }

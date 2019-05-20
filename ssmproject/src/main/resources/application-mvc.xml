@@ -10,7 +10,16 @@
 
     <context:component-scan base-package="com.xkazxx.controller"/>
     <!--spring mvc注解驱动-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="myConversionService"/>
+    <!--自定义类型转化-->
+    <bean id="myConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.xkazxx.converter.MyDateConverter"/>
+                <bean class="com.xkazxx.converter.MyIntergerConverter"/>
+            </set>
+        </property>
+    </bean>
     <!--静态资源处理-->
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
     <mvc:resources mapping="/image/**" location="/WEB-INF/image/"/>
