@@ -69,6 +69,12 @@ public class DeviceServiceImpl implements DeviceService {
 
             responseVo.setTotal(deviceMaintainPageInfo.getTotal());
             responseVo.setRows((List) deviceMaintainPageInfo.getList());
+        }else if("EmployeeAndDepartmentVo".equals(c.getSimpleName())){
+            /*人员监控模块的人员管理*/
+            PageInfo<EmployeeAndDepartmentVo> employeeAndDepartmentVoPageInfo = new PageInfo<>(employeeMapper.selectEmployeeAndDepartment());
+
+            responseVo.setTotal(employeeAndDepartmentVoPageInfo.getTotal());
+            responseVo.setRows((List) employeeAndDepartmentVoPageInfo.getList());
         }
 
         return responseVo;

@@ -205,13 +205,4 @@ public class QualityController {
         queryVO.setRows(pageInfo.getList());
         return queryVO;
     }
-
-    /**
-     * 调用了人员管理模块的employee的接口
-     * 返回值为所有employee的list
-     * 如有冲突，讨论修改
-     * */
-    @RequestMapping("/employee/get_data")
-    @ResponseBody
-    public List<Employee> getAllEmployee(){ return qualityService.getAllEmployee(); }
 }

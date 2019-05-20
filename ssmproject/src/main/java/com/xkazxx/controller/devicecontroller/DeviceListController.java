@@ -106,6 +106,4 @@ public class DeviceListController {
 
         return map;
     }
-
-
 }

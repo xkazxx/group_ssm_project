@@ -9,8 +9,6 @@ public interface QualityService {
 
     PageInfo<UnqualifyProduct> findAllUnqualifyProductsByPage(Integer pageNum ,Integer pageSize);
 
-    List<Employee> getAllEmployee();
-
     List<Department> getAllDepartment();
 
     int insert(UnqualifyApply unqualifyApply);
