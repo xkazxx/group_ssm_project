@@ -6,6 +6,20 @@
     <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
+
+  <resultMap id="selectAllDepartment" type="com.xkazxx.bean.Department">
+    <id column="department_id" property="departmentId" />
+    <result column="department_name" property="departmentName" />
+    <result column="note" property="note" />
+  </resultMap>
+
+  <select id="findDepartments" resultMap="selectAllDepartment">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    department
+  </select>
+
   <sql id="Base_Column_List">
     department_id, department_name, note
   </sql>

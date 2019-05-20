@@ -28,19 +28,19 @@ public class DeviceListController {
         return deviceService.setResponseVo(page, rows, Device.class);
     }
 
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping("/department/get_data")
     public List getDataDepartment(){
 
         return deviceService.setList(Department.class);
-    }
+    }*/
 
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping("/employee/get_data")
     public List<EmployeeAndDepartmentVo> getDataEmployee(){
 
         return deviceService.setList(EmployeeAndDepartmentVo.class);
-    }
+    }*/
 
     @ResponseBody
     @RequestMapping("/employee/edit_judge")
@@ -89,12 +89,12 @@ public class DeviceListController {
         return deviceService.getDeviceTypeById(id);
     }
 
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping("/employee/get/{id}")
     public EmployeeAndDepartmentVo getEmployee(@PathVariable("id") String id){
 
         return deviceService.getEmployeeAndDepartmentVo(id);
-    }
+    }*/
 
     @ResponseBody
     @RequestMapping("/deviceList/add_judge")

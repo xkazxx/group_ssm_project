@@ -97,6 +97,15 @@ public class HomeController {
         list.add("deviceMaintain:edit");
         list.add("deviceMaintain:delete");
 
+        //人员模块
+        list.add("department:add");
+        list.add("department:edit");
+        list.add("department:delete");
+        list.add("employee:add");
+        list.add("employee:edit");
+        list.add("employee:delete");
+
+
         //请写上自己模块名字,在jsp中找到对应的xxx_list.jsp页面
         session.setAttribute("sysPermissionList",list);
         return "home";

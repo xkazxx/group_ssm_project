@@ -16,22 +16,6 @@
     <result column="education_form" jdbcType="VARCHAR" property="educationForm" />
     <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
   </resultMap>
-  <sql id="Base_Column_List">
-    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
-    graduate_school, education_form, department_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from employee
-    where emp_id = #{empId,jdbcType=VARCHAR}
-  </select>
-
-  <sql id="With_Department_List">
-    emp_id , emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
-    graduate_school, education_form, department.department_id, department.department_name,
-    department.note
-  </sql>
   <resultMap id="EmployeeAndDepartmentResultMap" type="com.xkazxx.vo.EmployeeAndDepartmentVo">
     <id column="emp_id" property="empId" />
     <result column="emp_name" property="empName" />
@@ -52,6 +36,30 @@
       <result column="note" property="note" />
     </association>
   </resultMap>
+
+  <sql id="Base_Column_List">
+    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, department_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where emp_id = #{empId,jdbcType=VARCHAR}
+  </select>
+  <select id="findEmployees" resultMap="EmployeeAndDepartmentResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    employee
+  </select>
+
+  <sql id="With_Department_List">
+    emp_id , emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, department.department_id, department.department_name,
+    department.note
+  </sql>
+
   <select id="selectEmployeeAndDepartmentById" resultMap="EmployeeAndDepartmentResultMap">
     SELECT
       <include refid="With_Department_List" />
