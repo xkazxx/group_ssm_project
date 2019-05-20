@@ -102,6 +102,24 @@ public interface SchedulingService {
     boolean updateWorkById(Work work);
 
     boolean updateManufactureById(Manufacture manufacture);
+
+    boolean update_all_COrder(COrder cOrder);
+
+    boolean updateCOrderNote(String note, String orderId);
+
+    boolean insertManufacture(Manufacture manufacture);
+
+    boolean delete_batch_Manufacture(String[] ids);
+
+    boolean insertCOrder(COrder cOrder);
+
+    boolean editCOrder(COrder cOrder);
+
+    boolean insertWork(Work work);
+
+    boolean editWork(Work work);
+
+    boolean delete_batch_Work(String[] ids);
 }
 
 

@@ -101,6 +101,14 @@
     <association property="process" column="process_id" select="com.xkazxx.mapper.ProcessMapper.selectByPrimaryKey"/>
   </resultMap>
 
+<delete id="delete_batch_Work">
+  delete form work where work_id in
+  <foreach collection="ids" item="id" open="(" close=")" separator=",">
+    #{id}
+  </foreach>
+</delete>
+
+
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select

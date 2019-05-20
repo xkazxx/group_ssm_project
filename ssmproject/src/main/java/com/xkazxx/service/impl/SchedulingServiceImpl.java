@@ -451,4 +451,50 @@ public class SchedulingServiceImpl implements SchedulingService {
     public boolean updateManufactureById(Manufacture manufacture) {
         return 1 == manufactureMapper.updateByPrimaryKeySelective(manufacture);
     }
+
+    @Override
+    public boolean update_all_COrder(COrder cOrder) {
+        return 1 == cOrderMapper.updateByPrimaryKeySelective(cOrder);
+    }
+
+    @Override
+    public boolean updateCOrderNote(String note, String orderId) {
+        return cOrderMapper.updateCOrderNote(note,orderId);
+    }
+
+    @Override
+    public boolean insertManufacture(Manufacture manufacture) {
+        return 1 == manufactureMapper.insertSelective(manufacture);
+    }
+
+    @Override
+    public boolean delete_batch_Manufacture(String[] ids) {
+        return ids.length == manufactureMapper.delete_batch_Manufacture(ids);
+    }
+
+    @Override
+    public boolean insertCOrder(COrder cOrder) {
+        return 1 == cOrderMapper.insertSelective(cOrder);
+    }
+
+    @Override
+    public boolean editCOrder(COrder cOrder) {
+        return 1 == cOrderMapper.updateByPrimaryKeySelective(cOrder);
+    }
+
+    @Override
+    public boolean insertWork(Work work) {
+        return 1 == workMapper.insertSelective(work);
+    }
+
+    @Override
+    public boolean editWork(Work work) {
+        return 1 == workMapper.updateByPrimaryKeySelective(work);
+    }
+
+    @Override
+    public boolean delete_batch_Work(String[] ids) {
+        return ids.length == workMapper.delete_batch_Work(ids);
+    }
+
 }

@@ -133,7 +133,9 @@
   </foreach>
 </delete>
 
-
+<update id="updateCOrderNote">
+    update c_order set note = #{note} where order_id = #{orderId}
+</update>
   <!--查询总数量-->
   <select id="getTotalNum" resultType="_int">
     select count(1) from c_order

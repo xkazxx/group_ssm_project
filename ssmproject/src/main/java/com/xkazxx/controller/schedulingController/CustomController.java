@@ -18,7 +18,7 @@ import java.util.Map;
 public class CustomController {
 
     @Autowired
-    PublicMethodPart publicMethodPart;
+    PublicMethodPart PublicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -68,21 +68,21 @@ public class CustomController {
     @ResponseBody
     public Map add_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/delete_judge")
     @ResponseBody
     public Map delete_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
 
@@ -100,28 +100,28 @@ public class CustomController {
     @ResponseBody
     public Map insertCustom(Custom custom){
         boolean success = schedulingService.insertCustom(custom);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/update_all")
     @ResponseBody
     public Map update_all_Custom(Custom custom){
         boolean success = schedulingService.update_all_Custom(custom);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/delete_batch")
     @ResponseBody
     public Map delete_batch_Custom(String[] ids){
         boolean success = schedulingService.delete_batch_Custom(ids);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/update_note")
     @ResponseBody
     public Map updateCustomNote(String note,String customId){
         boolean success = schedulingService.updateCustomNote(note,customId);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
 

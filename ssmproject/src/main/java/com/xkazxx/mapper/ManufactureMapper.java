@@ -34,4 +34,5 @@ public interface ManufactureMapper {
 
     List<Manufacture> getAllManufacture();
 
+    int delete_batch_Manufacture(@Param("ids") String[] ids);
 }

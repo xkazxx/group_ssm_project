@@ -19,7 +19,7 @@ import java.util.Map;
 public class ProductController {
 
     @Autowired
-    PublicMethodPart publicMethodPart;
+    PublicMethodPart PublicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -78,21 +78,21 @@ public class ProductController {
     @ResponseBody
     public Map add_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/delete_judge")
     @ResponseBody
     public Map delete_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/add")
@@ -109,28 +109,28 @@ public class ProductController {
     @ResponseBody
     public Map insertProduct(Product product){
         boolean success = schedulingService.insertProduct(product);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/update_all")
     @ResponseBody
     public Map update_all_Product(Product product){
         boolean success = schedulingService.update_all_Product(product);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/delete_batch")
     @ResponseBody
     public Map delete_batch_Product(String[] ids){
         boolean success = schedulingService.delete_batch_Product(ids);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/update_note")
     @ResponseBody
     public Map updateProductNote(String note,String productId){
         boolean success = schedulingService.updateProductNote(note,productId);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
 }
