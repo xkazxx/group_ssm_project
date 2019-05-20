@@ -48,7 +48,7 @@
       <include refid="DeviceMaintain_Column_List" />
     from device_maintain
       LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
-    WHERE device_maintain.device_maintain_id like '%${searchValue}%'
+    WHERE device_maintain.device_maintain_id like CONCAT('%',#{searchValue},'%')
   </select>
 
   <select id="searchDeviceMaintainByDeviceFaultId" resultMap="DeviceMaintainResultMap">
@@ -56,7 +56,7 @@
       <include refid="DeviceMaintain_Column_List" />
     from device_maintain
       LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
-    WHERE device_maintain.device_fault_id like '%${searchValue}%'
+    WHERE device_maintain.device_fault_id like CONCAT('%',#{searchValue},'%')
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

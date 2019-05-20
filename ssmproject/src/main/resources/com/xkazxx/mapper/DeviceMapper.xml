@@ -49,7 +49,7 @@
           device
             LEFT JOIN device_type ON device.device_type_id = device_type.device_type_id
             LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
-        WHERE device.device_id like '%${searchValue}%'
+        WHERE device.device_id like CONCAT('%',#{searchValue},'%')
     </select>
 
     <select id="searchDeviceByDeviceName" resultType="com.xkazxx.vo.DeviceVo">
@@ -61,7 +61,7 @@
           device
             LEFT JOIN device_type ON device.device_type_id = device_type.device_type_id
             LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
-        WHERE device.device_name like '%${searchValue}%'
+        WHERE device.device_name like CONCAT('%',#{searchValue},'%')
     </select>
 
     <select id="searchDeviceByDeviceTypeName" resultType="com.xkazxx.vo.DeviceVo">
@@ -73,7 +73,7 @@
           device
             LEFT JOIN device_type ON device.device_type_id = device_type.device_type_id
             LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
-        WHERE device_type.device_type_name like '%${searchValue}%'
+        WHERE device_type.device_type_name like CONCAT('%',#{searchValue},'%')
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

@@ -45,7 +45,7 @@
       <include refid="DeviceFault_Column_List" />
     from device_fault
       LEFT JOIN device ON device_fault.device_id = device.device_id
-    WHERE device_fault.device_fault_id like '%${searchValue}%'
+    WHERE device_fault.device_fault_id like CONCAT('%',#{searchValue},'%')
   </select>
 
   <select id="searchDeviceFaultVoByDeviceFaultName" resultType="com.xkazxx.vo.DeviceFaultVo">
@@ -53,7 +53,7 @@
       <include refid="DeviceFault_Column_List" />
     from device_fault
       LEFT JOIN device ON device_fault.device_id = device.device_id
-    WHERE device.device_name like '%${searchValue}%'
+    WHERE device.device_name like CONCAT('%',#{searchValue},'%')
   </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

@@ -36,7 +36,7 @@
       <include refid="Base_Column_List" />
     FROM
       device_type
-    WHERE device_type_id like '%${searchValue}%'
+    WHERE device_type_id like CONCAT('%',#{searchValue},'%')
   </select>
 
   <select id="searchDeviceTypeByDeviceTypeName" resultMap="BaseResultMap">
@@ -44,7 +44,7 @@
       <include refid="Base_Column_List" />
     FROM
       device_type
-    WHERE device_type_name like '%${searchValue}%'
+    WHERE device_type_name like CONCAT('%',#{searchValue},'%')
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
