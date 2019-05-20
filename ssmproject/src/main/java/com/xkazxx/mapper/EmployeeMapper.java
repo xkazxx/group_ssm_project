@@ -20,7 +20,6 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
 
-    /*根据人员id返回EmployeeAndDepartmentVo*/
     EmployeeAndDepartmentVo selectEmployeeAndDepartmentById(String empId);
 
     List<EmployeeAndDepartmentVo> selectEmployeeAndDepartment();
