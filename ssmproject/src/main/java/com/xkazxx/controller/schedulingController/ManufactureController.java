@@ -18,11 +18,7 @@ import java.util.Map;
 public class ManufactureController {
 
     @Autowired
-    PublicMethodPart publicMethodPart;
-
-    @Autowired
     SchedulingService schedulingService;
-
 
     @RequestMapping("/find")
     public String findManufacture() {
@@ -73,13 +69,52 @@ public class ManufactureController {
     @ResponseBody
     public Map add_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
+
+    @RequestMapping("/delete_judge")
+    @ResponseBody
+    public Map delete_judge(){
+        String msg = null;
+        return PublicMethodPart.judgeResult(msg);
+    }
+
+    @RequestMapping("/add")
+    public String addManufacture(){
+        return "manufacture_add";
+    }
+
+    @RequestMapping("/edit")
+    public String editManufacture(){
+        return "manufacture_edit";
+    }
+
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map updateManufactureById(Manufacture manufacture){
+        boolean success = schedulingService.updateManufactureById(manufacture);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public Map insertManufacture(Manufacture manufacture){
+        boolean success = schedulingService.insertManufacture(manufacture);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
+    @RequestMapping("/delete_batch")
+    @ResponseBody
+    public Map delete_batch_Manufacture(String[] ids){
+        boolean success = schedulingService.delete_batch_Manufacture(ids);
+        return PublicMethodPart.optionSuccess(success);
+    }
+
 }

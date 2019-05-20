@@ -41,4 +41,7 @@ public interface ProductMapper {
                                            @Param("pageSize") int pageSize);
 
     int delete_batch_Product(@Param("ids") String[] ids);
+
+    int updateProductNote(@Param("note") String note,
+                          @Param("productId") String productId);
 }

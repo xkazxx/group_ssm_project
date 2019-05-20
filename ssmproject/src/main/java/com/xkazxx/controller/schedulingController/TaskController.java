@@ -14,8 +14,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/task")
 public class TaskController {
-    @Autowired
-    PublicMethodPart publicMethodPart;
 
     @Autowired
     SchedulingService schedulingService;
@@ -57,21 +55,21 @@ public class TaskController {
     @ResponseBody
     public Map add_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
     public Map edit_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/delete_judge")
     @ResponseBody
     public Map delete_judge(){
         String msg = null;
-        return publicMethodPart.judgeResult(msg);
+        return PublicMethodPart.judgeResult(msg);
     }
 
     @RequestMapping("/add")
@@ -88,21 +86,21 @@ public class TaskController {
     @ResponseBody
     public Map insertTask(Task task){
         boolean success = schedulingService.insertTask(task);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/update_all")
     @ResponseBody
     public Map update_all_Task(Task task){
         boolean success = schedulingService.update_all_Task(task);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/delete_batch")
     @ResponseBody
     public Map delete_batch_Task(String[] ids){
         boolean success = schedulingService.delete_batch_Task(ids);
-        return publicMethodPart.optionSuccess(success);
+        return PublicMethodPart.optionSuccess(success);
     }
 
 }

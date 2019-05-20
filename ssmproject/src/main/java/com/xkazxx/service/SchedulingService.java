@@ -94,6 +94,30 @@ public interface SchedulingService {
     boolean delete_batch_Product(String[] ids);
 
     Manufacture findManufacture(String id);
+
+    boolean updateCustomNote(String s, String note);
+
+    boolean updateProductNote(String note, String productId);
+
+    boolean updateWorkById(Work work);
+
+    boolean updateManufactureById(Manufacture manufacture);
+
+    boolean update_all_COrder(COrder cOrder);
+
+    boolean updateCOrderNote(String note, String orderId);
+
+    boolean insertManufacture(Manufacture manufacture);
+
+    boolean delete_batch_Manufacture(String[] ids);
+
+    boolean insertCOrder(COrder cOrder);
+
+    boolean insertWork(Work work);
+
+    boolean update_all_Work(Work work);
+
+    boolean delete_batch_Work(String[] ids);
 }
 
 
