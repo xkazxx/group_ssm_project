@@ -21,4 +21,6 @@ public interface ProcessMeasureCheckMapper {
     List<ProcessMeasureCheck> findAllPMeasureCheck();
 
     List<ProcessMeasureCheck> searchPMeasureCheckByPMeasureCheckId(@Param("pMeasureCheckId") String pMeasureCheckId);
+
+    int deletePMeasureCheckBatch(@Param("ids") String[] ids);
 }

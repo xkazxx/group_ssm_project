@@ -38,6 +38,9 @@ public class QualityServiceImpl implements QualityService {
     @Autowired
     ProcessMeasureCheckMapper processMeasureCheckMapper;
 
+    @Autowired
+    ProcessCountCheckMapper processCountCheckMapper;
+
     @Override
     public PageInfo<UnqualifyProduct> findAllUnqualifyProductsByPage(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
@@ -181,5 +184,57 @@ public class QualityServiceImpl implements QualityService {
         PageHelper.startPage(page,rows);
         List<ProcessMeasureCheck> list = processMeasureCheckMapper.searchPMeasureCheckByPMeasureCheckId(pMeasureCheckId);
         return new PageInfo<>(list);
+    }
+
+    @Override
+    public int insertPMeasureCheck(ProcessMeasureCheck processMeasureCheck) {
+        return processMeasureCheckMapper.insert(processMeasureCheck);
+    }
+
+    @Override
+    public int updatePMeasureCheck(ProcessMeasureCheck processMeasureCheck) {
+        return processMeasureCheckMapper.updateByPrimaryKey(processMeasureCheck);
+    }
+
+    @Override
+    public int deletePMeasureCheckBatch(String[] ids) {
+        int res = processMeasureCheckMapper.deletePMeasureCheckBatch(ids);
+        if(res == ids.length){
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public PageInfo<ProcessCountCheck> findAllPCountCheck(int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<ProcessCountCheck> list = processCountCheckMapper.findAllPCountCheck();
+        return new PageInfo<>(list);
+    }
+
+    @Override
+    public PageInfo<ProcessCountCheck> searchPCountCheckByPCountCheckId(String pCountCheckId, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<ProcessCountCheck> list = processCountCheckMapper.searchPCountCheckByPCountCheckId(pCountCheckId);
+        return new PageInfo<>(list);
+    }
+
+    @Override
+    public int insertPCountCheck(ProcessCountCheck processCountCheck) {
+        return processCountCheckMapper.insert(processCountCheck);
+    }
+
+    @Override
+    public int undatePCountCheck(ProcessCountCheck processCountCheck) {
+        return processCountCheckMapper.updateByPrimaryKey(processCountCheck);
+    }
+
+    @Override
+    public int deletePCountCheckBatch(String[] ids) {
+        int res = processCountCheckMapper.deletePCountCheckBatch(ids);
+        if(res == ids.length){
+            return 1;
+        }
+        return 0;
     }
 }

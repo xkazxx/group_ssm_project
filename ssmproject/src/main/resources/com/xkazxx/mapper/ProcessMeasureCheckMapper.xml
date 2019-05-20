@@ -36,6 +36,13 @@
     delete from process_measure_check
     where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </delete>
+  <delete id="deletePMeasureCheckBatch" parameterType="java.util.Arrays">
+    delete from process_measure_check
+    where p_measure_check_id in
+    <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
   <insert id="insert" parameterType="com.xkazxx.bean.ProcessMeasureCheck">
     insert into process_measure_check (p_measure_check_id, process_id, check_item, 
       cdate, measure_data, emp_id, 

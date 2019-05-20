@@ -319,6 +319,114 @@ public class QualityController {
     @RequestMapping("/p_measure_check/add")
     public String pMeasureCheckAdd(){ return "p_measure_check_add"; }
 
+    @RequestMapping("/p_measure_check/insert")
+    @ResponseBody
+    public Map insertPMeasureCheck(ProcessMeasureCheck processMeasureCheck){
+        int res = qualityService.insertPMeasureCheck(processMeasureCheck);
+        return setMap(res);
+    }
+
+    /**
+     * 工序计量质检-修改功能
+     * */
+    @RequestMapping("/pMeasureCheck/edit_judge")
+    @ResponseBody
+    public void pMeasureCheckEditJudge() { }
+
+    @RequestMapping("/p_measure_check/edit")
+    public String pMeasureCheckEdit(){ return "p_measure_check_edit"; }
+
+    @RequestMapping("/p_measure_check/update_all")
+    @ResponseBody
+    public Map updatePMeasureCheck(ProcessMeasureCheck processMeasureCheck){
+        int res = qualityService.updatePMeasureCheck(processMeasureCheck);
+        return setMap(res);
+    }
+
+    /**
+     * 工序计量质检-删除功能
+     * */
+    @RequestMapping("/pMeasureCheck/delete_judge")
+    @ResponseBody
+    public void pMeasureCheckDeleteJudge() { }
+
+    @RequestMapping("/p_measure_check/delete_batch")
+    @ResponseBody
+    public Map deletePMeasureCheckBatch(@RequestParam("ids") String[] ids){
+        int res = qualityService.deletePMeasureCheckBatch(ids);
+        return setMap(res);
+    }
+
+    /**
+     * 工序计数质检-分页查询
+     * */
+    @RequestMapping("/p_count_check/find")
+    public String findPCountCheck(){ return "p_count_check_list"; }
+
+    @RequestMapping("/p_count_check/list")
+    @ResponseBody
+    public QueryVO findAllPCountCheck(@RequestParam("page") int page ,
+                                      @RequestParam("rows") int rows){
+        PageInfo<ProcessCountCheck> pageInfo = qualityService.findAllPCountCheck(page,rows);
+        return setQueryVO(pageInfo);
+    }
+
+    /**
+     * 工序计数质检-根据质检编号模糊查询
+     * */
+    @RequestMapping("/p_count_check/search_pCountCheck_by_pCountCheckId")
+    @ResponseBody
+    public QueryVO searchPCountCheckByPCountCheckId(@RequestParam("searchValue") String pCountCheckId,
+                                                    @RequestParam("page") int page,
+                                                    @RequestParam("rows") int rows){
+        PageInfo<ProcessCountCheck> pageInfo = qualityService.searchPCountCheckByPCountCheckId(pCountCheckId,page,rows);
+        return setQueryVO(pageInfo);
+    }
+
+    /**
+     * 工序计数质检-新增功能
+     * */
+    @RequestMapping("/pCountCheck/add_judge")
+    @ResponseBody
+    public void pCountCheckAddJudge(){ }
+
+    @RequestMapping("/p_count_check/add")
+    public String pCountCheckAdd(){ return "p_count_check_add"; }
+
+    @RequestMapping("/p_count_check/insert")
+    @ResponseBody
+    public Map insertPCountCheck(ProcessCountCheck processCountCheck){
+        int res = qualityService.insertPCountCheck(processCountCheck);
+        return setMap(res);
+    }
+
+    @RequestMapping("/pCountCheck/edit_judge")
+    @ResponseBody
+    public void pCountCheckEditJudge() { }
+
+    @RequestMapping("/p_count_check/edit")
+    public String pCountCheckEdit() { return "p_count_check_edit"; }
+
+    @RequestMapping("/p_count_check/update_all")
+    @ResponseBody
+    public Map undatePCountCheck(ProcessCountCheck processCountCheck){
+        int res = qualityService.undatePCountCheck(processCountCheck);
+        return setMap(res);
+    }
+
+    /**
+     * 工序计数质检-删除功能
+     * */
+    @RequestMapping("/pCountCheck/delete_judge")
+    @ResponseBody
+    public void pCountCheckDeleteJudge() { }
+
+    @RequestMapping("/p_count_check/delete_batch")
+    @ResponseBody
+    public Map deletePCountCheckBatch(@RequestParam("ids") String[] ids){
+        int res = qualityService.deletePCountCheckBatch(ids);
+        return setMap(res);
+    }
     /*
     自定义方法，根据持久层返回的res设置返回给前端的map
      */
