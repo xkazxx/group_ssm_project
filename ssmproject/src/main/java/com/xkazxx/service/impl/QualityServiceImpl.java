@@ -32,6 +32,12 @@ public class QualityServiceImpl implements QualityService {
     @Autowired
     FinalMeasureCheckMapper finalMeasureCheckMapper;
 
+    @Autowired
+    FinalCountCheckMapper finalCountCheckMapper;
+
+    @Autowired
+    ProcessMeasureCheckMapper processMeasureCheckMapper;
+
     @Override
     public PageInfo<UnqualifyProduct> findAllUnqualifyProductsByPage(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
@@ -110,5 +116,70 @@ public class QualityServiceImpl implements QualityService {
     @Override
     public int updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck) {
         return finalMeasureCheckMapper.updateFinalMeasureCheck(finalMeasureCheck);
+    }
+
+    @Override
+    public int deleteMeasure(String[] ids) {
+        int res = finalMeasureCheckMapper.deleteMeasure(ids);
+        if(ids.length == res){
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public PageInfo<FinalCountCheck> findAllCountCheckByPage(int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalCountCheck> list = finalCountCheckMapper.findAllCountCheckByPage();
+        PageInfo<FinalCountCheck> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public int addFinalCountCheck(FinalCountCheck finalCountCheck) {
+        return finalCountCheckMapper.insert(finalCountCheck);
+    }
+
+    @Override
+    public int updateFinalCountCheck(FinalCountCheck finalCountCheck) {
+        return finalCountCheckMapper.updateByPrimaryKey(finalCountCheck);
+    }
+
+    @Override
+    public int deleteFinalCountCheck(String[] ids) {
+        int res = finalCountCheckMapper.deleteFinalCountCheckBatch(ids);
+        if(res == ids.length){
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public PageInfo<FinalCountCheck> searchFCountCheckByCountCheckId(int page, int rows, String fCountCheckId) {
+        PageHelper.startPage(page,rows);
+        List<FinalCountCheck> list = finalCountCheckMapper.searchFCountCheckByCountCheckId(fCountCheckId);
+        PageInfo<FinalCountCheck> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<FinalCountCheck> searchFCountCheckByOrerId(String orderId, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalCountCheck> list = finalCountCheckMapper.searchFCountCheckByOrerId(orderId);
+        return new PageInfo<FinalCountCheck>(list);
+    }
+
+    @Override
+    public PageInfo<ProcessMeasureCheck> findAllPMeasureCheck(int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<ProcessMeasureCheck> list = processMeasureCheckMapper.findAllPMeasureCheck();
+        return new PageInfo<ProcessMeasureCheck>(list);
+    }
+
+    @Override
+    public PageInfo<ProcessMeasureCheck> searchPMeasureCheckByPMeasureCheckId(String pMeasureCheckId, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<ProcessMeasureCheck> list = processMeasureCheckMapper.searchPMeasureCheckByPMeasureCheckId(pMeasureCheckId);
+        return new PageInfo<>(list);
     }
 }

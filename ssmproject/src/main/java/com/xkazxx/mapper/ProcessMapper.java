@@ -23,4 +23,6 @@ public interface ProcessMapper {
      * @return
      */
     List<ProcessCustom> selectProcessAndTechnologyPlan();
+
+    List<Process> getAllProcess();
 }

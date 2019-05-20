@@ -24,4 +24,7 @@ public interface TechnologyPlanMapper {
      * @return
      */
     List<TechnologyPlanCustom> selectTechnologyPlanAndTechnologyName();
+
+    List<TechnologyPlan> getAllTechnologyPlan();
+
 }

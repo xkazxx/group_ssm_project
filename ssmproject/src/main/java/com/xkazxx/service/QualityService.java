@@ -30,4 +30,22 @@ public interface QualityService {
     int addFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck);
 
     int updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck);
+
+    int deleteMeasure(String[] ids);
+
+    PageInfo<FinalCountCheck> findAllCountCheckByPage(int page, int rows);
+
+    int addFinalCountCheck(FinalCountCheck finalCountCheck);
+
+    int updateFinalCountCheck(FinalCountCheck finalCountCheck);
+
+    int deleteFinalCountCheck(String[] ids);
+
+    PageInfo<FinalCountCheck> searchFCountCheckByCountCheckId(int page, int rows, String fCountCheckId);
+
+    PageInfo<FinalCountCheck> searchFCountCheckByOrerId(String orderId, int page, int rows);
+
+    PageInfo<ProcessMeasureCheck> findAllPMeasureCheck(int page, int rows);
+
+    PageInfo<ProcessMeasureCheck> searchPMeasureCheckByPMeasureCheckId(String pMeasureCheckId, int page, int rows);
 }
