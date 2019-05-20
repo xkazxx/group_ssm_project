@@ -17,9 +17,6 @@ import java.util.*;
 public class COrderController {
 
     @Autowired
-    PublicMethodPart PublicMethodPart;
-
-    @Autowired
     SchedulingService schedulingService;
 
     @RequestMapping("/find")
@@ -83,8 +80,8 @@ public class COrderController {
     }
 
     @RequestMapping("/insert")
+    @ResponseBody
     public Map insertCOrder(COrder cOrder) {
-
         boolean success = schedulingService.insertCOrder(cOrder);
         return PublicMethodPart.optionSuccess(success);
     }

@@ -33,5 +33,7 @@ public class ProcessController {
 
     @RequestMapping("/process/get_data")
     @ResponseBody
-    public List<Process> getAllProcess() { return processService.getAllProcess(); }
+    public List<Process> getAllProcess() {
+        return processService.getAllProcess();
+    }
 }
