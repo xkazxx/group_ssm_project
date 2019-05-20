@@ -16,4 +16,6 @@ public interface FinalMeasureCheckMapper {
     int addFinalMeasureCheck(@Param("finalMeasureCheck") FinalMeasureCheck finalMeasureCheck);
 
     int updateFinalMeasureCheck(@Param("record") FinalMeasureCheck finalMeasureCheck);
+
+    int deleteMeasure(@Param("ids") String[] ids);
 }

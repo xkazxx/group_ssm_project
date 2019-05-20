@@ -62,4 +62,10 @@
     result = #{record.result},note = #{record.note}
     where f_measure_check_id = #{record.fMeasureCheckId}
   </update>
+  <delete id="deleteMeasure" parameterType="java.util.Arrays">
+    delete from final_measuret_check where f_measure_check_id in
+    <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>

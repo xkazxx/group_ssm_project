@@ -42,4 +42,9 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
         queryVO.setTotal(total);
         return queryVO;
     }
+
+    @Override
+    public List<TechnologyPlan> getAllTechnologyPlan() {
+        return technologyPlanMapper.getAllTechnologyPlan();
+    }
 }

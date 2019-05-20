@@ -2,6 +2,8 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.ProcessMeasureCheck;
 
+import java.util.List;
+
 public interface ProcessMeasureCheckMapper {
     int deleteByPrimaryKey(String pMeasureCheckId);
 
@@ -14,4 +16,7 @@ public interface ProcessMeasureCheckMapper {
     int updateByPrimaryKeySelective(ProcessMeasureCheck record);
 
     int updateByPrimaryKey(ProcessMeasureCheck record);
+
+    List<ProcessMeasureCheck> findAllPMeasureCheck();
+
 }

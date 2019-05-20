@@ -166,6 +166,9 @@ public class QualityController {
         return setMap(res);
     }
 
+    /**
+     * 成品计量质检-修改功能
+     * */
     @RequestMapping("/fMeasureCheck/edit_judge")
     @ResponseBody
     public void fMeasureCheckEdit_judge() { }
@@ -178,6 +181,120 @@ public class QualityController {
     public Map updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck){
         int res = qualityService.updateFinalMeasureCheck(finalMeasureCheck);
         return setMap(res);
+    }
+
+    /**
+     * 成品计量质检-删除功能
+     * */
+    @RequestMapping("/fMeasureCheck/delete_judge")
+    @ResponseBody
+    public void preDeleteMeasureCheck() { }
+
+    @RequestMapping("/measure/delete_batch")
+    @ResponseBody
+    public Map deleteMeasure(@RequestParam("ids") String[] ids){
+        int res = qualityService.deleteMeasure(ids);
+        return setMap(res);
+    }
+
+    /**
+     *成品计数质检-分页查询
+     * */
+    @RequestMapping("/f_count_check/find")
+    public String preFindAllCountCheckByPage(){ return "f_count_check_list"; }
+
+    @RequestMapping("/f_count_check/list")
+    @ResponseBody
+    public QueryVO findAllCountCheckByPage(@RequestParam("page") int page ,
+                                           @RequestParam("rows") int rows){
+        PageInfo<FinalCountCheck> pageInfo = qualityService.findAllCountCheckByPage(page,rows);
+        return setQueryVO(pageInfo);
+    }
+
+    /**
+     * 成品计数质检-新增功能
+     * */
+    @RequestMapping("/fCountCheck/add_judge")
+    @ResponseBody
+    public void fCountCheckAddJudge(){ }
+
+    @RequestMapping("/f_count_check/add")
+    public String fCountCheckAdd(){ return "f_count_check_add"; }
+
+    @RequestMapping("/f_count_check/insert")
+    @ResponseBody
+    public Map fCountCheckInsert(FinalCountCheck finalCountCheck){
+        int res = qualityService.addFinalCountCheck(finalCountCheck);
+        return setMap(res);
+    }
+
+    /**
+     * 成品计数质检-修改功能
+     * */
+    @RequestMapping("/fCountCheck/edit_judge")
+    @ResponseBody
+    public void fCountCheckEditJudge() { }
+
+    @RequestMapping("/f_count_check/edit")
+    public String fCountCheckEdit(){ return "f_count_check_edit"; }
+
+    @RequestMapping("/f_count_check/update_all")
+    @ResponseBody
+    public Map fCountCheckUpdate(FinalCountCheck finalCountCheck){
+        int res = qualityService.updateFinalCountCheck(finalCountCheck);
+        return setMap(res);
+    }
+
+    /**
+     * 成品计数质检-删除功能
+     * */
+    @RequestMapping("/fCountCheck/delete_judge")
+    @ResponseBody
+    public void fCountCheckDeleteJudge(){ }
+
+    @RequestMapping("/f_count_check/delete_batch")
+    @ResponseBody
+    public Map deleteFinalCountCheck(@RequestParam("ids") String[] ids){
+        int res = qualityService.deleteFinalCountCheck(ids);
+        return setMap(res);
+    }
+
+    /**
+     * 成品计数质检-根据质检编号模糊查询
+     * */
+    @RequestMapping("/f_count_check/search_fCountCheck_by_fCountCheckId")
+    @ResponseBody
+    public QueryVO searchFCountCheckByCountCheckId(@RequestParam("page") int page ,
+                                                   @RequestParam("rows") int rows ,
+                                                   @RequestParam("searchValue") String fCountCheckId){
+        PageInfo<FinalCountCheck> pageInfo = qualityService.searchFCountCheckByCountCheckId(page,rows,fCountCheckId);
+        return setQueryVO(pageInfo);
+    }
+
+    /**
+     * 成品计数质检-根据订单编号模糊查询
+     * */
+    @RequestMapping("/f_count_check/search_fCountCheck_by_orderId")
+    @ResponseBody
+    public QueryVO searchFCountCheckByOrerId(@RequestParam("searchValue") String orderId ,
+                                             @RequestParam("page") int page ,
+                                             @RequestParam("rows") int rows){
+        PageInfo<FinalCountCheck> pageInfo = qualityService.searchFCountCheckByOrerId(orderId,page,rows);
+        return setQueryVO(pageInfo);
+    }
+
+    /**
+     * 工序计量质检-分页查询
+     * */
+    @RequestMapping("/p_measure_check/find")
+    public String findPMeasureCheck() { return "p_measure_check_list"; }
+
+    @RequestMapping("/p_measure_check/list")
+    @ResponseBody
+    public QueryVO findAllPMeasureCheck(@RequestParam("page") int page,
+                                        @RequestParam("rows") int rows){
+        PageInfo<ProcessMeasureCheck> pageInfo = qualityService.findAllPMeasureCheck(page,rows);
+        return setQueryVO(pageInfo);
     }
     /*
     自定义方法，根据持久层返回的res设置返回给前端的map

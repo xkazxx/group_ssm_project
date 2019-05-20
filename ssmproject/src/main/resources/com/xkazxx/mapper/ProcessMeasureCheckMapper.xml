@@ -21,6 +21,11 @@
     from process_measure_check
     where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </select>
+  <select id="findAllPMeasureCheck" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from process_measure_check
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from process_measure_check
     where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}

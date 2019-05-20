@@ -155,4 +155,9 @@
       technology
     WHERE  technology_plan.`technology_id` = technology.`technology_id`
     </select>
+  <select id="getAllTechnologyPlan" resultMap="resultMap1">
+    select
+    <include refid="Base_Column_List"/>
+    from technology_plan
+  </select>
 </mapper>
