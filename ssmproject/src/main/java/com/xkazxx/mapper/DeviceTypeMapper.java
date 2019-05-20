@@ -5,7 +5,10 @@ import com.xkazxx.bean.DeviceType;
 import java.util.List;
 
 public interface DeviceTypeMapper {
+
     int deleteByPrimaryKey(String deviceTypeId);
+
+    int deleteDeviceTypeByIds(String[] ids);
 
     int insert(DeviceType record);
 

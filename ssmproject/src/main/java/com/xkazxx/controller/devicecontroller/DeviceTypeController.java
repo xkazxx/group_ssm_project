@@ -2,6 +2,7 @@ package com.xkazxx.controller.devicecontroller;
 
 import com.xkazxx.bean.DeviceType;
 import com.xkazxx.service.DeviceService;
+import com.xkazxx.util.PublicMethodPart;
 import com.xkazxx.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,10 +50,11 @@ public class DeviceTypeController {
         return "deviceType_add";
     }
 
+    @ResponseBody
     @RequestMapping("/deviceType/insert")
-    public void insert(DeviceType deviceType){
+    public Map insert(DeviceType deviceType){
 
-        deviceService.insertDeviceType(deviceType);
+        return PublicMethodPart.optionSuccess(deviceService.insertDeviceType(deviceType));
     }
 
     @ResponseBody
@@ -73,6 +75,13 @@ public class DeviceTypeController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceType/update")
+    public Map update(DeviceType deviceType){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceType(deviceType));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceType/delete_judge")
     public Map deleteJudge(){
 
@@ -81,5 +90,12 @@ public class DeviceTypeController {
         map.put("null", null);
 
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceType/delete_batch")
+    public Map deleteBatch(String[] ids){
+
+        return PublicMethodPart.optionSuccess(deviceService.deleteDeviceType(ids));
     }
 }

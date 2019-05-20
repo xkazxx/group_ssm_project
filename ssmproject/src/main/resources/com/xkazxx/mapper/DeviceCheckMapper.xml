@@ -36,7 +36,15 @@
     delete from device_check
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.xkazxx.bean.DeviceCheck">
+    <delete id="deleteDeviceCheckByIds">
+      delete
+      from device_check
+      where device_check_id in
+      <foreach item="id" collection="array" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.xkazxx.bean.DeviceCheck">
     insert into device_check (device_check_id, device_id, device_check_emp_id, 
       device_check_date, device_check_result, device_check_fault_id
       )

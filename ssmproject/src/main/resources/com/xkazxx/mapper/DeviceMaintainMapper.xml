@@ -42,20 +42,31 @@
     LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
   </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.xkazxx.bean.DeviceMaintain">
-    insert into device_maintain (device_maintain_id, device_fault_id, 
-      device_maintain_emp_id, device_maintain_date, 
-      device_maintain_result, device_maintain_cost, 
-      note)
-    values (#{deviceMaintainId,jdbcType=VARCHAR}, #{deviceFaultId,jdbcType=VARCHAR}, 
-      #{deviceMaintainEmpId,jdbcType=VARCHAR}, #{deviceMaintainDate,jdbcType=TIMESTAMP}, 
-      #{deviceMaintainResult,jdbcType=VARCHAR}, #{deviceMaintainCost,jdbcType=DECIMAL}, 
-      #{note,jdbcType=VARCHAR})
-  </insert>
+
+  <delete id="deleteDeviceMaintainByIds">
+    delete
+    from device_maintain
+    where device_maintain_id in
+    <foreach item="id" collection="array" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
+
+   <insert id="insert" parameterType="com.xkazxx.bean.DeviceMaintain">
+   insert into device_maintain (device_maintain_id, device_fault_id,
+     device_maintain_emp_id, device_maintain_date,
+     device_maintain_result, device_maintain_cost,
+     note)
+   values (#{deviceMaintainId,jdbcType=VARCHAR}, #{deviceFaultId,jdbcType=VARCHAR},
+     #{deviceMaintainEmpId,jdbcType=VARCHAR}, #{deviceMaintainDate,jdbcType=TIMESTAMP},
+     #{deviceMaintainResult,jdbcType=VARCHAR}, #{deviceMaintainCost,jdbcType=DECIMAL},
+     #{note,jdbcType=VARCHAR})
+   </insert>
+
   <insert id="insertSelective" parameterType="com.xkazxx.bean.DeviceMaintain">
     insert into device_maintain
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -105,6 +116,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.xkazxx.bean.DeviceMaintain">
     update device_maintain
     <set>
@@ -129,6 +141,7 @@
     </set>
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.xkazxx.bean.DeviceMaintain">
     update device_maintain
     set device_fault_id = #{deviceFaultId,jdbcType=VARCHAR},
@@ -139,4 +152,5 @@
       note = #{note,jdbcType=VARCHAR}
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </update>
+  
 </mapper>

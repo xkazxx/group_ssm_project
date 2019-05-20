@@ -2,6 +2,7 @@ package com.xkazxx.controller.devicecontroller;
 
 import com.xkazxx.bean.DeviceFault;
 import com.xkazxx.service.DeviceService;
+import com.xkazxx.util.PublicMethodPart;
 import com.xkazxx.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,10 +46,11 @@ public class DeviceFaultController {
         return "deviceFault_add";
     }
 
+    @ResponseBody
     @RequestMapping("/deviceFault/insert")
-    public void insert(DeviceFault deviceFault){
+    public Map insert(DeviceFault deviceFault){
 
-        deviceService.insertDeviceFault(deviceFault);
+        return PublicMethodPart.optionSuccess(deviceService.insertDeviceFault(deviceFault));
     }
 
     @ResponseBody
@@ -69,6 +71,13 @@ public class DeviceFaultController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceFault/update")
+    public Map update(DeviceFault deviceFault){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceFault(deviceFault));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceFault/delete_judge")
     public Map deleteJudge(){
 
@@ -77,5 +86,12 @@ public class DeviceFaultController {
         map.put("null", null);
 
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceFault/delete_batch")
+    public Map deleteBatch(String[] ids){
+
+        return PublicMethodPart.optionSuccess(deviceService.deleteDeviceFault(ids));
     }
 }

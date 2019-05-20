@@ -29,7 +29,7 @@
         where device_id = #{deviceId,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectAllDevice" resultType="com.xkazxx.vo.DeviceVo">
+    <select id="selectAllDeviceVo" resultType="com.xkazxx.vo.DeviceVo">
         SELECT
             <include refid="Base_Column_List" />,
             device_type.device_type_name as deviceTypeName,
@@ -45,6 +45,16 @@
         from device
         where device_id = #{deviceId,jdbcType=VARCHAR}
     </delete>
+
+    <delete id="deleteDeviceByIds">
+        delete
+        from device
+        where device_id in
+        <foreach item="id" collection="array" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
     <insert id="insert" parameterType="com.xkazxx.bean.Device">
         insert into device (device_id, device_name, device_type_id,
                             device_status_id, device_status, device_purchase_date,

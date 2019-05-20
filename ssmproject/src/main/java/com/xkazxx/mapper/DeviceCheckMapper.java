@@ -6,7 +6,10 @@ import com.xkazxx.vo.DeviceCheckVo;
 import java.util.List;
 
 public interface DeviceCheckMapper {
+
     int deleteByPrimaryKey(String deviceCheckId);
+
+    int deleteDeviceCheckByIds(String[] ids);
 
     int insert(DeviceCheck record);
 

@@ -6,7 +6,10 @@ import com.xkazxx.vo.DeviceMaintainVo;
 import java.util.List;
 
 public interface DeviceMaintainMapper {
+
     int deleteByPrimaryKey(String deviceMaintainId);
+
+    int deleteDeviceMaintainByIds(String[] ids);
 
     int insert(DeviceMaintain record);
 
@@ -19,4 +22,5 @@ public interface DeviceMaintainMapper {
     int updateByPrimaryKey(DeviceMaintain record);
 
     List<DeviceMaintainVo> selectAllDeviceMaintain();
+
 }

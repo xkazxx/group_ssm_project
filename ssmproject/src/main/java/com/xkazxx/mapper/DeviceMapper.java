@@ -8,6 +8,8 @@ import java.util.List;
 public interface DeviceMapper {
     int deleteByPrimaryKey(String deviceId);
 
+    int deleteDeviceByIds(String[] ids);
+
     int insert(Device record);
 
     int insertSelective(Device record);
@@ -18,5 +20,5 @@ public interface DeviceMapper {
 
     int updateByPrimaryKey(Device record);
 
-    List<DeviceVo> selectAllDevice();
+    List<DeviceVo> selectAllDeviceVo();
 }

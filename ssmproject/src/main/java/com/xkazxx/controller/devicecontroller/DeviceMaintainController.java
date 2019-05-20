@@ -2,7 +2,9 @@ package com.xkazxx.controller.devicecontroller;
 
 import com.xkazxx.bean.DeviceFault;
 import com.xkazxx.bean.DeviceMaintain;
+import com.xkazxx.bean.DeviceType;
 import com.xkazxx.service.DeviceService;
+import com.xkazxx.util.PublicMethodPart;
 import com.xkazxx.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,10 +56,11 @@ public class DeviceMaintainController {
         return "deviceMaintain_add";
     }
 
+    @ResponseBody
     @RequestMapping("/deviceMaintain/insert")
-    public void insert(DeviceMaintain deviceMaintain){
+    public Map insert(DeviceMaintain deviceMaintain){
 
-        deviceService.insertDeviceMaintain(deviceMaintain);
+        return PublicMethodPart.optionSuccess(deviceService.insertDeviceMaintain(deviceMaintain));
     }
 
     @ResponseBody
@@ -78,6 +81,13 @@ public class DeviceMaintainController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceMaintain/update")
+    public Map update(DeviceMaintain deviceMaintain){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceMaintain(deviceMaintain));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceMaintain/delete_judge")
     public Map deleteJudge(){
 
@@ -86,5 +96,12 @@ public class DeviceMaintainController {
         map.put("null", null);
 
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceMaintain/delete_batch")
+    public Map deleteBatch(String[] ids){
+
+        return PublicMethodPart.optionSuccess(deviceService.deleteDeviceMaintain(ids));
     }
 }

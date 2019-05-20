@@ -3,6 +3,7 @@ package com.xkazxx.controller.devicecontroller;
 import com.xkazxx.bean.Device;
 import com.xkazxx.bean.DeviceCheck;
 import com.xkazxx.service.DeviceService;
+import com.xkazxx.util.PublicMethodPart;
 import com.xkazxx.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,10 +49,11 @@ public class DeviceCheckController {
         return "deviceCheck_add";
     }
 
+    @ResponseBody
     @RequestMapping("/deviceCheck/insert")
-    public void insert(DeviceCheck deviceCheck){
+    public Map insert(DeviceCheck deviceCheck){
 
-        deviceService.insertDeviceCheck(deviceCheck);
+        return PublicMethodPart.optionSuccess(deviceService.insertDeviceCheck(deviceCheck));
     }
 
     @ResponseBody
@@ -72,6 +74,13 @@ public class DeviceCheckController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceCheck/update")
+    public Map update(DeviceCheck deviceCheck){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceCheck(deviceCheck));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceCheck/delete_judge")
     public Map deleteJudge(){
 
@@ -80,5 +89,12 @@ public class DeviceCheckController {
         map.put("null", null);
 
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceCheck/delete_batch")
+    public Map deleteBatch(String[] ids){
+
+        return PublicMethodPart.optionSuccess(deviceService.deleteDeviceCheck(ids));
     }
 }
