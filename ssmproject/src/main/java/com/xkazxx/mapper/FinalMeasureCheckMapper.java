@@ -14,4 +14,6 @@ public interface FinalMeasureCheckMapper {
     List<FinalMeasureCheck> search_fMeasureCheck_by_orderId(@Param("order_id") String orderId);
 
     int addFinalMeasureCheck(@Param("finalMeasureCheck") FinalMeasureCheck finalMeasureCheck);
+
+    int updateFinalMeasureCheck(@Param("record") FinalMeasureCheck finalMeasureCheck);
 }

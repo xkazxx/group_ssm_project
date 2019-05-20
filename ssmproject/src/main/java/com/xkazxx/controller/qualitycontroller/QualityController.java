@@ -165,6 +165,20 @@ public class QualityController {
         int res = qualityService.addFinalMeasureCheck(finalMeasureCheck);
         return setMap(res);
     }
+
+    @RequestMapping("/fMeasureCheck/edit_judge")
+    @ResponseBody
+    public void fMeasureCheckEdit_judge() { }
+
+    @RequestMapping("/measure/edit")
+    public String measureEdit(){ return  "measurement_edit"; }
+
+    @RequestMapping("/measure/update_all")
+    @ResponseBody
+    public Map updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck){
+        int res = qualityService.updateFinalMeasureCheck(finalMeasureCheck);
+        return setMap(res);
+    }
     /*
     自定义方法，根据持久层返回的res设置返回给前端的map
      */
@@ -191,13 +205,4 @@ public class QualityController {
         queryVO.setRows(pageInfo.getList());
         return queryVO;
     }
-
-    /**
-     * 调用了人员管理模块的employee的接口
-     * 返回值为所有employee的list
-     * 如有冲突，讨论修改
-     * */
-    @RequestMapping("/employee/get_data")
-    @ResponseBody
-    public List<Employee> getAllEmployee(){ return qualityService.getAllEmployee(); }
 }

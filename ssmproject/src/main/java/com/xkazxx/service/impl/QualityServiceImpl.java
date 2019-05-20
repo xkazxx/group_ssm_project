@@ -41,9 +41,6 @@ public class QualityServiceImpl implements QualityService {
     }
 
     @Override
-    public List<Employee> getAllEmployee() { return employeeMapper.getAllEmployee(); }
-
-    @Override
     public List<Department> getAllDepartment() { return departmentMapper.selectAllDepartment(); }
 
     @Override
@@ -108,5 +105,10 @@ public class QualityServiceImpl implements QualityService {
     @Override
     public int addFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck) {
         return finalMeasureCheckMapper.addFinalMeasureCheck(finalMeasureCheck);
+    }
+
+    @Override
+    public int updateFinalMeasureCheck(FinalMeasureCheck finalMeasureCheck) {
+        return finalMeasureCheckMapper.updateFinalMeasureCheck(finalMeasureCheck);
     }
 }
