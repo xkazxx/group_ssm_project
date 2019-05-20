@@ -44,7 +44,7 @@ public class DeviceServiceImpl implements DeviceService {
         ResponseVo<T> responseVo = new ResponseVo<>();
 
         if("Device".equals(c.getSimpleName())) {
-            PageInfo<DeviceVo> deviceVoPageInfo = new PageInfo<>(deviceMapper.selectAllDevice());
+            PageInfo<DeviceVo> deviceVoPageInfo = new PageInfo<>(deviceMapper.selectAllDeviceVo());
 
             responseVo.setTotal(deviceVoPageInfo.getTotal());
             responseVo.setRows((List) deviceVoPageInfo.getList());
@@ -91,6 +91,8 @@ public class DeviceServiceImpl implements DeviceService {
             list = (List<T>) deviceTypeMapper.selectAllDeviceType();
         }else if("EmployeeAndDepartmentVo".equals(c.getSimpleName())){
             list = (List<T>) employeeMapper.selectEmployeeAndDepartment();
+        }else if("Device".equals(c.getSimpleName())){
+            list = (List<T>) deviceMapper.selectAllDeviceVo();
         }
 
         return list;
@@ -121,32 +123,105 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public void insertDevice(Device device) {
+    public boolean insertDevice(Device device) {
 
-        deviceMapper.insert(device);
+        /*可以尝试使用spring aop实现*/
+        switch (device.getDeviceStatusId()) {
+            case "1" :
+                device.setDeviceStatus("良好");
+                break;
+            case "2" :
+                device.setDeviceStatus("故障");
+            case "3" :
+                device.setDeviceStatus("维修");
+        }
+
+        return deviceMapper.insert(device) == 1;
     }
 
     @Override
-    public void insertDeviceType(DeviceType deviceType) {
+    public boolean insertDeviceType(DeviceType deviceType) {
 
-        deviceTypeMapper.insert(deviceType);
+        return deviceTypeMapper.insert(deviceType) == 1;
     }
 
     @Override
-    public void insertDeviceCheck(DeviceCheck deviceCheck) {
+    public boolean insertDeviceCheck(DeviceCheck deviceCheck) {
 
-        deviceCheckMapper.insert(deviceCheck);
+        return deviceCheckMapper.insert(deviceCheck) == 1;
     }
 
     @Override
-    public void insertDeviceFault(DeviceFault deviceFault) {
+    public boolean insertDeviceFault(DeviceFault deviceFault) {
 
-        deviceFaultMapper.insert(deviceFault);
+        return deviceFaultMapper.insert(deviceFault) == 1;
     }
 
     @Override
-    public void insertDeviceMaintain(DeviceMaintain deviceMaintain) {
+    public boolean insertDeviceMaintain(DeviceMaintain deviceMaintain) {
 
-        deviceMaintainMapper.insert(deviceMaintain);
+        return deviceMaintainMapper.insert(deviceMaintain) == 1;
     }
+
+    @Override
+    public boolean updateDevice(Device device) {
+
+        return deviceMapper.updateByPrimaryKeySelective(device) == 1;
+    }
+
+    @Override
+    public boolean updateDeviceType(DeviceType deviceType) {
+
+        return deviceTypeMapper.updateByPrimaryKeySelective(deviceType) == 1;
+    }
+
+    @Override
+    public boolean updateDeviceCheck(DeviceCheck deviceCheck) {
+
+        return deviceCheckMapper.updateByPrimaryKeySelective(deviceCheck) == 1;
+    }
+
+    @Override
+    public boolean updateDeviceFault(DeviceFault deviceFault) {
+
+        return deviceFaultMapper.updateByPrimaryKeySelective(deviceFault) == 1;
+    }
+
+    @Override
+    public boolean updateDeviceMaintain(DeviceMaintain deviceMaintain) {
+
+        return deviceMaintainMapper.updateByPrimaryKeySelective(deviceMaintain) == 1;
+    }
+
+    @Override
+    public boolean deleteDevice(String[] ids) {
+
+        return deviceMapper.deleteDeviceByIds(ids) == ids.length;
+    }
+
+    @Override
+    public boolean deleteDeviceType(String[] ids) {
+
+        return deviceTypeMapper.deleteDeviceTypeByIds(ids) == ids.length;
+    }
+
+    @Override
+    public boolean deleteDeviceCheck(String[] ids) {
+
+        return deviceCheckMapper.deleteDeviceCheckByIds(ids) == ids.length;
+    }
+
+    @Override
+    public boolean deleteDeviceFault(String[] ids) {
+
+        return deviceFaultMapper.deleteDeviceFaultByIds(ids) == ids.length;
+    }
+
+    @Override
+    public boolean deleteDeviceMaintain(String[] ids) {
+
+        return deviceMaintainMapper.deleteDeviceMaintainByIds(ids) == ids.length;
+    }
+
+
 }

@@ -4,14 +4,13 @@ import com.xkazxx.bean.Department;
 import com.xkazxx.bean.Device;
 import com.xkazxx.bean.DeviceType;
 import com.xkazxx.service.DeviceService;
+import com.xkazxx.util.PublicMethodPart;
 import com.xkazxx.vo.EmployeeAndDepartmentVo;
 import com.xkazxx.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +40,13 @@ public class DeviceListController {
     public List<EmployeeAndDepartmentVo> getDataEmployee(){
 
         return deviceService.setList(EmployeeAndDepartmentVo.class);
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceList/get_data")
+    public List<Device> getDataDevice(){
+
+        return deviceService.setList(Device.class);
     }
 
     @ResponseBody
@@ -74,12 +80,14 @@ public class DeviceListController {
         return "deviceList_add";
     }
 
-    @RequestMapping("/deviceList/insert")
-    public void insert(Device device){
+    @ResponseBody
+    @PostMapping("/deviceList/insert")
+    public Map insert(Device device){
 
-        deviceService.insertDevice(device);
+        return PublicMethodPart.optionSuccess(deviceService.insertDevice(device));
     }
 
+    @ResponseBody
     @RequestMapping("/deviceList/edit_judge")
     public Map editJudge(){
 
@@ -97,6 +105,13 @@ public class DeviceListController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceList/update")
+    public Map update(Device device){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDevice(device));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceList/delete_judge")
     public Map deleteJudge(){
 
@@ -105,5 +120,12 @@ public class DeviceListController {
         map.put("null", null);
 
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceList/delete_batch")
+    public Map deleteBatch(String[] ids){
+
+        return PublicMethodPart.optionSuccess(deviceService.deleteDevice(ids));
     }
 }

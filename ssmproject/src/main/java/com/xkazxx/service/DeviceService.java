@@ -19,13 +19,33 @@ public interface DeviceService {
 
     DeviceFault getDeviceFault(String id);
 
-    void insertDevice(Device device);
+    boolean insertDevice(Device device);
 
-    void insertDeviceType(DeviceType deviceType);
+    boolean insertDeviceType(DeviceType deviceType);
 
-    void insertDeviceCheck(DeviceCheck deviceCheck);
+    boolean insertDeviceCheck(DeviceCheck deviceCheck);
 
-    void insertDeviceFault(DeviceFault deviceFault);
+    boolean insertDeviceFault(DeviceFault deviceFault);
 
-    void insertDeviceMaintain(DeviceMaintain deviceMaintain);
+    boolean insertDeviceMaintain(DeviceMaintain deviceMaintain);
+
+    boolean updateDevice(Device device);
+
+    boolean updateDeviceType(DeviceType deviceType);
+
+    boolean updateDeviceCheck(DeviceCheck deviceCheck);
+
+    boolean updateDeviceFault(DeviceFault deviceFault);
+
+    boolean updateDeviceMaintain(DeviceMaintain deviceMaintain);
+
+    boolean deleteDevice(String[] ids);
+
+    boolean deleteDeviceType(String[] ids);
+
+    boolean deleteDeviceCheck(String[] ids);
+
+    boolean deleteDeviceFault(String[] ids);
+
+    boolean deleteDeviceMaintain(String[] ids);
 }

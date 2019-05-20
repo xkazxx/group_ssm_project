@@ -113,11 +113,9 @@ public interface SchedulingService {
 
     boolean insertCOrder(COrder cOrder);
 
-    boolean editCOrder(COrder cOrder);
-
     boolean insertWork(Work work);
 
-    boolean editWork(Work work);
+    boolean update_all_Work(Work work);
 
     boolean delete_batch_Work(String[] ids);
 }

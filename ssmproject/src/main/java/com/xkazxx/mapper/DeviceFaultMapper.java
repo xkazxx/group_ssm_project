@@ -6,7 +6,10 @@ import com.xkazxx.vo.DeviceFaultVo;
 import java.util.List;
 
 public interface DeviceFaultMapper {
+
     int deleteByPrimaryKey(String deviceFaultId);
+
+    int deleteDeviceFaultByIds(String[] ids);
 
     int insert(DeviceFault record);
 
@@ -19,4 +22,5 @@ public interface DeviceFaultMapper {
     int updateByPrimaryKey(DeviceFault record);
 
     List<DeviceFaultVo> selectAllDeviceFault();
+
 }

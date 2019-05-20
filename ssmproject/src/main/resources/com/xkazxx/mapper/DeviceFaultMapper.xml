@@ -43,7 +43,15 @@
     delete from device_fault
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.xkazxx.bean.DeviceFault">
+    <delete id="deleteDeviceFaultByIds">
+      delete
+      from device_fault
+      where device_fault_id in
+      <foreach item="id" collection="array" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.xkazxx.bean.DeviceFault">
     insert into device_fault (device_fault_id, device_id, device_fault_cause, 
       device_fault_detail, device_fault_date, device_fault_maintenance
       )

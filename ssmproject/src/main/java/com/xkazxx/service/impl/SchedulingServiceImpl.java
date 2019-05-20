@@ -477,10 +477,6 @@ public class SchedulingServiceImpl implements SchedulingService {
         return 1 == cOrderMapper.insertSelective(cOrder);
     }
 
-    @Override
-    public boolean editCOrder(COrder cOrder) {
-        return 1 == cOrderMapper.updateByPrimaryKeySelective(cOrder);
-    }
 
     @Override
     public boolean insertWork(Work work) {
@@ -488,7 +484,7 @@ public class SchedulingServiceImpl implements SchedulingService {
     }
 
     @Override
-    public boolean editWork(Work work) {
+    public boolean update_all_Work(Work work) {
         return 1 == workMapper.updateByPrimaryKeySelective(work);
     }
 
