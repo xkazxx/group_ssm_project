@@ -35,11 +35,28 @@
     device_maintain_id, device_fault_id, device_maintain_emp_id, device_maintain_date,
     device_maintain_result, device_maintain_cost, note, emp_name
   </sql>
+
   <select id="selectAllDeviceMaintain" resultMap="DeviceMaintainResultMap">
     select
     <include refid="DeviceMaintain_Column_List" />
     from device_maintain
     LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
+  </select>
+
+  <select id="searchDeviceMaintainVoByDeviceMaintainId" resultMap="DeviceMaintainResultMap">
+    select
+      <include refid="DeviceMaintain_Column_List" />
+    from device_maintain
+      LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
+    WHERE device_maintain.device_maintain_id like '%${searchValue}%'
+  </select>
+
+  <select id="searchDeviceMaintainByDeviceFaultId" resultMap="DeviceMaintainResultMap">
+    select
+      <include refid="DeviceMaintain_Column_List" />
+    from device_maintain
+      LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id
+    WHERE device_maintain.device_fault_id like '%${searchValue}%'
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
@@ -152,5 +169,11 @@
       note = #{note,jdbcType=VARCHAR}
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </update>
-  
+
+  <update id="updateDeviceMaintainNoteById">
+    update device_maintain
+    set note = #{note}
+    where device_maintain_id = #{deviceMaintainId}
+  </update>
+
 </mapper>

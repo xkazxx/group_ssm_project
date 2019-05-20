@@ -33,6 +33,14 @@ public class DeviceCheckController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceCheck/update_note")
+    public Map updateDeviceCheckNote(@RequestParam("deviceCheckId") String deviceCheckId,
+                                @RequestParam("deviceCheckResult") String deviceCheckResult){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceCheckResultById(deviceCheckId, deviceCheckResult));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceCheck/add_judge")
     public Map addJudge(){
 
@@ -96,5 +104,25 @@ public class DeviceCheckController {
     public Map deleteBatch(String[] ids){
 
         return PublicMethodPart.optionSuccess(deviceService.deleteDeviceCheck(ids));
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceCheck/search_deviceCheck_by_deviceCheckId")
+    public ResponseVo searchDeviceCheckByDeviceCheckId(@RequestParam("searchValue")String searchValue,
+                                                       @RequestParam("page") int page,
+                                                       @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceCheck/search_deviceCheck_by_deviceName")
+    public ResponseVo searchDeviceCheckByDeviceCheckName(@RequestParam("searchValue")String searchValue,
+                                                         @RequestParam("page") int page,
+                                                         @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
     }
 }

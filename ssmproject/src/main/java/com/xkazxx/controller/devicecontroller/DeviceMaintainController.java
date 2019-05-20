@@ -88,6 +88,14 @@ public class DeviceMaintainController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceMaintain/update_note")
+    public Map updateDeviceMaintainNoteById(@RequestParam("deviceMaintainId") String deviceMaintainId,
+                                           @RequestParam("note") String note) {
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceMaintainNoteById(deviceMaintainId, note));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceMaintain/delete_judge")
     public Map deleteJudge(){
 
@@ -103,5 +111,25 @@ public class DeviceMaintainController {
     public Map deleteBatch(String[] ids){
 
         return PublicMethodPart.optionSuccess(deviceService.deleteDeviceMaintain(ids));
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceMaintain/search_deviceMaintain_by_deviceMaintainId")
+    public ResponseVo searchDeviceMaintainByDeviceMaintainId(@RequestParam("searchValue")String searchValue,
+                                                     @RequestParam("page") int page,
+                                                     @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceMaintain/search_deviceMaintain_by_deviceFaultId")
+    public ResponseVo searchDeviceMaintainByDeviceFaultId(@RequestParam("searchValue")String searchValue,
+                                                       @RequestParam("page") int page,
+                                                       @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
     }
 }

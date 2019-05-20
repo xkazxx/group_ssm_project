@@ -48,4 +48,14 @@ public interface DeviceService {
     boolean deleteDeviceFault(String[] ids);
 
     boolean deleteDeviceMaintain(String[] ids);
+
+    ResponseVo searchResponseVo(String searchValue, int page, int rows, String searchMethod);
+
+    boolean updateDeviceNoteById(String deviceId, String note);
+
+    boolean updateDeviceCheckResultById(String deviceCheckId, String deviceCheckResult);
+
+    boolean updateDeviceFaultDetailById(String deviceFaultId, String deviceFaultDetail);
+
+    boolean updateDeviceMaintainNoteById(String deviceMaintainId, String note);
 }

@@ -2,6 +2,7 @@ package com.xkazxx.mapper;
 
 import com.xkazxx.bean.DeviceMaintain;
 import com.xkazxx.vo.DeviceMaintainVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,4 +24,9 @@ public interface DeviceMaintainMapper {
 
     List<DeviceMaintainVo> selectAllDeviceMaintain();
 
+    List<DeviceMaintainVo> searchDeviceMaintainVoByDeviceMaintainId(@Param("searchValue") String searchValue);
+
+    List<DeviceMaintainVo> searchDeviceMaintainByDeviceFaultId(@Param("searchValue") String searchValue);
+
+    int updateDeviceMaintainNoteById(@Param("deviceMaintainId") String deviceMaintainId, @Param("note") String note);
 }

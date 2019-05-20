@@ -75,6 +75,13 @@ public class DeviceTypeController {
     }
 
     @ResponseBody
+    @RequestMapping("/deviceType/update_all")
+    public Map updateAll(DeviceType deviceType){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceType(deviceType));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceType/update")
     public Map update(DeviceType deviceType){
 
@@ -97,5 +104,25 @@ public class DeviceTypeController {
     public Map deleteBatch(String[] ids){
 
         return PublicMethodPart.optionSuccess(deviceService.deleteDeviceType(ids));
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceType/search_deviceType_by_deviceTypeId")
+    public ResponseVo searchDeviceTypeByDeviceTypeId(@RequestParam("searchValue")String searchValue,
+                                             @RequestParam("page") int page,
+                                             @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceType/search_deviceType_by_deviceTypeName")
+    public ResponseVo searchDeviceTypeByDeviceTypeName(@RequestParam("searchValue")String searchValue,
+                                             @RequestParam("page") int page,
+                                             @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
     }
 }

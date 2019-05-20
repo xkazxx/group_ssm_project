@@ -43,6 +43,39 @@ public class DeviceListController {
     }
 
     @ResponseBody
+    @RequestMapping("/employee/edit_judge")
+    public Map editEmployeeJudge(){
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("null", null);
+
+        return map;
+    }
+
+    /*@ResponseBody
+    @RequestMapping("/employee/update_all")
+    public Map updateEmployeeAll(EmployeeAndDepartmentVo employeeAndDepartmentVo){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceType(deviceType));
+    }*/
+
+    @ResponseBody
+    @RequestMapping("/deviceList/update_note")
+    public Map updateDeviceNote(@RequestParam("deviceId") String deviceId,
+                                @RequestParam("note") String note){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDeviceNoteById(deviceId, note));
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceList/update_all")
+    public Map updateDevice(Device device){
+
+        return PublicMethodPart.optionSuccess(deviceService.updateDevice(device));
+    }
+
+    @ResponseBody
     @RequestMapping("/deviceList/get_data")
     public List<Device> getDataDevice(){
 
@@ -127,5 +160,36 @@ public class DeviceListController {
     public Map deleteBatch(String[] ids){
 
         return PublicMethodPart.optionSuccess(deviceService.deleteDevice(ids));
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceList/search_device_by_deviceId")
+    public ResponseVo searchDeviceByDeviceId(@RequestParam("searchValue")String searchValue,
+                                             @RequestParam("page") int page,
+                                             @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceList/search_device_by_deviceName")
+    public ResponseVo searchDeviceByDeviceName(@RequestParam("searchValue")String searchValue,
+                                             @RequestParam("page") int page,
+                                             @RequestParam("rows") int rows){
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
+    }
+
+    @ResponseBody
+    @RequestMapping("/deviceList/search_device_by_deviceTypeName")
+    public ResponseVo searchDeviceByDeviceTypeName(@RequestParam("searchValue")String searchValue,
+                                                   @RequestParam("page") int page,
+                                                   @RequestParam("rows") int rows){
+
+
+        return deviceService.searchResponseVo(searchValue, page, rows,
+                Thread.currentThread() .getStackTrace()[1].getMethodName());
     }
 }

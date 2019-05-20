@@ -223,5 +223,120 @@ public class DeviceServiceImpl implements DeviceService {
         return deviceMaintainMapper.deleteDeviceMaintainByIds(ids) == ids.length;
     }
 
+    @Override
+    public ResponseVo searchResponseVo(String searchValue, int page, int rows, String searchMethod) {
+
+        PageHelper.startPage(page, rows);
+
+        ResponseVo responseVo = new ResponseVo<>();
+
+        switch (searchMethod) {
+            case "searchDeviceByDeviceId" :
+                PageInfo<DeviceVo> deviceVoPageInfo = new PageInfo<>(
+                        deviceMapper.searchDeviceByDeviceId(searchValue));
+
+                responseVo.setTotal(deviceVoPageInfo.getTotal());
+                responseVo.setRows((List) deviceVoPageInfo.getList());
+                break;
+            case "searchDeviceTypeByDeviceTypeId" :
+                PageInfo<DeviceType> deviceTypePageInfo = new PageInfo<>(
+                        deviceTypeMapper.searchDeviceTypeByDeviceTypeId(searchValue));
+
+                responseVo.setTotal(deviceTypePageInfo.getTotal());
+                responseVo.setRows((List) deviceTypePageInfo.getList());
+                break;
+            case "searchDeviceCheckByDeviceCheckId" :
+                PageInfo<DeviceCheckVo> deviceCheckVoPageInfo = new PageInfo<>(
+                        deviceCheckMapper.searchDeviceCheckVoByDeviceCheckId(searchValue));
+
+                responseVo.setTotal(deviceCheckVoPageInfo.getTotal());
+                responseVo.setRows((List) deviceCheckVoPageInfo.getList());
+                break;
+            case "searchDeviceFaultByDeviceFaultId" :
+                PageInfo<DeviceFaultVo> deviceFaultVoPageInfo = new PageInfo<>(
+                        deviceFaultMapper.searchDeviceFaultVoByDeviceFaultId(searchValue));
+
+                responseVo.setTotal(deviceFaultVoPageInfo.getTotal());
+                responseVo.setRows((List) deviceFaultVoPageInfo.getList());
+                break;
+            case "searchDeviceMaintainByDeviceMaintainId" :
+                PageInfo<DeviceMaintainVo> deviceMaintainVoPageInfo = new PageInfo<>(
+                        deviceMaintainMapper.searchDeviceMaintainVoByDeviceMaintainId(searchValue));
+
+                responseVo.setTotal(deviceMaintainVoPageInfo.getTotal());
+                responseVo.setRows((List) deviceMaintainVoPageInfo.getList());
+                break;
+            case "searchDeviceByDeviceName" :
+                PageInfo<DeviceVo> deviceVoPage = new PageInfo<>(
+                        deviceMapper.searchDeviceByDeviceName(searchValue));
+
+                responseVo.setTotal(deviceVoPage.getTotal());
+                responseVo.setRows((List) deviceVoPage.getList());
+                break;
+            case "searchDeviceTypeByDeviceTypeName" :
+                PageInfo<DeviceType> deviceTypePage = new PageInfo<>(
+                        deviceTypeMapper.searchDeviceTypeByDeviceTypeName(searchValue));
+
+                responseVo.setTotal(deviceTypePage.getTotal());
+                responseVo.setRows((List) deviceTypePage.getList());
+                break;
+            case "searchDeviceCheckByDeviceCheckName" :
+                PageInfo<DeviceCheckVo> deviceCheckVoPage = new PageInfo<>(
+                        deviceCheckMapper.searchDeviceCheckVoByDeviceCheckName(searchValue));
+
+                responseVo.setTotal(deviceCheckVoPage.getTotal());
+                responseVo.setRows((List) deviceCheckVoPage.getList());
+                break;
+            case "searchDeviceFaultByDeviceFaultName" :
+                PageInfo<DeviceFaultVo> deviceFaultVoPage = new PageInfo<>(
+                        deviceFaultMapper.searchDeviceFaultVoByDeviceFaultName(searchValue));
+
+                responseVo.setTotal(deviceFaultVoPage.getTotal());
+                responseVo.setRows((List) deviceFaultVoPage.getList());
+                break;
+            case "searchDeviceMaintainByDeviceFaultId" :
+                PageInfo<DeviceMaintainVo> deviceMaintainVoPage = new PageInfo<>(
+                        deviceMaintainMapper.searchDeviceMaintainByDeviceFaultId(searchValue));
+
+                responseVo.setTotal(deviceMaintainVoPage.getTotal());
+                responseVo.setRows((List) deviceMaintainVoPage.getList());
+                break;
+            case "searchDeviceByDeviceTypeName" :
+                PageInfo<DeviceVo> deviceVoInfo = new PageInfo<>(
+                        deviceMapper.searchDeviceByDeviceTypeName(searchValue));
+
+                responseVo.setTotal(deviceVoInfo.getTotal());
+                responseVo.setRows((List) deviceVoInfo.getList());
+                break;
+        }
+
+        return responseVo;
+    }
+
+    @Override
+    public boolean updateDeviceNoteById(String deviceId, String note) {
+
+        return deviceMapper.updateDeviceNoteById(deviceId, note) == 1;
+    }
+
+    @Override
+    public boolean updateDeviceCheckResultById(String deviceCheckId, String deviceCheckResult) {
+
+        return deviceCheckMapper.updateDeviceCheckResultById(deviceCheckId, deviceCheckResult) == 1;
+    }
+
+    @Override
+    public boolean updateDeviceFaultDetailById(String deviceFaultId, String deviceFaultDetail) {
+
+        return deviceFaultMapper.updateDeviceFaultDetailById(deviceFaultId, deviceFaultDetail) == 1;
+    }
+
+    @Override
+    public boolean updateDeviceMaintainNoteById(String deviceMaintainId, String note) {
+
+        return deviceMaintainMapper.updateDeviceMaintainNoteById(deviceMaintainId, note) == 1;
+
+    }
+
 
 }

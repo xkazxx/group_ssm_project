@@ -32,6 +32,30 @@
           LEFT JOIN employee on device_check.device_check_emp_id = employee.emp_id
     </select>
 
+  <select id="searchDeviceCheckVoByDeviceCheckId" resultType="com.xkazxx.vo.DeviceCheckVo">
+    SELECT
+      <include refid="Base_Column_List" />,
+      device.device_name as deviceName,
+      employee.emp_name as deviceCheckEmp
+    FROM
+      device_check
+        LEFT JOIN device on device_check.device_id = device.device_id
+        LEFT JOIN employee on device_check.device_check_emp_id = employee.emp_id
+    WHERE device_check.device_check_id like '%${searchValue}%'
+  </select>
+
+  <select id="searchDeviceCheckVoByDeviceCheckName" resultType="com.xkazxx.vo.DeviceCheckVo">
+    SELECT
+      <include refid="Base_Column_List" />,
+      device.device_name as deviceName,
+      employee.emp_name as deviceCheckEmp
+    FROM
+      device_check
+        LEFT JOIN device on device_check.device_id = device.device_id
+        LEFT JOIN employee on device_check.device_check_emp_id = employee.emp_id
+    WHERE device.device_name like '%${searchValue}%'
+  </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_check
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
@@ -124,5 +148,11 @@
       device_check_result = #{deviceCheckResult,jdbcType=VARCHAR},
       device_check_fault_id = #{deviceCheckFaultId,jdbcType=VARCHAR}
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateDeviceCheckResultById">
+    update device_check
+    set device_check_result = #{deviceCheckResult}
+    where device_check_id = #{deviceCheckId}
   </update>
 </mapper>

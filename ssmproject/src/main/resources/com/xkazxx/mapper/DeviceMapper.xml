@@ -40,6 +40,42 @@
                 LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
     </select>
 
+    <select id="searchDeviceByDeviceId" resultType="com.xkazxx.vo.DeviceVo">
+        SELECT
+          <include refid="Base_Column_List" />,
+          device_type.device_type_name as deviceTypeName,
+          employee.emp_name as deviceKeeper
+        FROM
+          device
+            LEFT JOIN device_type ON device.device_type_id = device_type.device_type_id
+            LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
+        WHERE device.device_id like '%${searchValue}%'
+    </select>
+
+    <select id="searchDeviceByDeviceName" resultType="com.xkazxx.vo.DeviceVo">
+        SELECT
+          <include refid="Base_Column_List" />,
+          device_type.device_type_name as deviceTypeName,
+          employee.emp_name as deviceKeeper
+        FROM
+          device
+            LEFT JOIN device_type ON device.device_type_id = device_type.device_type_id
+            LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
+        WHERE device.device_name like '%${searchValue}%'
+    </select>
+
+    <select id="searchDeviceByDeviceTypeName" resultType="com.xkazxx.vo.DeviceVo">
+        SELECT
+          <include refid="Base_Column_List" />,
+          device_type.device_type_name as deviceTypeName,
+          employee.emp_name as deviceKeeper
+        FROM
+          device
+            LEFT JOIN device_type ON device.device_type_id = device_type.device_type_id
+            LEFT JOIN employee ON device.device_keeper_id = employee.emp_id
+        WHERE device_type.device_type_name like '%${searchValue}%'
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete
         from device
@@ -188,5 +224,11 @@
             device_keeper_id        = #{deviceKeeperId,jdbcType=VARCHAR},
             note                    = #{note,jdbcType=VARCHAR}
         where device_id = #{deviceId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateDeviceNoteById">
+        update device
+        set note                    = #{note}
+        where device_id = #{id}
     </update>
 </mapper>
