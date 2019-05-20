@@ -1,9 +1,7 @@
 package com.xkazxx.service;
 
-import com.xkazxx.bean.Device;
-import com.xkazxx.bean.DeviceFault;
-import com.xkazxx.bean.DeviceType;
-import com.xkazxx.bean.Employee;
+import com.xkazxx.bean.*;
+import com.xkazxx.vo.EmployeeAndDepartmentVo;
 import com.xkazxx.vo.ResponseVo;
 import java.util.List;
 
@@ -13,11 +11,21 @@ public interface DeviceService {
 
     <T>List<T> setList(Class<?> T);
 
-    DeviceType getDeviceType(String id);
+    DeviceType getDeviceTypeById(String id);
 
     Device getDevice(String id);
 
-    Employee getEmployee(String id);
+    EmployeeAndDepartmentVo getEmployeeAndDepartmentVo(String id);
 
     DeviceFault getDeviceFault(String id);
+
+    void insertDevice(Device device);
+
+    void insertDeviceType(DeviceType deviceType);
+
+    void insertDeviceCheck(DeviceCheck deviceCheck);
+
+    void insertDeviceFault(DeviceFault deviceFault);
+
+    void insertDeviceMaintain(DeviceMaintain deviceMaintain);
 }

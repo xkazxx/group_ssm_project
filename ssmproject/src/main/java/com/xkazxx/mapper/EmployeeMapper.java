@@ -1,6 +1,9 @@
 package com.xkazxx.mapper;
 
 import com.xkazxx.bean.Employee;
+import com.xkazxx.vo.EmployeeAndDepartmentVo;
+
+import java.util.List;
 
 public interface EmployeeMapper {
     int deleteByPrimaryKey(String empId);
@@ -15,5 +18,7 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
 
-    Employee selectEmployeeAndDepartmentByPrimarkId(String empid);
+    EmployeeAndDepartmentVo selectEmployeeAndDepartmentById(String empId);
+
+    List<EmployeeAndDepartmentVo> selectEmployeeAndDepartment();
 }

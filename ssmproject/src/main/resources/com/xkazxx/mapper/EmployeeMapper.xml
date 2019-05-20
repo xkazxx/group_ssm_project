@@ -52,14 +52,21 @@
       <result column="note" property="note" />
     </association>
   </resultMap>
-  <select id="selectEmployeeAndDepartmentByPrimarkId" resultMap="EmployeeAndDepartmentResultMap">
+  <select id="selectEmployeeAndDepartmentById" resultMap="EmployeeAndDepartmentResultMap">
     SELECT
       <include refid="With_Department_List" />
     FROM
       employee
         LEFT JOIN department ON employee.department_id = department.department_id
-    WHERE
-      employee.emp_id = #{empId,jdbcType=VARCHAR};
+    where employee.emp_id = #{empId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectEmployeeAndDepartment" resultMap="EmployeeAndDepartmentResultMap">
+    SELECT
+    <include refid="With_Department_List" />
+    FROM
+    employee
+    LEFT JOIN department ON employee.department_id = department.department_id
   </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

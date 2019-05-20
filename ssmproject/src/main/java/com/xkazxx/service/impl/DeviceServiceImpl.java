@@ -37,34 +37,34 @@ public class DeviceServiceImpl implements DeviceService {
     EmployeeMapper employeeMapper;
 
     @Override
-    public <T>ResponseVo<T>     setResponseVo(int page, int rows, Class<?> T){
+    public <T> ResponseVo setResponseVo(int page, int rows, Class<?> c){
 
         PageHelper.startPage(page, rows);
 
         ResponseVo<T> responseVo = new ResponseVo<>();
 
-        if("Device".equals(T.getSimpleName())) {
+        if("Device".equals(c.getSimpleName())) {
             PageInfo<DeviceVo> deviceVoPageInfo = new PageInfo<>(deviceMapper.selectAllDevice());
 
             responseVo.setTotal(deviceVoPageInfo.getTotal());
             responseVo.setRows((List) deviceVoPageInfo.getList());
 
-        }else if("DeviceType".equals(T.getSimpleName())) {
+        }else if("DeviceType".equals(c.getSimpleName())) {
             PageInfo<DeviceType> deviceTypePageInfo = new PageInfo<>(deviceTypeMapper.selectAllDeviceType());
 
             responseVo.setTotal(deviceTypePageInfo.getTotal());
             responseVo.setRows((List) deviceTypePageInfo.getList());
-        }else if("DeviceCheck".equals((T.getSimpleName()))) {
+        }else if("DeviceCheck".equals((c.getSimpleName()))) {
             PageInfo<DeviceCheckVo> deviceCheckPageInfo = new PageInfo<>(deviceCheckMapper.selectAllDeviceCheck());
 
             responseVo.setTotal(deviceCheckPageInfo.getTotal());
             responseVo.setRows((List) deviceCheckPageInfo.getList());
-        }else if("DeviceFault".equals(T.getSimpleName())){
+        }else if("DeviceFault".equals(c.getSimpleName())){
             PageInfo<DeviceFaultVo> deviceFaultPageInfo = new PageInfo<>(deviceFaultMapper.selectAllDeviceFault());
 
             responseVo.setTotal(deviceFaultPageInfo.getTotal());
             responseVo.setRows((List) deviceFaultPageInfo.getList());
-        }else if("DeviceMaintain".equals(T.getSimpleName())){
+        }else if("DeviceMaintain".equals(c.getSimpleName())){
             PageInfo<DeviceMaintainVo> deviceMaintainPageInfo = new PageInfo<>(deviceMaintainMapper.selectAllDeviceMaintain());
 
             responseVo.setTotal(deviceMaintainPageInfo.getTotal());
@@ -75,19 +75,23 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public <T> List<T> setList(Class<?> T) {
+    public <T> List<T> setList(Class<?> c) {
 
         List<T> list = new ArrayList<>();
 
-        if("Department".equals(T.getSimpleName())){
+        if("Department".equals(c.getSimpleName())){
             list = (List<T>) departmentMapper.selectAllDepartment();
+        }else if("DeviceType".equals(c.getSimpleName())){
+            list = (List<T>) deviceTypeMapper.selectAllDeviceType();
+        }else if("EmployeeAndDepartmentVo".equals(c.getSimpleName())){
+            list = (List<T>) employeeMapper.selectEmployeeAndDepartment();
         }
 
         return list;
     }
 
     @Override
-    public DeviceType getDeviceType(String id) {
+    public DeviceType getDeviceTypeById(String id) {
 
         return deviceTypeMapper.selectByPrimaryKey(id);
     }
@@ -99,14 +103,44 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public Employee getEmployee(String id) {
+    public EmployeeAndDepartmentVo getEmployeeAndDepartmentVo(String id) {
 
-        return employeeMapper.selectEmployeeAndDepartmentByPrimarkId(id);
+        return employeeMapper.selectEmployeeAndDepartmentById(id);
     }
 
     @Override
     public DeviceFault getDeviceFault(String id) {
 
         return deviceFaultMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void insertDevice(Device device) {
+
+        deviceMapper.insert(device);
+    }
+
+    @Override
+    public void insertDeviceType(DeviceType deviceType) {
+
+        deviceTypeMapper.insert(deviceType);
+    }
+
+    @Override
+    public void insertDeviceCheck(DeviceCheck deviceCheck) {
+
+        deviceCheckMapper.insert(deviceCheck);
+    }
+
+    @Override
+    public void insertDeviceFault(DeviceFault deviceFault) {
+
+        deviceFaultMapper.insert(deviceFault);
+    }
+
+    @Override
+    public void insertDeviceMaintain(DeviceMaintain deviceMaintain) {
+
+        deviceMaintainMapper.insert(deviceMaintain);
     }
 }

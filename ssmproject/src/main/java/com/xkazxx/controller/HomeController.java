@@ -37,6 +37,23 @@ public class HomeController {
         list.add("work:edit");
         list.add("work:delete");
 
+        //设备模块
+        list.add("device:add");
+        list.add("device:edit");
+        list.add("device:delete");
+        list.add("deviceType:add");
+        list.add("deviceType:edit");
+        list.add("deviceType:delete");
+        list.add("deviceCheck:add");
+        list.add("deviceCheck:edit");
+        list.add("deviceCheck:delete");
+        list.add("deviceFault:add");
+        list.add("deviceFault:edit");
+        list.add("deviceFault:delete");
+        list.add("deviceMaintain:add");
+        list.add("deviceMaintain:edit");
+        list.add("deviceMaintain:delete");
+
         //请写上自己模块名字,在jsp中找到对应的xxx_list.jsp页面
         httpSession.setAttribute("sysPermissionList",list);
         return "home";
