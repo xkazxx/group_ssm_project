@@ -1,15 +1,17 @@
 package com.xkazxx.controller.schedulingController;
 
 import com.xkazxx.bean.COrder;
+import com.xkazxx.myAnnotation.SurpriseAnnotation;
 import com.xkazxx.service.SchedulingService;
 import com.xkazxx.util.PublicMethodPart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Controller
@@ -20,7 +22,7 @@ public class COrderController {
     SchedulingService schedulingService;
 
     @RequestMapping("/find")
-    public String findOrder(Model model) {
+    public String findOrder() {
         //订单查询
         return "order_list";
     }
@@ -107,11 +109,23 @@ public class COrderController {
         return PublicMethodPart.judgeResult(msg);
     }
 
+    @SurpriseAnnotation
     @RequestMapping("/delete_batch")
     @ResponseBody
-    public Map delete_batch_COrder(String[] ids) {
-        boolean success = schedulingService.delete_batch_COrder(ids);
-        return PublicMethodPart.optionSuccess(success);
+    public Map delete_batch_COrder(@NotNull String[] ids) {
+        List<String> list= schedulingService.delete_batch_COrder(ids);
+        /*if(list != null) {
+            for (String s : list) {
+                String[] split = s.split(",");
+                if(split == null) continue;
+                for (String s1 : split) {
+                    String realPath = context.getRealPath(s1);
+                    File file = new File(realPath);
+                    if (file.exists() && file.isFile()) file.delete();
+                }
+            }
+        }*/
+        return PublicMethodPart.optionSuccess(true);
     }
 
     @RequestMapping("/update_all")

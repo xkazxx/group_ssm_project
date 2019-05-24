@@ -19,7 +19,7 @@ public class IsLoginHandler implements HandlerInterceptor {
                 return true;
             }
             request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request,response);
-            return false;
+            return true;
         }
         return true;
     }

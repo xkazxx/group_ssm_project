@@ -24,7 +24,7 @@ public interface ProductMapper {
 
     List<Product> findProducts(int pageNum, int pageSize);
 
-    int getTotalNum();
+    List<String> get_batch_pic(@Param("ids") String[] ids);
 
     List<Product> getAllProduct();
 

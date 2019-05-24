@@ -358,7 +358,7 @@ function doSearch_order(value,name){ //用户输入用户名,点击搜素,触发
         		for(var i in imgs){
         			if($.trim(imgs[i]).length > 0){
         				_ele.siblings(".pics").find("ul").append("<li><a id='img"+i+"' href='"+imgs[i]+"' target='_blank'>" +
-        						"<img src='"+imgs[i]+"' width='80' height='50' /></a> ");
+        						"<img src='${pageContext.request.contextPath}"+imgs[i]+"' width='80' height='50' /></a> ");
         				j = true;
         			}
         		}

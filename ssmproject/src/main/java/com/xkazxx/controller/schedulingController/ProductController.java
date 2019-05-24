@@ -1,6 +1,7 @@
 package com.xkazxx.controller.schedulingController;
 
 import com.xkazxx.bean.Product;
+import com.xkazxx.myAnnotation.SurpriseAnnotation;
 import com.xkazxx.service.SchedulingService;
 import com.xkazxx.util.PublicMethodPart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -114,14 +118,21 @@ public class ProductController {
     @ResponseBody
     public Map update_all_Product(Product product){
         boolean success = schedulingService.update_all_Product(product);
+
         return PublicMethodPart.optionSuccess(success);
     }
 
     @RequestMapping("/delete_batch")
     @ResponseBody
+    @SurpriseAnnotation
     public Map delete_batch_Product(String[] ids){
-        boolean success = schedulingService.delete_batch_Product(ids);
-        return PublicMethodPart.optionSuccess(success);
+        List<String> list = schedulingService.delete_batch_Product(ids);
+        /*for (String s : list) {
+            String realPath = context.getRealPath(s);
+            File file = new File(realPath);
+            if(file.exists() && file.isFile()) file.delete();
+        }*/
+        return PublicMethodPart.optionSuccess(true);
     }
 
     @RequestMapping("/update_note")

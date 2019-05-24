@@ -20,6 +20,13 @@
     product
   </select>
 
+  <select id="get_batch_pic" resultType="string">
+    select image from product where product_id in
+    <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </select>
+
   <delete id="delete_batch_Product">
     delete from product where product_id in
     <foreach collection="ids" item="id" open="(" close=")" separator=",">

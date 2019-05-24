@@ -42,4 +42,5 @@ public interface COrderMapper {
     boolean updateCOrderNote(@Param("note") String note,
                              @Param("orderId") String orderId);
 
+    List<String> get_batch_files(@Param("ids") String[] ids);
 }

@@ -30,7 +30,7 @@ public class PicAndFileController {
         for (MultipartFile uploadFile1 : uploadFile) {
             try {
                 String originalFilename = uploadFile1.getOriginalFilename();
-                String picName = "/pic/" + UUID.randomUUID().toString() +
+                String picName = "pic/" + UUID.randomUUID().toString() +
                         originalFilename.substring(originalFilename.lastIndexOf("."));
                 String path = context.getRealPath("/WEB-INF/" + picName);
                 uploadFile1.transferTo(new File(path));

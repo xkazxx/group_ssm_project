@@ -7,6 +7,9 @@ import com.xkazxx.mapper.*;
 import com.xkazxx.service.SchedulingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -380,9 +383,11 @@ public class SchedulingServiceImpl implements SchedulingService {
 
 
     @Override
-    public boolean delete_batch_COrder(String[] ids) {
-        int i = cOrderMapper.delete_batch_COrder(ids);
-        return i == ids.length;
+    @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.REPEATABLE_READ)
+    public List<String> delete_batch_COrder(String[] ids) {
+        List<String> list = cOrderMapper.get_batch_files(ids);
+        cOrderMapper.delete_batch_COrder(ids);
+        return list;
     }
 
     @Override
@@ -427,9 +432,11 @@ public class SchedulingServiceImpl implements SchedulingService {
     }
 
     @Override
-    public boolean delete_batch_Product(String[] ids) {
-
-        return ids.length == productMapper.delete_batch_Product(ids);
+    @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.REPEATABLE_READ)
+    public List<String> delete_batch_Product(String[] ids) {
+        List<String> list = productMapper.get_batch_pic(ids);
+        productMapper.delete_batch_Product(ids);
+        return list;
     }
 
     @Override

@@ -133,13 +133,25 @@
   </foreach>
 </delete>
 
-<update id="updateCOrderNote">
+  <select id="get_batch_files" resultType="string">
+    select concat_ws(',',image,file) from  c_order where order_id in
+    <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </select>
+
+
+  <update id="updateCOrderNote">
     update c_order set note = #{note} where order_id = #{orderId}
 </update>
   <!--查询总数量-->
   <select id="getTotalNum" resultType="_int">
     select count(1) from c_order
   </select>
+
+
+
+
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

@@ -10,7 +10,7 @@
 
     <context:component-scan base-package="com.xkazxx.controller"/>
     <!--spring mvc注解驱动-->
-    <mvc:annotation-driven conversion-service="myConversionService"/>
+    <mvc:annotation-driven validator="validator" conversion-service="myConversionService"/>
     <!--自定义类型转化-->
     <bean id="myConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
@@ -38,12 +38,16 @@
 
     <!--文件上传-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-       <property name="maxUploadSizePerFile" value="1024"/>
-        <property name="maxUploadSize" value="20500"/>
+       <!--<property name="maxUploadSizePerFile" value="1024"/>-->
+        <!--<property name="maxUploadSize" value="20500"/>-->
     </bean>
     <!--拦截器注册-->
     <mvc:interceptors>
         <bean class="com.xkazxx.myHandlerInterceptor.IsLoginHandler"/>
     </mvc:interceptors>
 
+    <!--校验器-->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+    </bean>
 </beans>

@@ -73,7 +73,7 @@ public interface SchedulingService {
 
     Map findTaskByManufactureSn(String searchValue, int pageNum, int pageSize);
 
-    boolean delete_batch_COrder(String[] ids);
+    List<String> delete_batch_COrder(String[] ids);
 
     boolean insertCustom(Custom custom);
 
@@ -91,7 +91,7 @@ public interface SchedulingService {
 
     boolean update_all_Product(Product product);
 
-    boolean delete_batch_Product(String[] ids);
+    List<String> delete_batch_Product(String[] ids);
 
     Manufacture findManufacture(String id);
 
