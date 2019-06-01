@@ -435,6 +435,7 @@ public class SchedulingServiceImpl implements SchedulingService {
     @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.REPEATABLE_READ)
     public List<String> delete_batch_Product(String[] ids) {
         List<String> list = productMapper.get_batch_pic(ids);
+
         productMapper.delete_batch_Product(ids);
         return list;
     }

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class RunTimeStatic {
     Logger logger = Logger.getLogger(this.getClass());
 
-    @Pointcut(value = "execution(* com.xkazxx.controller..*(..))")
+    @Pointcut(value = "execution(* com.xkazxx.service.impl.SchedulingServiceImpl.*(..))")
     public void runTimeStaticPointCut(){}
 
     @Around("runTimeStaticPointCut()")

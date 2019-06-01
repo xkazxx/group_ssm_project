@@ -1,7 +1,7 @@
-/*package com.xkazxx.controller;
+/*
+package com.xkazxx.controller;
 
 import com.xkazxx.bean.Work;
-import com.xkazxx.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,4 +21,5 @@ public class WorkController {
 
 
 
-}*/
+}
+*/

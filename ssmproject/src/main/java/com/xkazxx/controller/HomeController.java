@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,40 +25,40 @@ public class HomeController {
     @Autowired
     HomeService homeService;
 
+
     @RequestMapping("/ajaxLogin")
     @ResponseBody
-    public Map login(HttpSession session, String username, String password){
-        SysUser sysUser = homeService.login(username,password);
+    public Map login(HttpSession session, String username, String password) {
+        SysUser sysUser = homeService.login(username, password);
         Map map = new HashMap();
-        String msg = null;
-        if(sysUser != null){
-            if("1".equals(sysUser.getLocked())){
-                session.setAttribute("sysUser",sysUser);
+        String msg;
+        if (sysUser != null) {
+            if ("1".equals(sysUser.getLocked())) {
+                session.setAttribute("sysUser", sysUser);
                 msg = "欢迎";
-            }
-            else {
+            } else {
                 msg = "authentication_error";
             }
-        }
-        else {
+        } else {
             msg = "account_error";
         }
-
-        map.put("msg",msg);
+        map.put("msg", msg);
         return map;
     }
 
     @RequestMapping("/")
-    public String getLoginJsp(){
-
+    public String getLoginJsp() {
         return "login";
     }
 
     @RequestMapping("logout")
-    public String logout(){ return "login"; }
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("sysUser");
+        return "login";
+    }
 
     @RequestMapping("/home")
-    public String home(HttpSession session){
+    public String home(HttpSession session) {
         List list = new ArrayList();
         //计划模块
         list.add("order:add");
@@ -106,11 +107,12 @@ public class HomeController {
 
 
         //请写上自己模块名字,在jsp中找到对应的xxx_list.jsp页面
-        session.setAttribute("sysPermissionList",list);
+        session.setAttribute("sysPermissionList", list);
         return "home";
     }
 
- /*   @RequestMapping("/")
+
+   /* @RequestMapping("/")
     public String home(HttpSession session) {
         List list = new ArrayList();
         //计划模块
