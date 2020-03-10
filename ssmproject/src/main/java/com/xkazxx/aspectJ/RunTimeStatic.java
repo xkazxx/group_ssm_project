@@ -28,6 +28,6 @@ public class RunTimeStatic {
 
     @Before("@annotation(surpriseAnnotation)")
     public void warningDeleteFile(SurpriseAnnotation surpriseAnnotation){
-       logger.info("warnning：someone want to delete files+++++");
+       logger.info("warnning：someone want to delete files+544++");
     }
 }
